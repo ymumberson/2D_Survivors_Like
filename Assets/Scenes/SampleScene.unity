@@ -9842,7 +9842,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   enemyPrefabs:
   - {fileID: 1603734588926745079, guid: 5b1bef29f03fd7a4593a6b2ebdc05e0c, type: 3}
-  spawnCount: 1
+  enemySpawnWarningIndicatorPrefab: {fileID: 7830581112748324103, guid: 7770bc60e7a5597418ea884ffb5abdd3, type: 3}
+  warningDuration: 1
+  spawnCount: 3
   spawnInterval: 5
   spawnBounds:
     m_Center: {x: 0, y: 0, z: 0}

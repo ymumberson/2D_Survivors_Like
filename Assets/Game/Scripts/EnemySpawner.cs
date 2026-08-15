@@ -6,6 +6,8 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private List<GameObject> enemyPrefabs = new();
+    [SerializeField] private GameObject enemySpawnWarningIndicatorPrefab;
+    [SerializeField] private float warningDuration = 1f;
     [SerializeField] private int spawnCount = 1;
     [SerializeField] private float spawnInterval = 5f;
     [SerializeField] Bounds spawnBounds = new();
@@ -31,14 +33,32 @@ public class EnemySpawner : MonoBehaviour
     {
         for (int i=0; i<spawnCount; ++i)
         {
-            SpawnEnemy();
+            StartCoroutine(SpawnEnemyAfterWarning());
         }
     }
 
-    private void SpawnEnemy()
+    private IEnumerator SpawnEnemyAfterWarning()
+    {
+        Vector3 spawnLocation = GenerateSpawnPosition();
+        
+        if (warningDuration > 0 && enemySpawnWarningIndicatorPrefab)
+        {
+            GameObject warningIndicator = Instantiate(enemySpawnWarningIndicatorPrefab, this.transform);
+            warningIndicator.transform.position = spawnLocation;
+            yield return new WaitForSeconds(warningDuration);
+            Destroy(warningIndicator);
+            SpawnEnemy(spawnLocation);
+        }
+        else
+        {
+            SpawnEnemy(spawnLocation);
+        }
+    }
+
+    private void SpawnEnemy(Vector3 spawnLocation)
     {
         var enemy = Instantiate(enemyPrefabs[0], this.transform);
-        enemy.transform.position = GenerateSpawnPosition();
+        enemy.transform.position = spawnLocation;
         var healthController = enemy.GetComponentInChildren<HealthController>();
         enemies[healthController] = enemy;
         healthController.Died += () => enemies.Remove(healthController);
