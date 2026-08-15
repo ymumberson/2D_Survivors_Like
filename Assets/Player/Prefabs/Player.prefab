@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4064894618984947493}
+  - component: {fileID: 8004389792483858206}
   - component: {fileID: 3027806116004537361}
   - component: {fileID: 6132402118812485659}
   - component: {fileID: 542034426858268792}
-  - component: {fileID: 6395002278012092514}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -39,6 +39,21 @@ Transform:
   - {fileID: 1351406674598079465}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8004389792483858206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3332565666542433130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7bc1c228844a604c84e46afd38dcf97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player
+  disableOnDied:
+  - {fileID: 6243300137798346296}
+  - {fileID: 3955399858171307674}
 --- !u!114 &3027806116004537361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,22 +135,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6395002278012092514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3332565666542433130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d391e71739c9525489edfa1dcae9219d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ContactDamage
-  damageAmount: 50
-  attackInterval: 1
-  targetTags:
-  - Enemy
 --- !u!1 &3955399858171307674
 GameObject:
   m_ObjectHideFlags: 0
