@@ -253,6 +253,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveToPlayer
   rootTransform: {fileID: 273233811363369883}
+  movementBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 14.45, y: 9, z: 0}
   moveSpeed: 1
 --- !u!1 &7359920224914027773
 GameObject:
