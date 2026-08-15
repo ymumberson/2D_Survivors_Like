@@ -14,6 +14,8 @@ public class HealthController : MonoBehaviour
     private float _health;
 
     public event Action<float> HealthChanged;
+    public event Action<float> Damaged;
+    public event Action<float> Healed;
     public event Action Died;
     public event Action Revived;
 
@@ -54,16 +56,23 @@ public class HealthController : MonoBehaviour
         // Return if health has not changed.
         if (Mathf.Approximately(previousHealth, _health)) return;
 
+        bool previouslyDead = IsDead;
+        IsDead = _health <= 0;
+        
         HealthChanged?.Invoke(_health);
 
-        if (_health <= 0f && !IsDead) // Handle death
+        if (!previouslyDead && IsDead) // Handle death
         {
-            IsDead = true;
             Died?.Invoke();
-        } else if (IsDead && _health > 0) // Handle revive
+        } else if (previouslyDead && !IsDead) // Handle revive
         {
-            IsDead = false;
             Revived?.Invoke();
+        } else if (_health > previousHealth) // Handle healed
+        {
+            Healed?.Invoke(_health - previousHealth);
+        } else if (_health < previousHealth) // Handle damaged
+        {
+            Damaged?.Invoke(previousHealth - _health);
         }
     }
 }

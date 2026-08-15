@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4064894618984947493}
+  - component: {fileID: 3027806116004537361}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -34,6 +35,18 @@ Transform:
   - {fileID: 3943626957611756766}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3027806116004537361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3332565666542433130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4a52406e44cd0446a2a8fc62571a650, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerTestScript
 --- !u!1 &5498076231200794604
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,6 +194,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3943626957611756766}
   - component: {fileID: 9091033066235900983}
+  - component: {fileID: 1360136868746573755}
   m_Layer: 0
   m_Name: HealthController
   m_TagString: Untagged
@@ -216,3 +230,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthController
   maxHealth: 100
+--- !u!114 &1360136868746573755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6560199491776402293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f06aa3fba5a5b94f83845342c098d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDamageHandler
+  spriteRenderer: {fileID: 2327360791271273261}
+  flashDuration: 0.25
+  flashColor: {r: 1, g: 0, b: 0, a: 1}
