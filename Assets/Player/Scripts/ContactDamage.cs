@@ -19,9 +19,11 @@ public class ContactDamage : MonoBehaviour
         toDamage.Clear();
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        HealthController healthController = collision.gameObject.GetComponent<HealthController>();
+        Debug.Log("Enter Collision with: " + collision.gameObject);
+
+        HealthController healthController = collision.gameObject.GetComponentInChildren<HealthController>();
 
         // Check if collision is in list of target tags
         if (!healthController || !targetTags.Contains(collision.gameObject.tag)) return;
@@ -33,10 +35,12 @@ public class ContactDamage : MonoBehaviour
         toDamage[healthController] = StartCoroutine(DamageOverTime(healthController));
     }
 
-    void OnCollisionExit2D(Collision2D collision)
+    void OnTriggerExit2D(Collider2D collision)
     {
+        Debug.Log("Exit Collision with: " + collision.gameObject);
+
         // NB. This currently assumes one collider for players and enemies
-        HealthController healthController = collision.gameObject.GetComponent<HealthController>();
+        HealthController healthController = collision.gameObject.GetComponentInChildren<HealthController>();
         
         if (!healthController) return;
 
@@ -61,7 +65,7 @@ public class ContactDamage : MonoBehaviour
 
     private void StopDamage(HealthController healthController)
     {
-        if (!toDamage.TryGetValue(healthController, out Coroutine coroutine))
+        if (toDamage.TryGetValue(healthController, out Coroutine coroutine))
         {
             StopCoroutine(coroutine);
             toDamage.Remove(healthController);

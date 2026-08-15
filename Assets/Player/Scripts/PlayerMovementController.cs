@@ -1,10 +1,8 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovementController : MonoBehaviour
+public class PlayerMovementController : MovementController
 {
-    [SerializeField] private Transform playerTransform;
     [SerializeField] private float movementSpeed = 2f;
 
     private InputAction moveAction;
@@ -25,15 +23,7 @@ public class PlayerMovementController : MonoBehaviour
         if (moveAction.IsPressed())
         {
             Vector2 moveValue = moveAction.ReadValue<Vector2>().normalized;
-            HandleMovement(moveValue * Time.deltaTime * movementSpeed);
-        }
-    }
-
-    private void HandleMovement(Vector2 moveValue)
-    {
-        if (playerTransform)
-        {
-            playerTransform.position = new Vector2(playerTransform.position.x + moveValue.x, playerTransform.position.y + moveValue.y);
+            base.Move(moveValue * Time.deltaTime * movementSpeed);
         }
     }
 }

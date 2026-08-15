@@ -9,12 +9,15 @@ public class PlayerDamageHandler : MonoBehaviour
     [SerializeField] private float flashDuration = 0.25f;
     [SerializeField] private Color damageFlash = Color.red;
     [SerializeField] private Color reviveFlash = Color.yellow;
+    [SerializeField] private Color deathColor = Color.black;
     private HealthController _healthController;
+    private Color _originalColor;
     private Coroutine flashCoroutine;
 
     void Awake()
     {
         _healthController = GetComponent<HealthController>();
+        _originalColor = spriteRenderer.color;
     }
 
     void OnEnable()
@@ -46,7 +49,7 @@ public class PlayerDamageHandler : MonoBehaviour
         if (flashCoroutine != null)
             StopCoroutine(flashCoroutine);
 
-        spriteRenderer.color = Color.white;
+        spriteRenderer.color = _originalColor;
         StartCoroutine(Flash(reviveFlash));
     }
 
@@ -55,20 +58,19 @@ public class PlayerDamageHandler : MonoBehaviour
         if (flashCoroutine != null)
             StopCoroutine(flashCoroutine);
 
-        spriteRenderer.color = Color.black;
+        spriteRenderer.color = deathColor;
     }
 
     private IEnumerator Flash(Color flashColor)
     {
         float elapsed = 0f;
-        Color originalColor = spriteRenderer.color;
 
         float halfDuration = flashDuration / 2f;
         while (elapsed < halfDuration)
         {
             elapsed += Time.deltaTime;
             float t = elapsed / halfDuration;
-            spriteRenderer.color = Color.Lerp(originalColor, flashColor, t);
+            spriteRenderer.color = Color.Lerp(_originalColor, flashColor, t);
             
             yield return null;
         }
@@ -79,12 +81,12 @@ public class PlayerDamageHandler : MonoBehaviour
         {
             elapsed += Time.deltaTime;
             float t = elapsed / halfDuration;
-            spriteRenderer.color = Color.Lerp(flashColor, originalColor, t);
+            spriteRenderer.color = Color.Lerp(flashColor, _originalColor, t);
             
             yield return null;
         }
 
-        spriteRenderer.color = originalColor;
+        spriteRenderer.color = _originalColor;
         flashCoroutine = null;
     }
 }
