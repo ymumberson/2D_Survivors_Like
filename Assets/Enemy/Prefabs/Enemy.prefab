@@ -127,7 +127,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1344357693925642628}
-  - component: {fileID: 7353934122754819986}
   m_Layer: 0
   m_Name: Damage
   m_TagString: Untagged
@@ -150,22 +149,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 273233811363369883}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7353934122754819986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3832507579941944143}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d391e71739c9525489edfa1dcae9219d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ContactDamage
-  damageAmount: 10
-  attackInterval: 1
-  targetTags:
-  - Player
 --- !u!1 &5147618137493180105
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,6 +251,7 @@ GameObject:
   - component: {fileID: 3419793885806286823}
   - component: {fileID: 7157007802911890790}
   - component: {fileID: 6977997430662010403}
+  - component: {fileID: 1195661150316895849}
   m_Layer: 0
   m_Name: Avatar
   m_TagString: Untagged
@@ -365,3 +349,20 @@ MonoBehaviour:
   attackInterval: 1
   targetTags:
   - Player
+--- !u!114 &1195661150316895849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7359920224914027773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 226ecb3d313b27142804ebe148d813f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthGraphicHandler
+  healthController: {fileID: 808265090100009656}
+  flashDuration: 0.25
+  damageFlash: {r: 1, g: 0, b: 0, a: 1}
+  reviveFlash: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  deathColor: {r: 0, g: 0, b: 0, a: 1}

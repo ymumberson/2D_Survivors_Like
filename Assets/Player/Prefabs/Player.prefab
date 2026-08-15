@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3027806116004537361}
   - component: {fileID: 6132402118812485659}
   - component: {fileID: 542034426858268792}
+  - component: {fileID: 6395002278012092514}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -35,6 +36,7 @@ Transform:
   - {fileID: 7549304893961546055}
   - {fileID: 2066949998349392240}
   - {fileID: 3943626957611756766}
+  - {fileID: 1351406674598079465}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3027806116004537361
@@ -118,6 +120,53 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6395002278012092514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3332565666542433130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d391e71739c9525489edfa1dcae9219d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ContactDamage
+  damageAmount: 50
+  attackInterval: 1
+  targetTags:
+  - Enemy
+--- !u!1 &3955399858171307674
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1351406674598079465}
+  m_Layer: 0
+  m_Name: Damage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1351406674598079465
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3955399858171307674}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4064894618984947493}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5498076231200794604
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,6 +177,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2066949998349392240}
   - component: {fileID: 2327360791271273261}
+  - component: {fileID: 5186102050488734788}
   m_Layer: 0
   m_Name: Avatar
   m_TagString: Untagged
@@ -209,6 +259,23 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &5186102050488734788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5498076231200794604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 226ecb3d313b27142804ebe148d813f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthGraphicHandler
+  healthController: {fileID: 9091033066235900983}
+  flashDuration: 0.25
+  damageFlash: {r: 1, g: 0, b: 0, a: 1}
+  reviveFlash: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  deathColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &6243300137798346296
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,7 +332,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3943626957611756766}
   - component: {fileID: 9091033066235900983}
-  - component: {fileID: 1360136868746573755}
   m_Layer: 0
   m_Name: Health
   m_TagString: Player
@@ -301,20 +367,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthController
   maxHealth: 100
---- !u!114 &1360136868746573755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6560199491776402293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f06aa3fba5a5b94f83845342c098d61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerDamageHandler
-  spriteRenderer: {fileID: 2327360791271273261}
-  flashDuration: 0.25
-  damageFlash: {r: 1, g: 0, b: 0, a: 1}
-  reviveFlash: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  deathColor: {r: 0, g: 0, b: 0, a: 1}
