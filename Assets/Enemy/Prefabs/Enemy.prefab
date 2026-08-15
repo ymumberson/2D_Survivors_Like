@@ -159,6 +159,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7691754228286200141}
   - component: {fileID: 808265090100009656}
+  - component: {fileID: 3862844576466827236}
   m_Layer: 0
   m_Name: Health
   m_TagString: Untagged
@@ -194,6 +195,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthController
   maxHealth: 100
+--- !u!114 &3862844576466827236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5147618137493180105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d3cd480662e9aa45be0ba18239cdf12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDeathHandler
+  rootTransform: {fileID: 273233811363369883}
 --- !u!1 &5248264260289265619
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,7 +264,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3419793885806286823}
   - component: {fileID: 7157007802911890790}
-  - component: {fileID: 6977997430662010403}
   - component: {fileID: 1195661150316895849}
   m_Layer: 0
   m_Name: Avatar
@@ -333,22 +346,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &6977997430662010403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7359920224914027773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d391e71739c9525489edfa1dcae9219d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ContactDamage
-  damageAmount: 10
-  attackInterval: 1
-  targetTags:
-  - Player
 --- !u!114 &1195661150316895849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,3 +363,4 @@ MonoBehaviour:
   damageFlash: {r: 1, g: 0, b: 0, a: 1}
   reviveFlash: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   deathColor: {r: 0, g: 0, b: 0, a: 1}
+  healColor: {r: 0, g: 1, b: 0, a: 1}

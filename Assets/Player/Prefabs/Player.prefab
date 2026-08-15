@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerTestScript
   interval: 2
   damageAmount: 0
-  healAmount: 0
+  healAmount: 5
   revive: 0
   _currentHealth: 0
 --- !u!70 &6132402118812485659
@@ -276,6 +276,7 @@ MonoBehaviour:
   damageFlash: {r: 1, g: 0, b: 0, a: 1}
   reviveFlash: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   deathColor: {r: 0, g: 0, b: 0, a: 1}
+  healColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1 &6243300137798346296
 GameObject:
   m_ObjectHideFlags: 0
