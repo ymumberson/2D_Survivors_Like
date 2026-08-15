@@ -7,6 +7,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private List<GameObject> enemyPrefabs = new();
     [SerializeField] private int spawnCount = 1;
     [SerializeField] private float spawnInterval = 5f;
+    [SerializeField] private Dictionary<HealthController, GameObject> enemies = new();
+
+    public Dictionary<HealthController, GameObject> Enemies => enemies;
 
     void Start()
     {
@@ -25,6 +28,17 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemies()
     {
-        Instantiate(enemyPrefabs[0], this.transform);
+        for (int i=0; i<spawnCount; ++i)
+        {
+            SpawnEnemy();
+        }
+    }
+
+    private void SpawnEnemy()
+    {
+        var enemy = Instantiate(enemyPrefabs[0], this.transform);
+        var healthController = enemy.GetComponentInChildren<HealthController>();
+        enemies[healthController] = enemy;
+        healthController.Died += () => enemies.Remove(healthController);
     }
 }

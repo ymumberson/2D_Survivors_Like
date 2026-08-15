@@ -1,9 +1,11 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
     public static GameController Instance;
+    [SerializeField] private EnemySpawner enemySpawner;
     private HealthController _player;
 
     void Awake()
@@ -30,5 +32,12 @@ public class GameController : MonoBehaviour
             FindPlayer();
 
         return _player;
+    }
+
+    public Dictionary<HealthController, GameObject> GetEnemies()
+    {
+        if (!enemySpawner) return null;
+
+        return enemySpawner.Enemies;
     }
 }
