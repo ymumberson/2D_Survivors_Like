@@ -12,9 +12,11 @@ public class MoveToPlayer : MovementController
 
     private void Move()
     {
-        HealthController player = GameController.Instance.GetPlayer();
+        Player player = GameController.Instance.GetPlayer();
+        if (!player) return;
 
-        if (!player || player.IsDead) return;
+        HealthController healthController = player.GetComponentInChildren<HealthController>();
+        if (!healthController || healthController.IsDead) return;
 
         Vector2 toPlayer = (player.transform.position - transform.position).normalized * moveSpeed * Time.deltaTime;
 

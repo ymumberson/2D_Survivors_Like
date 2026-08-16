@@ -17,7 +17,6 @@ public class UIController : MonoBehaviour
     {
         openMenu = InputSystem.actions.FindAction("OpenMenu");
         pauseMenu.SetActive(false);
-        inGameUI.SetActive(false);
     }
 
     void Update()

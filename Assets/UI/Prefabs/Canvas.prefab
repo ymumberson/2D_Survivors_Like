@@ -330,14 +330,6 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3039502634581040829, guid: c416fdf2f343b3e4684d3378e6fd9399, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 3039502634581040829, guid: c416fdf2f343b3e4684d3378e6fd9399, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 3039502634581040829, guid: c416fdf2f343b3e4684d3378e6fd9399, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -388,6 +380,22 @@ PrefabInstance:
     - target: {fileID: 3170551660433249147, guid: c416fdf2f343b3e4684d3378e6fd9399, type: 3}
       propertyPath: m_Name
       value: InGameOverlay
+      objectReference: {fileID: 0}
+    - target: {fileID: 6486720345377542530, guid: c416fdf2f343b3e4684d3378e6fd9399, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6486720345377542530, guid: c416fdf2f343b3e4684d3378e6fd9399, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9180454263546926138, guid: c416fdf2f343b3e4684d3378e6fd9399, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9180454263546926138, guid: c416fdf2f343b3e4684d3378e6fd9399, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
