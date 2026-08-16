@@ -234,6 +234,7 @@ GameObject:
   - component: {fileID: 2327360791271273261}
   - component: {fileID: 5186102050488734788}
   - component: {fileID: 3682353497151112086}
+  - component: {fileID: 5666501714595549145}
   m_Layer: 0
   m_Name: Avatar
   m_TagString: Untagged
@@ -250,9 +251,9 @@ Transform:
   m_GameObject: {fileID: 5498076231200794604}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0.028, y: -1.2, z: 0}
+  m_LocalScale: {x: 0.23, y: 0.23, z: 0.23}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4064894618984947493}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -303,9 +304,9 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 117222e6e588a8044be008c3600ad1d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -346,6 +347,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExperienceGraphicHandler
   experienceController: {fileID: 3560164276733817231}
+--- !u!114 &5666501714595549145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5498076231200794604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16b359aabc3dd1e41840e3766fc3b207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScalePulseAnim
 --- !u!1 &6243300137798346296
 GameObject:
   m_ObjectHideFlags: 0
