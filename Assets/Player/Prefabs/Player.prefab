@@ -37,6 +37,7 @@ Transform:
   - {fileID: 7549304893961546055}
   - {fileID: 2066949998349392240}
   - {fileID: 3943626957611756766}
+  - {fileID: 5551684931159852304}
   - {fileID: 1351406674598079465}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -72,6 +73,7 @@ MonoBehaviour:
   healAmount: 5
   revive: 0
   _currentHealth: 0
+  experienceGain: 2
 --- !u!70 &6132402118812485659
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -231,6 +233,7 @@ GameObject:
   - component: {fileID: 2066949998349392240}
   - component: {fileID: 2327360791271273261}
   - component: {fileID: 5186102050488734788}
+  - component: {fileID: 3682353497151112086}
   m_Layer: 0
   m_Name: Avatar
   m_TagString: Untagged
@@ -330,6 +333,19 @@ MonoBehaviour:
   reviveFlash: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   deathColor: {r: 0, g: 0, b: 0, a: 1}
   healColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!114 &3682353497151112086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5498076231200794604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 542ef9fb4b5f2c842872fe89f939124f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExperienceGraphicHandler
+  experienceController: {fileID: 3560164276733817231}
 --- !u!1 &6243300137798346296
 GameObject:
   m_ObjectHideFlags: 0
@@ -561,3 +577,48 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!1 &8094226894301555007
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5551684931159852304}
+  - component: {fileID: 3560164276733817231}
+  m_Layer: 0
+  m_Name: Experience
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5551684931159852304
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8094226894301555007}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4064894618984947493}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3560164276733817231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8094226894301555007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b0f92981da5cc74f9fef63aaa5eaac4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExperienceController
+  experienceGainMultiplier: 1
