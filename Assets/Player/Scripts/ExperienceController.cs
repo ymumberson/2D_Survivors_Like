@@ -7,6 +7,7 @@ public class ExperienceController : MonoBehaviour
     private const float LEVEL_UP_COST_MULTIPLIER = 2f;
     private const float BASE_LEVEL_UP_COST = 10;
     [SerializeField] private float experienceGainMultiplier = 1;
+    [SerializeField] private int startingLevel = 1;
     private int _level;
     public int Level => _level;
     private float _experience;
@@ -21,8 +22,8 @@ public class ExperienceController : MonoBehaviour
     void Awake()
     {
         _experience = 0;
-        _level = 1;
-        _levelUpCost = CalculateLevelUpCost(1);
+        _level = startingLevel;
+        _levelUpCost = CalculateLevelUpCost(_level);
     }
 
     public void AddExperience(float experienceGain)

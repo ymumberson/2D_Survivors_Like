@@ -4,6 +4,8 @@ using UnityEngine;
 public class EnemyDeathHandler : MonoBehaviour
 {
     [SerializeField] private Transform rootTransform;
+    [SerializeField] private GameObject experiencePrefab;
+    [SerializeField] private float experienceDropAmount = 1;
     private HealthController _healthController;
 
     void Awake()
@@ -23,6 +25,8 @@ public class EnemyDeathHandler : MonoBehaviour
 
     private void OnDied()
     {
+        DropExperience();
+
         if (rootTransform)
         {
             Destroy(rootTransform.gameObject);
@@ -30,5 +34,16 @@ public class EnemyDeathHandler : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+
+    private void DropExperience()
+    {
+        if (!experiencePrefab) return;
+
+        GameObject experienceGO = Instantiate(experiencePrefab, transform.position, transform.rotation);
+        Experience experience = experienceGO.GetComponent<Experience>();
+
+        if (experience)
+            experience.experienceAmount = experienceDropAmount;
     }
 }

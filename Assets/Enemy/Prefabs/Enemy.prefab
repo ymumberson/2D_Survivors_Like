@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1660f6f776737a441946307f6d1070b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthController
-  maxHealth: 100
+  maxHealth: 20
 --- !u!114 &3862844576466827236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,6 +208,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDeathHandler
   rootTransform: {fileID: 273233811363369883}
+  experiencePrefab: {fileID: 1535772265059924698, guid: 8a0abe49f6851a7428a8c7e70597a989, type: 3}
+  experienceDropAmount: 2
 --- !u!1 &5248264260289265619
 GameObject:
   m_ObjectHideFlags: 0
