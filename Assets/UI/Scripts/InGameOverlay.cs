@@ -12,6 +12,7 @@ public class InGameOverlay : MonoBehaviour
     private HealthController _healthController;
     private ExperienceController _experienceController;
     private bool hasRunStart = false;
+    private int previousSeconds = -1;
 
     void OnEnable()
     {
@@ -41,6 +42,21 @@ public class InGameOverlay : MonoBehaviour
         _experienceController = player.GetComponentInChildren<ExperienceController>();
     }
 
+    void Update()
+    {
+        UpdateTimer();
+    }
+
+    private void UpdateTimer()
+    {
+        int seconds = Mathf.FloorToInt(GameController.Instance.ElapsedTime);
+
+        if (seconds == previousSeconds) return;
+
+        previousSeconds = seconds;
+        timerTMP.text = FormatTime(seconds);
+    }
+
     private void HandleExperienceChanged(float newExperienceValue)
     {
         float percentage = newExperienceValue / _experienceController.LevelUpCost;
@@ -51,5 +67,11 @@ public class InGameOverlay : MonoBehaviour
     {
         float percentage = newHealthValue / _healthController.MaxHealth;
         healthBar.value = percentage;
+    }
+
+    private string FormatTime(float seconds)
+    {
+        TimeSpan time = TimeSpan.FromSeconds(seconds);
+        return time.ToString(@"mm\:ss");
     }
 }
