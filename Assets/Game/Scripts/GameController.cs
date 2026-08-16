@@ -12,6 +12,8 @@ public class GameController : MonoBehaviour
     private float _elapsedTime = 0f;
     public float ElapsedTime => _elapsedTime;
 
+    public event Action GameEnded;
+
     void Awake()
     {
         if (Instance)
@@ -24,6 +26,16 @@ public class GameController : MonoBehaviour
         }
 
         CapFPS();
+    }
+
+    void OnEnable()
+    {
+        GetPlayer().GetComponentInChildren<HealthController>().Died += HandlePlayerDied;
+    }
+
+    void OnDisable()
+    {
+        GetPlayer().GetComponentInChildren<HealthController>().Died -= HandlePlayerDied;
     }
 
     void Update()
@@ -46,5 +58,10 @@ public class GameController : MonoBehaviour
     private void CapFPS()
     {
         Application.targetFrameRate = (int)Screen.currentResolution.refreshRateRatio.value;
+    }
+
+    private void HandlePlayerDied()
+    {
+        GameEnded?.Invoke();
     }
 }

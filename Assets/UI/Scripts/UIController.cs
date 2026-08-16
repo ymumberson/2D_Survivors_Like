@@ -6,8 +6,10 @@ using UnityEngine.InputSystem;
 
 public class UIController : MonoBehaviour
 {
-    [SerializeField] private GameObject pauseMenu;
-    [SerializeField] private GameObject inGameUI;
+    [SerializeField] private GameController gameController;
+    [SerializeField] private PauseMenu pauseMenu;
+    [SerializeField] private InGameOverlay inGameUI;
+    [SerializeField] private GameOverMenu gameOverMenu;
     
     private InputAction openMenu;
     private bool _isPaused = false;
@@ -16,7 +18,17 @@ public class UIController : MonoBehaviour
     void Awake()
     {
         openMenu = InputSystem.actions.FindAction("OpenMenu");
-        pauseMenu.SetActive(false);
+        pauseMenu.gameObject.SetActive(false);
+    }
+
+    void OnEnable()
+    {
+        gameController.GameEnded += EnableGameOverMenu;
+    }
+
+    void OnDisable()
+    {
+        gameController.GameEnded -= EnableGameOverMenu;
     }
 
     void Update()
@@ -38,7 +50,7 @@ public class UIController : MonoBehaviour
     {
         if (_isPaused) return;
 
-        pauseMenu.SetActive(true);
+        pauseMenu.gameObject.SetActive(true);
         Time.timeScale = 0;
         _isPaused = true;
     }
@@ -47,8 +59,15 @@ public class UIController : MonoBehaviour
     {
         if (!_isPaused) return;
 
-        pauseMenu.SetActive(false);
+        pauseMenu.gameObject.SetActive(false);
         Time.timeScale = 1;
         _isPaused = false;
+    }
+
+    private void EnableGameOverMenu()
+    {
+        UnPauseGame();
+
+        gameOverMenu.gameObject.SetActive(true);
     }
 }
