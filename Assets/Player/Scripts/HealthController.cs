@@ -6,6 +6,8 @@ public class HealthController : MonoBehaviour
 {
     [SerializeField][Min(0)] private float maxHealth = 100f;
     [SerializeField][Min(0)] private float regenerationPerSecond = 0f;
+    [SerializeField][Min(0)] private float damageCooldown = 0.15f;
+    private bool canTakeDamage = true;
     private Coroutine healthRegenerationCoroutine;
     public float HealthRegeneration => regenerationPerSecond;
     public float Health => _health;
@@ -32,6 +34,11 @@ public class HealthController : MonoBehaviour
     void OnEnable()
     {
         StartHealthRegeneration();
+    }
+
+    void OnDisable()
+    {
+        canTakeDamage = true;
     }
 
     public void IncrementHealthRegeneration(float regenerationIncrease)
@@ -64,10 +71,19 @@ public class HealthController : MonoBehaviour
 
     public void Damage(float damageAmount)
     {
-        if (IsDead) return; // Cannot damage when dead
+        if (IsDead || !canTakeDamage) return;
 
         damageAmount = Mathf.Max(0f, damageAmount);
         SetHealth(_health - damageAmount);
+
+        StartCoroutine(StartDamageCooldownTimer());
+    }
+
+    private IEnumerator StartDamageCooldownTimer()
+    {
+        canTakeDamage = false;
+        yield return new WaitForSeconds(damageCooldown);
+        canTakeDamage = true;
     }
 
     public void Heal(float healAmount)
