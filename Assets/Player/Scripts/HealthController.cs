@@ -1,9 +1,13 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class HealthController : MonoBehaviour
 {
     [SerializeField][Min(0)] private float maxHealth = 100f;
+    [SerializeField][Min(0)] private float regenerationPerSecond = 0f;
+    private Coroutine healthRegenerationCoroutine;
+    public float HealthRegeneration => regenerationPerSecond;
     public float Health => _health;
     public float MaxHealth => maxHealth;
     public bool IsDead
@@ -13,6 +17,7 @@ public class HealthController : MonoBehaviour
     }
     private float _health;
 
+    public event Action<float> MaxHealthChanged;
     public event Action<float> HealthChanged;
     public event Action<float> Damaged;
     public event Action<float> Healed;
@@ -22,6 +27,39 @@ public class HealthController : MonoBehaviour
     private void Awake()
     {
         _health = maxHealth;
+    }
+
+    void OnEnable()
+    {
+        StartHealthRegeneration();
+    }
+
+    public void IncrementHealthRegeneration(float regenerationIncrease)
+    {
+        SetHealthRegeneration(regenerationPerSecond + regenerationIncrease);
+    }
+
+    public void SetHealthRegeneration(float regenerationPerSecond)
+    {
+        this.regenerationPerSecond = Mathf.Max(0, regenerationPerSecond);
+        StartHealthRegeneration();
+    }
+
+    private void StartHealthRegeneration()
+    {
+        if (regenerationPerSecond <= 0 || healthRegenerationCoroutine != null) return;
+
+        healthRegenerationCoroutine = StartCoroutine(RegenerateHealth());
+    }
+
+    private IEnumerator RegenerateHealth()
+    {
+        var oneSecondDelay = new WaitForSeconds(1);
+        while (true)
+        {
+            yield return oneSecondDelay;
+            Heal(regenerationPerSecond);
+        }
     }
 
     public void Damage(float damageAmount)
@@ -74,5 +112,21 @@ public class HealthController : MonoBehaviour
         {
             Damaged?.Invoke(previousHealth - _health);
         }
+    }
+
+    public void IncreaseMaxHealth(float increase)
+    {
+        increase = Mathf.Max(0, increase);
+        SetMaxHealth(maxHealth + increase);
+    }
+    
+    public void SetMaxHealth(float maxHealth)
+    {
+        float prev = this.maxHealth;
+        this.maxHealth = Mathf.Max(1, maxHealth);
+
+        if (Mathf.Approximately(prev, this.maxHealth)) return;
+
+        MaxHealthChanged?.Invoke(this.maxHealth);
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class RangedWeapon : MonoBehaviour
 {
+    [SerializeField] private AttackController attackController;
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private float projectileSpeed = 10f;
     [SerializeField] private float projectileDamage = 10f;
@@ -29,7 +30,7 @@ public class RangedWeapon : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(attackInterval);
+            yield return new WaitForSeconds(attackInterval / attackController.AttackSpeedMultiplier);
             SpawnProjectile();
         }
     }
@@ -52,10 +53,11 @@ public class RangedWeapon : MonoBehaviour
             return;
         }
         
-        projectile.damage = projectileDamage;
+        projectile.damage = projectileDamage * attackController.DamageMultiplier;
         projectile.direction = targetDirection;
-        projectile.speed = projectileSpeed;
+        projectile.speed = projectileSpeed * attackController.ProjectileSpeedMultiplier;
         projectile.targetTags = targetTags;
+        projectile.transform.localScale = projectile.transform.localScale * attackController.ProjectileSizeMultiplier;
     }
 
     private Vector3 SelectTarget(Dictionary<HealthController, GameObject> enemies)

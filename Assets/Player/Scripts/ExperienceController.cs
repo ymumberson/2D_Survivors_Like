@@ -63,10 +63,10 @@ public class ExperienceController : MonoBehaviour
             _level++;
             _experience -= _levelUpCost;
             _levelUpCost = CalculateLevelUpCost();
-        }
 
-        // Fire event for level up
-        LevelledUp?.Invoke(_level);
+            // Fire event for level up. Will fire multiple times if levelling up multiple times.
+            LevelledUp?.Invoke(_level);
+        }
     }
 
     public float CalculateLevelUpCost()

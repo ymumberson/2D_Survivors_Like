@@ -70,7 +70,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerTestScript
   interval: 2
   damageAmount: 0
-  healAmount: 5
+  healAmount: 0
   revive: 0
   _currentHealth: 0
   experienceGain: 0
@@ -147,8 +147,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1351406674598079465}
+  - component: {fileID: 4976517518687749712}
   m_Layer: 0
-  m_Name: Damage
+  m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,6 +171,22 @@ Transform:
   - {fileID: 7372080753900663598}
   m_Father: {fileID: 4064894618984947493}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4976517518687749712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3955399858171307674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1702b8925533674c91e7df9b6d7bd7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttackController
+  baseDamage: 1
+  damageMultiplier: 1
+  baseAttackSpeed: 1
+  attackSpeedMultiplier: 1
 --- !u!1 &4603568033903361504
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,6 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aba079eb2870ec448790bfbe1dcc30c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangedWeapon
+  attackController: {fileID: 4976517518687749712}
   projectilePrefab: {fileID: 804817685301968405, guid: 55c509184f6822f418e634a836e759fb, type: 3}
   projectileSpeed: 10
   projectileDamage: 10
@@ -359,6 +377,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16b359aabc3dd1e41840e3766fc3b207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScalePulseAnim
+  scaleToPercentage: 0.975
+  scaleDirection: 1
+  pulseDuration: 1
 --- !u!1 &6243300137798346296
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,7 +428,7 @@ MonoBehaviour:
   movementBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 14.45, y: 9, z: 0}
-  movementSpeed: 3
+  baseMovementSpeed: 2
 --- !u!1 &6560199491776402293
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,6 +474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthController
   maxHealth: 100
+  regenerationPerSecond: 0
 --- !u!1 &7669911761979410409
 GameObject:
   m_ObjectHideFlags: 0
@@ -600,6 +622,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5551684931159852304}
   - component: {fileID: 3560164276733817231}
+  - component: {fileID: 8202091600569200071}
   - component: {fileID: 7443554013390890855}
   m_Layer: 12
   m_Name: Experience
@@ -637,6 +660,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ExperienceController
   experienceGainMultiplier: 1
   startingLevel: 1
+--- !u!114 &8202091600569200071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8094226894301555007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fbfb9606dc916c40820990052bd94d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelUpController
+  healthController: {fileID: 9091033066235900983}
+  movementController: {fileID: 7684932704397367582}
+  attackController: {fileID: 4976517518687749712}
 --- !u!58 &7443554013390890855
 CircleCollider2D:
   m_ObjectHideFlags: 0

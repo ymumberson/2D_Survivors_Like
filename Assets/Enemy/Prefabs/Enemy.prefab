@@ -128,7 +128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1344357693925642628}
   m_Layer: 0
-  m_Name: Damage
+  m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -382,3 +382,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16b359aabc3dd1e41840e3766fc3b207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScalePulseAnim
+  scaleToPercentage: 0.975
+  scaleDirection: 1
+  pulseDuration: 1

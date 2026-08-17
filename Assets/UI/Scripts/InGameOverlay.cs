@@ -19,6 +19,7 @@ public class InGameOverlay : MonoBehaviour
         if (!hasRunStart) return;
 
         _healthController.HealthChanged += HandleHealthChanged;
+        _healthController.MaxHealthChanged += HandleMaxHealthChanged;
         _experienceController.ExperienceChanged += HandleExperienceChanged;
     }
 
@@ -32,6 +33,7 @@ public class InGameOverlay : MonoBehaviour
     void OnDisable()
     {
         _healthController.HealthChanged -= HandleHealthChanged;
+        _healthController.MaxHealthChanged -= HandleMaxHealthChanged;
         _experienceController.ExperienceChanged -= HandleExperienceChanged;
     }
 
@@ -66,6 +68,12 @@ public class InGameOverlay : MonoBehaviour
     private void HandleHealthChanged(float newHealthValue)
     {
         float percentage = newHealthValue / _healthController.MaxHealth;
+        healthBar.value = percentage;
+    }
+
+    private void HandleMaxHealthChanged(float newMaxHealth)
+    {
+        float percentage = _healthController.Health / newMaxHealth;
         healthBar.value = percentage;
     }
 
