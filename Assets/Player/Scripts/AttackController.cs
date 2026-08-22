@@ -17,6 +17,11 @@ public class AttackController : MonoBehaviour
     public float ProjectileSpeedMultiplier => projectileSpeedMultiplier;
     public float ProjectileSizeMultiplier => projectileSizeMultiplier;
 
+    public float Damage => baseDamage * damageMultiplier;
+    public float AttackSpeed => baseAttackSpeed * attackSpeedMultiplier;
+    public float ProjectileSpeed => baseProjectileSpeed * projectileSpeedMultiplier;
+    public float ProjectileSize => baseProjectileSize * projectileSizeMultiplier;
+
     public event Action<float> DamageMultiplierChanged;
     public event Action<float> AttackSpeedMultiplierChanged;
     public event Action<float> ProjectileSpeedMultiplierChanged;

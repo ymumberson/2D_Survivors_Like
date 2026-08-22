@@ -2,12 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContactDamage : MonoBehaviour
+public class ContactDamage : Weapon
 {
-    [SerializeField] private float damageAmount = 10f;
-    [SerializeField] private float attackInterval = 1f;
-    [SerializeField] private List<string> targetTags = new();
-
     private Dictionary<HealthController, Coroutine> toDamage = new();
 
     void OnDisable()
@@ -29,7 +25,7 @@ public class ContactDamage : MonoBehaviour
         if (toDamage.ContainsKey(healthController)) return;
 
         // Deal initial contact damage, then start DoT
-        healthController.Damage(damageAmount);
+        healthController.Damage(Damage);
         toDamage[healthController] = StartCoroutine(DamageOverTime(healthController));
     }
 
@@ -45,7 +41,7 @@ public class ContactDamage : MonoBehaviour
 
     private IEnumerator DamageOverTime(HealthController healthController)
     {
-        var waitTimer = new WaitForSeconds(attackInterval);
+        var waitTimer = new WaitForSeconds(AttackInterval);
         while (true)
         {
             yield return waitTimer;
@@ -53,7 +49,7 @@ public class ContactDamage : MonoBehaviour
             if (healthController == null || healthController.IsDead)
                 break;
 
-            healthController.Damage(damageAmount);
+            healthController.Damage(Damage);
         }
 
         toDamage.Remove(healthController);

@@ -142,9 +142,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1344357693925642628}
+  - component: {fileID: 7262337047835363524}
   - component: {fileID: 1836055173213932643}
   - component: {fileID: 8754800339601117848}
-  - component: {fileID: 7262337047835363524}
   m_Layer: 11
   m_Name: Attack
   m_TagString: Enemy
@@ -167,6 +167,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 273233811363369883}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7262337047835363524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3832507579941944143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1702b8925533674c91e7df9b6d7bd7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttackController
+  baseDamage: 1
+  damageMultiplier: 1
+  baseAttackSpeed: 1
+  attackSpeedMultiplier: 1
+  baseProjectileSpeed: 1
+  projectileSpeedMultiplier: 1
+  baseProjectileSize: 1
+  projectileSizeMultiplier: 1
 --- !u!114 &1836055173213932643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,8 +199,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d391e71739c9525489edfa1dcae9219d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ContactDamage
+  attackController: {fileID: 7262337047835363524}
   damageAmount: 10
   attackInterval: 1
+  projectileSpeed: 10
+  projectileSize: 1
   targetTags:
   - Player
 --- !u!61 &8754800339601117848
@@ -229,26 +252,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.0782812, y: 2.0133057}
   m_EdgeRadius: 0
---- !u!114 &7262337047835363524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3832507579941944143}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1702b8925533674c91e7df9b6d7bd7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AttackController
-  baseDamage: 1
-  damageMultiplier: 1
-  baseAttackSpeed: 1
-  attackSpeedMultiplier: 1
-  baseProjectileSpeed: 1
-  projectileSpeedMultiplier: 1
-  baseProjectileSize: 1
-  projectileSizeMultiplier: 1
 --- !u!1 &5147618137493180105
 GameObject:
   m_ObjectHideFlags: 0

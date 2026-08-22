@@ -4,16 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class RangedWeapon : MonoBehaviour
+public class RangedWeapon : Weapon
 {
-    [SerializeField] private AttackController attackController;
     [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private float projectileSpeed = 10f;
-    [SerializeField] private float projectileDamage = 10f;
     [SerializeField] private int spawnCount = 1;
-    [SerializeField] private float attackInterval = 2f;
     [SerializeField] private AttackTarget attackTarget = AttackTarget.Closest;
-    [SerializeField] private List<string> targetTags = new();
     
     public enum AttackTarget
     {
@@ -30,7 +25,7 @@ public class RangedWeapon : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(attackInterval / attackController.AttackSpeedMultiplier);
+            yield return new WaitForSeconds(AttackInterval);
             SpawnProjectile();
         }
     }
@@ -53,11 +48,11 @@ public class RangedWeapon : MonoBehaviour
             return;
         }
         
-        projectile.damage = projectileDamage * attackController.DamageMultiplier;
+        projectile.damage = Damage;
         projectile.direction = targetDirection;
-        projectile.speed = projectileSpeed * attackController.ProjectileSpeedMultiplier;
+        projectile.speed = ProjectileSpeed;
         projectile.targetTags = targetTags;
-        projectile.transform.localScale = projectile.transform.localScale * attackController.ProjectileSizeMultiplier;
+        projectile.transform.localScale = projectile.transform.localScale * ProjectileSize;
     }
 
     private Vector3 SelectTarget(Dictionary<HealthController, GameObject> enemies)
