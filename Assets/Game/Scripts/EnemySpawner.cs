@@ -5,17 +5,37 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [SerializeField] private GameController gameController;
     [SerializeField] private List<GameObject> enemyPrefabs = new();
     [SerializeField] private GameObject enemySpawnWarningIndicatorPrefab;
     [SerializeField] private float warningDuration = 1f;
-    [SerializeField] private int spawnCount = 1;
-    [SerializeField] private float spawnInterval = 5f;
+    [SerializeField] private int baseSpawnCount = 1;
+    [SerializeField] private float baseSpawnInterval = 5f;
+    [SerializeField] private float minSpawnInterval = 0.5f;
     [SerializeField] BoxCollider2D spawnBounds = new();
     [SerializeField] private float minSpawnDistanceFromPlayer = 2f;
     [SerializeField] private float maxSpawnDistanceFromPlayer = 2f;
+    private float spawnInterval;
+    private int spawnCount;
     private Dictionary<HealthController, GameObject> enemies = new();
 
     public Dictionary<HealthController, GameObject> Enemies => enemies;
+
+    void Awake()
+    {
+        spawnInterval = baseSpawnInterval;
+        spawnCount = baseSpawnCount;
+    }
+
+    void OnEnable()
+    {
+        gameController.DifficultyChanged += HandleDifficultyChanged;
+    }
+
+    void OnDisable()
+    {
+        gameController.DifficultyChanged -= HandleDifficultyChanged;
+    }
 
     void Start()
     {
@@ -59,11 +79,14 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy(Vector3 spawnLocation)
     {
-        var enemy = Instantiate(enemyPrefabs[0], this.transform);
-        enemy.transform.position = spawnLocation;
-        var healthController = enemy.GetComponentInChildren<HealthController>();
-        enemies[healthController] = enemy;
+        var enemyGO = Instantiate(enemyPrefabs[0], this.transform);
+        enemyGO.transform.position = spawnLocation;
+        Enemy enemy = enemyGO.GetComponent<Enemy>();
+        var healthController = enemy.HealthController;
+        enemies[healthController] = enemyGO;
         healthController.Died += () => enemies.Remove(healthController);
+
+        ScaleEnemyDifficulty(enemy);
     }
 
     private Vector3 GenerateSpawnPosition()
@@ -121,5 +144,35 @@ public class EnemySpawner : MonoBehaviour
         position.z = 0;
 
         return position;
+    }
+
+    private void ScaleEnemyDifficulty(Enemy enemy)
+    {
+        float difficulty = gameController.DifficultyLevel;
+
+        if (enemy.HealthController)
+        {
+            enemy.HealthController.IncreaseMaxHealth(difficulty / 10f);
+        }
+
+        if (enemy.AttackController)
+        {
+            enemy.AttackController.IncrementDamageMultiplier(difficulty / 20f);
+        }
+    }
+
+    private void HandleDifficultyChanged(int newDifficultyLevel)
+    {
+        spawnInterval = Mathf.Max(
+            minSpawnInterval,
+            CalculateSpawnInterval(newDifficultyLevel)
+        );
+
+        spawnCount = baseSpawnCount + Mathf.FloorToInt(newDifficultyLevel / 2f);
+    }
+
+    private float CalculateSpawnInterval(int difficultyLevel)
+    {
+        return baseSpawnInterval - difficultyLevel / 4;
     }
 }

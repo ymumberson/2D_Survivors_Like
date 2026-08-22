@@ -5,14 +5,19 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    [SerializeField] private float setTimeScale = 1;
+    
     public static GameController Instance;
     [SerializeField] private Player _player;
     [SerializeField] private EnemySpawner enemySpawner;
-
+    private const float DIFFICULTY_SCALING_FACTOR = 30f;
+    private int difficultyLevel;
     private float _elapsedTime = 0f;
     public float ElapsedTime => _elapsedTime;
+    public int DifficultyLevel => difficultyLevel;
 
     public event Action GameEnded;
+    public event Action<int> DifficultyChanged;
 
     void Awake()
     {
@@ -40,7 +45,15 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
+        Time.timeScale = setTimeScale;
+        
         _elapsedTime += Time.deltaTime;
+        int newDifficulty = GetDifficultyLevel();
+        if (newDifficulty != difficultyLevel)
+        {
+            difficultyLevel = newDifficulty;
+            DifficultyChanged?.Invoke(difficultyLevel);
+        }
     }
 
     public Player GetPlayer()
@@ -63,5 +76,10 @@ public class GameController : MonoBehaviour
     private void HandlePlayerDied()
     {
         GameEnded?.Invoke();
+    }
+
+    private int GetDifficultyLevel()
+    {
+        return Mathf.FloorToInt(ElapsedTime / DIFFICULTY_SCALING_FACTOR);
     }
 }

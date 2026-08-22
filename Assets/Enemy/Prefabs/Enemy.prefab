@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 273233811363369883}
+  - component: {fileID: 1949530138699683315}
   - component: {fileID: 3515987109432037290}
   - component: {fileID: 1357132249758676253}
   - component: {fileID: 5868354538919642589}
@@ -37,6 +38,23 @@ Transform:
   - {fileID: 1344357693925642628}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1949530138699683315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603734588926745079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b1a0e7bb7c1db04bb70584f5a13aec4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  healthController: {fileID: 808265090100009656}
+  attackController: {fileID: 7262337047835363524}
+  experienceController: {fileID: 0}
+  movementController: {fileID: 5868354538919642589}
+  disableOnDied: []
 --- !u!70 &3515987109432037290
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -126,6 +144,7 @@ GameObject:
   - component: {fileID: 1344357693925642628}
   - component: {fileID: 1836055173213932643}
   - component: {fileID: 8754800339601117848}
+  - component: {fileID: 7262337047835363524}
   m_Layer: 11
   m_Name: Attack
   m_TagString: Enemy
@@ -210,6 +229,26 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.0782812, y: 2.0133057}
   m_EdgeRadius: 0
+--- !u!114 &7262337047835363524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3832507579941944143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1702b8925533674c91e7df9b6d7bd7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttackController
+  baseDamage: 1
+  damageMultiplier: 1
+  baseAttackSpeed: 1
+  attackSpeedMultiplier: 1
+  baseProjectileSpeed: 1
+  projectileSpeedMultiplier: 1
+  baseProjectileSize: 1
+  projectileSizeMultiplier: 1
 --- !u!1 &5147618137493180105
 GameObject:
   m_ObjectHideFlags: 0

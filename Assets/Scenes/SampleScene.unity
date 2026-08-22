@@ -7670,6 +7670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d4b3336367357f4f9890dd17d633225, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameController
+  setTimeScale: 1
   _player: {fileID: 830062712}
   enemySpawner: {fileID: 1321192679}
 --- !u!4 &544233098
@@ -17404,12 +17405,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34c3fad8ac15da640ae243f769f9603b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
+  gameController: {fileID: 544233097}
   enemyPrefabs:
   - {fileID: 1603734588926745079, guid: 5b1bef29f03fd7a4593a6b2ebdc05e0c, type: 3}
   enemySpawnWarningIndicatorPrefab: {fileID: 7830581112748324103, guid: 7770bc60e7a5597418ea884ffb5abdd3, type: 3}
   warningDuration: 0
-  spawnCount: 5
-  spawnInterval: 5
+  baseSpawnCount: 3
+  baseSpawnInterval: 3
+  minSpawnInterval: 0.5
   spawnBounds: {fileID: 1321192680}
   minSpawnDistanceFromPlayer: 0.5
   maxSpawnDistanceFromPlayer: 2
@@ -28004,7 +28007,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2112799729
 Transform:
   m_ObjectHideFlags: 0
