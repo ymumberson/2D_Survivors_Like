@@ -21,7 +21,7 @@ public class ContactDamage : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        HealthController healthController = collision.gameObject.GetComponentInChildren<HealthController>();
+        HealthController healthController = collision.gameObject.GetComponent<HealthController>();
 
         // Check if collision is in list of target tags
         if (!healthController || !targetTags.Contains(collision.gameObject.tag)) return;
@@ -36,7 +36,7 @@ public class ContactDamage : MonoBehaviour
     void OnTriggerExit2D(Collider2D collision)
     {
         // NB. This currently assumes one collider for players and enemies
-        HealthController healthController = collision.gameObject.GetComponentInChildren<HealthController>();
+        HealthController healthController = collision.gameObject.GetComponent<HealthController>();
         
         if (!healthController) return;
 

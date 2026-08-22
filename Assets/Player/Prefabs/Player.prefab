@@ -150,9 +150,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovementController
   rootTransform: {fileID: 4064894618984947493}
-  movementBounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 14.45, y: 9, z: 0}
   baseMovementSpeed: 2
 --- !u!1 &3955399858171307674
 GameObject:
@@ -410,7 +407,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3943626957611756766}
   - component: {fileID: 9091033066235900983}
-  m_Layer: 0
+  - component: {fileID: 8667208930400650531}
+  m_Layer: 10
   m_Name: Health
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -447,6 +445,52 @@ MonoBehaviour:
   maxHealth: 100
   regenerationPerSecond: 0
   damageCooldown: 0.15
+--- !u!61 &8667208930400650531
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6560199491776402293}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.006208211, y: 0.007760346}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.95654255, y: 1.9343358}
+  m_EdgeRadius: 0
 --- !u!1 &7669911761979410409
 GameObject:
   m_ObjectHideFlags: 0

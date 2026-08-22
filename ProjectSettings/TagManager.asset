@@ -16,10 +16,10 @@ TagManager:
   - Movement
   - Obstacle
   - 
-  - 
-  - 
+  - Player
+  - Enemy
   - ItemPickup
-  - 
+  - ItemDrop
   - 
   - 
   - 

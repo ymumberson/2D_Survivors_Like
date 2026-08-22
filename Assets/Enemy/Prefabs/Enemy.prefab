@@ -114,9 +114,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveToPlayer
   rootTransform: {fileID: 273233811363369883}
-  movementBounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 14.45, y: 9, z: 0}
   moveSpeed: 1
 --- !u!1 &3832507579941944143
 GameObject:
@@ -129,7 +126,7 @@ GameObject:
   - component: {fileID: 1344357693925642628}
   - component: {fileID: 1836055173213932643}
   - component: {fileID: 8754800339601117848}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Attack
   m_TagString: Enemy
   m_Icon: {fileID: 0}

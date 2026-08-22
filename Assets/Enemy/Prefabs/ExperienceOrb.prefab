@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6200669462475948518}
   - component: {fileID: 58643384243639509}
   - component: {fileID: 1884806427584486507}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ExperienceOrb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 2598517989222524183}
   - component: {fileID: 3839575992611974089}
   - component: {fileID: 7874000875714754614}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
