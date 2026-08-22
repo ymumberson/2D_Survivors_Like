@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 3027806116004537361}
   - component: {fileID: 6132402118812485659}
   - component: {fileID: 542034426858268792}
-  m_Layer: 0
+  - component: {fileID: 547285897258733094}
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -34,7 +35,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 85695323273745740}
-  - {fileID: 7549304893961546055}
   - {fileID: 2066949998349392240}
   - {fileID: 3943626957611756766}
   - {fileID: 5551684931159852304}
@@ -54,7 +54,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   disableOnDied:
-  - {fileID: 6243300137798346296}
   - {fileID: 3955399858171307674}
 --- !u!114 &3027806116004537361
 MonoBehaviour:
@@ -119,7 +118,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3332565666542433130}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
@@ -137,7 +136,24 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!114 &547285897258733094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3332565666542433130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0c601131e87a5d4ba53c030ef237887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovementController
+  rootTransform: {fileID: 4064894618984947493}
+  movementBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 14.45, y: 9, z: 0}
+  baseMovementSpeed: 2
 --- !u!1 &3955399858171307674
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,6 +203,10 @@ MonoBehaviour:
   damageMultiplier: 1
   baseAttackSpeed: 1
   attackSpeedMultiplier: 1
+  baseProjectileSpeed: 1
+  projectileSpeedMultiplier: 1
+  baseProjectileSize: 1
+  projectileSizeMultiplier: 1
 --- !u!1 &4603568033903361504
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,7 +289,7 @@ Transform:
   m_GameObject: {fileID: 5498076231200794604}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.028, y: -1.2, z: 0}
+  m_LocalPosition: {x: 0.05, y: -1.2, z: 0}
   m_LocalScale: {x: 0.23, y: 0.23, z: 0.23}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -380,55 +400,6 @@ MonoBehaviour:
   scaleToPercentage: 0.975
   scaleDirection: 1
   pulseDuration: 1
---- !u!1 &6243300137798346296
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7549304893961546055}
-  - component: {fileID: 7684932704397367582}
-  m_Layer: 0
-  m_Name: Movement
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7549304893961546055
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6243300137798346296}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4064894618984947493}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7684932704397367582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6243300137798346296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0c601131e87a5d4ba53c030ef237887, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovementController
-  rootTransform: {fileID: 4064894618984947493}
-  movementBounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 14.45, y: 9, z: 0}
-  baseMovementSpeed: 2
 --- !u!1 &6560199491776402293
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,6 +446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthController
   maxHealth: 100
   regenerationPerSecond: 0
+  damageCooldown: 0.15
 --- !u!1 &7669911761979410409
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,7 +645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelUpController
   healthController: {fileID: 9091033066235900983}
-  movementController: {fileID: 7684932704397367582}
+  movementController: {fileID: 547285897258733094}
   attackController: {fileID: 4976517518687749712}
 --- !u!58 &7443554013390890855
 CircleCollider2D:

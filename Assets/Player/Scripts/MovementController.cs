@@ -4,7 +4,12 @@ using UnityEngine;
 public class MovementController : MonoBehaviour
 {
     [SerializeField] Transform rootTransform;
-    [SerializeField] Bounds movementBounds = new();
+    private Rigidbody2D _rigidBody;
+
+    void Awake()
+    {
+        _rigidBody = GetComponent<Rigidbody2D>();
+    }
 
     public void Move(Vector2 moveAmount)
     {
@@ -17,9 +22,12 @@ public class MovementController : MonoBehaviour
     {
         if (!rootTransform) return;
 
-        float clampedX = Math.Clamp(position.x, movementBounds.min.x, movementBounds.max.x);
-        float clampedY = Math.Clamp(position.y, movementBounds.min.y, movementBounds.max.y);
-
-        rootTransform.position = new Vector3(clampedX, clampedY, 0);
+        if (_rigidBody)
+        {
+            _rigidBody.MovePosition(position);
+        } else
+        {
+            rootTransform.position = position;
+        }
     }
 }
