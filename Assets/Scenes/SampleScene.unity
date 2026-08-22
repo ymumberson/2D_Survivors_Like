@@ -17408,6 +17408,8 @@ MonoBehaviour:
   gameController: {fileID: 544233097}
   enemyPrefabs:
   - {fileID: 1603734588926745079, guid: 5b1bef29f03fd7a4593a6b2ebdc05e0c, type: 3}
+  - {fileID: 8408282348341547909, guid: 940dfcb608be589409113aed1bafc492, type: 3}
+  - {fileID: 1235831072813813976, guid: f19058a9bc01b7e44bf2ff03eadb1c25, type: 3}
   enemySpawnWarningIndicatorPrefab: {fileID: 7830581112748324103, guid: 7770bc60e7a5597418ea884ffb5abdd3, type: 3}
   warningDuration: 0
   baseSpawnCount: 3

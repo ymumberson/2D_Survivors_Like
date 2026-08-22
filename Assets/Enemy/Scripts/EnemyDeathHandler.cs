@@ -8,6 +8,8 @@ public class EnemyDeathHandler : MonoBehaviour
     [SerializeField] private float experienceDropAmount = 1;
     private HealthController _healthController;
 
+    public float ExperienceDropAmount => experienceDropAmount;
+
     void Awake()
     {
         _healthController = GetComponent<HealthController>();
@@ -34,6 +36,11 @@ public class EnemyDeathHandler : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+
+    public void SetExperienceDropAmount(float experienceDropAmount)
+    {
+        this.experienceDropAmount = experienceDropAmount;
     }
 
     private void DropExperience()

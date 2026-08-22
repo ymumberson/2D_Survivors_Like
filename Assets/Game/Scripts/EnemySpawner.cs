@@ -79,7 +79,8 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy(Vector3 spawnLocation)
     {
-        var enemyGO = Instantiate(enemyPrefabs[0], this.transform);
+        var enemyPrefab = GetEnemyForDifficulty(gameController.DifficultyLevel);
+        var enemyGO = Instantiate(enemyPrefab, this.transform);
         enemyGO.transform.position = spawnLocation;
         Enemy enemy = enemyGO.GetComponent<Enemy>();
         var healthController = enemy.HealthController;
@@ -87,6 +88,48 @@ public class EnemySpawner : MonoBehaviour
         healthController.Died += () => enemies.Remove(healthController);
 
         ScaleEnemyDifficulty(enemy);
+    }
+
+    private GameObject GetEnemyForDifficulty(int difficultyLevel)
+    {
+        Debug.Log("Difficulty: " + difficultyLevel);
+        float difficultyPerTier = 20f;
+        float targetTier = Mathf.Clamp(
+            difficultyLevel / difficultyPerTier,
+            0f,
+            enemyPrefabs.Count - 1
+        );
+
+        float spread = 0.25f;
+
+        List<float> weights = new();
+
+        float totalWeight = 0f;
+
+        for (int i=0; i<enemyPrefabs.Count; ++i)
+        {
+            float distance = i - targetTier;
+
+            float weight = Mathf.Exp(
+                -(distance * distance) / spread
+            );
+
+            weights.Add(weight);
+            totalWeight += weight;
+        }
+
+        float randomValue = UnityEngine.Random.value * totalWeight;
+
+        for (int i=0; i<weights.Count; ++i)
+        {
+            randomValue -= weights[i];
+
+            if (randomValue <= 0f)
+            {
+                return enemyPrefabs[i];
+            }
+        }
+        return enemyPrefabs[^1];
     }
 
     private Vector3 GenerateSpawnPosition()
@@ -158,6 +201,11 @@ public class EnemySpawner : MonoBehaviour
         if (enemy.AttackController)
         {
             enemy.AttackController.IncrementDamageMultiplier(difficulty / 20f);
+        }
+
+        if (enemy.EnemyDeathHandler)
+        {
+            enemy.EnemyDeathHandler.SetExperienceDropAmount(enemy.EnemyDeathHandler.ExperienceDropAmount + difficulty * 0.15f);
         }
     }
 
