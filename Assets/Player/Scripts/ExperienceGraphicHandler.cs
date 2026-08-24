@@ -21,16 +21,16 @@ public class ExperienceGraphicHandler : MonoBehaviour
 
     private void HandleExperienceChanged(float newExperience)
     {
-        Debug.Log($"<color=grey>Experience: {newExperience}</color> [{experienceController.LevelUpCost}]");
+        // Debug.Log($"<color=grey>Experience: {newExperience}</color> [{experienceController.LevelUpCost}]");
     }
 
     private void HandleLevelledUp(int newLevel)
     {
-        Debug.Log($"<color=cyan>Level: {newLevel}</color>");
+        // Debug.Log($"<color=cyan>Level: {newLevel}</color>");
     }
 
     private void HandleGainedExperience(float experienceGained)
     {
-        Debug.Log($"<color=green>Experience: +{experienceGained}</color>");
+        // Debug.Log($"<color=green>Experience: +{experienceGained}</color>");
     }
 }

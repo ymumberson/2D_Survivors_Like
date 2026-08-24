@@ -6,9 +6,11 @@ public class EnemyDeathHandler : MonoBehaviour
     [SerializeField] private Transform rootTransform;
     [SerializeField] private GameObject experiencePrefab;
     [SerializeField] private float experienceDropAmount = 1;
+    [SerializeField] private float experienceDropMultiplier = 1;
     private HealthController _healthController;
 
     public float ExperienceDropAmount => experienceDropAmount;
+    public float ExperienceDropMultiplier => experienceDropMultiplier;
 
     void Awake()
     {
@@ -43,6 +45,11 @@ public class EnemyDeathHandler : MonoBehaviour
         this.experienceDropAmount = experienceDropAmount;
     }
 
+    public void SetExperienceDropMultiplier(float experienceDropMultiplier)
+    {
+        this.experienceDropMultiplier = experienceDropMultiplier;
+    }
+
     private void DropExperience()
     {
         if (!experiencePrefab) return;
@@ -51,6 +58,6 @@ public class EnemyDeathHandler : MonoBehaviour
         Experience experience = experienceGO.GetComponent<Experience>();
 
         if (experience)
-            experience.experienceAmount = experienceDropAmount;
+            experience.experienceAmount = experienceDropAmount * experienceDropMultiplier;
     }
 }

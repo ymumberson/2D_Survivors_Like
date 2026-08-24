@@ -55,6 +55,7 @@ MonoBehaviour:
   experienceController: {fileID: 0}
   movementController: {fileID: 5868354538919642589}
   disableOnDied: []
+  enemyDeathHandler: {fileID: 0}
 --- !u!70 &3515987109432037290
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -201,9 +202,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ContactDamage
   attackController: {fileID: 7262337047835363524}
   damageAmount: 10
+  weaponSpeed: 10
+  weaponSize: 1
   attackInterval: 1
-  projectileSpeed: 10
-  projectileSize: 1
   targetTags:
   - Player
 --- !u!61 &8754800339601117848
@@ -263,9 +264,10 @@ GameObject:
   - component: {fileID: 7691754228286200141}
   - component: {fileID: 808265090100009656}
   - component: {fileID: 3862844576466827236}
-  m_Layer: 0
+  - component: {fileID: 5047923858391258321}
+  m_Layer: 11
   m_Name: Health
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -315,6 +317,53 @@ MonoBehaviour:
   rootTransform: {fileID: 273233811363369883}
   experiencePrefab: {fileID: 1535772265059924698, guid: 8a0abe49f6851a7428a8c7e70597a989, type: 3}
   experienceDropAmount: 2
+  experienceDropMultiplier: 1
+--- !u!61 &5047923858391258321
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5147618137493180105}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.012170315, y: 0.009127796}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.95131874, y: 1.9310285}
+  m_EdgeRadius: 0
 --- !u!1 &7359920224914027773
 GameObject:
   m_ObjectHideFlags: 0

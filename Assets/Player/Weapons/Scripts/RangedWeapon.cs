@@ -16,18 +16,10 @@ public class RangedWeapon : Weapon
         Random=1,
     }
 
-    void Start()
+    protected override IEnumerator Attack()
     {
-        StartCoroutine(SpawnProjectiles());
-    }
-
-    private IEnumerator SpawnProjectiles()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(AttackInterval);
-            SpawnProjectile();
-        }
+        SpawnProjectile();
+        yield break;
     }
 
     private void SpawnProjectile()
@@ -36,7 +28,7 @@ public class RangedWeapon : Weapon
         if (enemies == null || enemies.Count == 0)
             return;
 
-        Vector3 target = SelectTarget(enemies);
+        Vector3 target = SelectTarget();
         Vector2 targetDirection = (target - transform.position).normalized;
 
         GameObject projectileGO = Instantiate(projectilePrefab, transform.position, transform.rotation);
@@ -50,38 +42,20 @@ public class RangedWeapon : Weapon
         
         projectile.damage = Damage;
         projectile.direction = targetDirection;
-        projectile.speed = ProjectileSpeed;
+        projectile.speed = WeaponSpeed;
         projectile.targetTags = targetTags;
-        projectile.transform.localScale = projectile.transform.localScale * ProjectileSize;
+        projectile.transform.localScale = projectile.transform.localScale * WeaponSize;
     }
 
-    private Vector3 SelectTarget(Dictionary<HealthController, GameObject> enemies)
+    private Vector3 SelectTarget()
     {
-        Transform targetTransform = null;
         switch (attackTarget)
         {
             case AttackTarget.Random:
-                int randomIndex = UnityEngine.Random.Range(0, enemies.Count -1);
-                targetTransform = enemies[enemies.Keys.ElementAt(randomIndex)].transform;
-                break;
-
+                return GameController.Instance.GetRandomTarget();
             default:
             case AttackTarget.Closest:
-                float closestDistance = float.PositiveInfinity;
-                foreach (GameObject enemyGO in enemies.Values)
-                {
-                    float distance = Vector3.Distance(transform.position, enemyGO.transform.position);
-                    if (distance < closestDistance)
-                    {
-                        closestDistance = distance;
-                        targetTransform = enemyGO.transform;
-                    }
-                }
-            break;
+                return GameController.Instance.GetClosestTarget(transform.position);
         }
-
-        if (targetTransform == null) return Vector3.zero;
-
-        return targetTransform.position;
     }
 }

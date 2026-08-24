@@ -15,6 +15,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] BoxCollider2D spawnBounds = new();
     [SerializeField] private float minSpawnDistanceFromPlayer = 2f;
     [SerializeField] private float maxSpawnDistanceFromPlayer = 2f;
+    [SerializeField] private float healthScaler = 10f;
+    [SerializeField] private float attackScaler = 20f;
     private float spawnInterval;
     private int spawnCount;
     private Dictionary<HealthController, GameObject> enemies = new();
@@ -92,7 +94,6 @@ public class EnemySpawner : MonoBehaviour
 
     private GameObject GetEnemyForDifficulty(int difficultyLevel)
     {
-        Debug.Log("Difficulty: " + difficultyLevel);
         float difficultyPerTier = 20f;
         float targetTier = Mathf.Clamp(
             difficultyLevel / difficultyPerTier,
@@ -195,17 +196,17 @@ public class EnemySpawner : MonoBehaviour
 
         if (enemy.HealthController)
         {
-            enemy.HealthController.IncreaseMaxHealth(difficulty / 10f);
+            enemy.HealthController.IncreaseMaxHealth(difficulty / healthScaler);
         }
 
         if (enemy.AttackController)
         {
-            enemy.AttackController.IncrementDamageMultiplier(difficulty / 20f);
+            enemy.AttackController.IncrementDamageMultiplier(difficulty / attackScaler);
         }
 
         if (enemy.EnemyDeathHandler)
         {
-            enemy.EnemyDeathHandler.SetExperienceDropAmount(enemy.EnemyDeathHandler.ExperienceDropAmount + difficulty * 0.15f);
+            enemy.EnemyDeathHandler.SetExperienceDropMultiplier(Mathf.Sqrt(difficulty));
         }
     }
 

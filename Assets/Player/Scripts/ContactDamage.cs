@@ -63,4 +63,9 @@ public class ContactDamage : Weapon
             toDamage.Remove(healthController);
         }
     }
+
+    protected override IEnumerator Attack()
+    {
+        yield break;
+    }
 }

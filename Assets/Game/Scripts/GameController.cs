@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
     public static GameController Instance;
     [SerializeField] private Player _player;
     [SerializeField] private EnemySpawner enemySpawner;
-    private const float DIFFICULTY_SCALING_FACTOR = 30f;
+    private const float DIFFICULTY_SCALING_FACTOR = 60f; // Larger = slower scaling
     private int difficultyLevel;
     private float _elapsedTime = 0f;
     public float ElapsedTime => _elapsedTime;
@@ -66,6 +66,36 @@ public class GameController : MonoBehaviour
         if (!enemySpawner) return null;
 
         return enemySpawner.Enemies;
+    }
+
+    public Vector3 GetClosestTarget(Vector3 startPosition)
+    {
+        float closestDistance = float.PositiveInfinity;
+        Vector3 closestTarget = Vector3.zero;
+
+        var enemies = GetEnemies();
+        if (enemies == null) return closestTarget;
+
+        foreach (GameObject enemyGO in enemies.Values)
+        {
+            float distance = Vector3.Distance(startPosition, enemyGO.transform.position);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestTarget = enemyGO.transform.position;
+            }
+        }
+
+        return closestTarget;
+    }
+
+    public Vector3 GetRandomTarget()
+    {
+        var enemies = GetEnemies();
+        if (enemies == null) return Vector3.zero;
+
+        int randomIndex = UnityEngine.Random.Range(0, enemies.Count -1);
+        return enemies[enemies.Keys.ElementAt(randomIndex)].transform.position;
     }
 
     private void CapFPS()
