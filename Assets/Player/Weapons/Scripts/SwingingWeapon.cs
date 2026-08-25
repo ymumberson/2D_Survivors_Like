@@ -31,11 +31,13 @@ public class SwingingWeapon : Weapon
     {
         base.OnEnable();
         attackController.ProjectileCountChanged += InstantiateSwingProjectiles;
+        attackController.ProjectileSizeMultiplierChanged += HandleWeaponSizeChanged;
     }
 
     void OnDisable()
     {
         attackController.ProjectileCountChanged -= InstantiateSwingProjectiles;
+        attackController.ProjectileSizeMultiplierChanged -= HandleWeaponSizeChanged;
         SetWeaponsActive(false);
     }
 
@@ -56,7 +58,16 @@ public class SwingingWeapon : Weapon
             for (int i=0; i<numProjectilesToCreate; ++i)
             {
                 swingProjectiles.Add(Instantiate(swingProjectile, transform));
+                swingProjectiles[^1].transform.localScale *= WeaponSize;
             }
+        }
+    }
+
+    private void HandleWeaponSizeChanged(float weaponSize)
+    {
+        foreach (GameObject projectile in swingProjectiles)
+        {
+            projectile.transform.localScale = swingProjectile.transform.localScale * WeaponSize;
         }
     }
 
