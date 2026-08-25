@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 94220530925686944}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
@@ -242,6 +242,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7372080753900663598}
+  - {fileID: 6816353835115683468}
   - {fileID: 2458220364155637003}
   m_Father: {fileID: 4064894618984947493}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -265,6 +266,7 @@ MonoBehaviour:
   projectileSpeedMultiplier: 1
   baseProjectileSize: 1
   projectileSizeMultiplier: 1
+  projectileCount: 1
 --- !u!1 &4603568033903361504
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,7 +283,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7372080753900663598
 Transform:
   m_ObjectHideFlags: 0
@@ -319,6 +321,62 @@ MonoBehaviour:
   projectilePrefab: {fileID: 804817685301968405, guid: 55c509184f6822f418e634a836e759fb, type: 3}
   spawnCount: 1
   attackTarget: 0
+  rotateProjectiles: 1
+--- !u!1 &4882115868518228779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6816353835115683468}
+  - component: {fileID: 639565315654062472}
+  m_Layer: 0
+  m_Name: ArrowWeapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6816353835115683468
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4882115868518228779}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1351406674598079465}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &639565315654062472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4882115868518228779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aba079eb2870ec448790bfbe1dcc30c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RangedWeapon
+  attackController: {fileID: 4976517518687749712}
+  damageAmount: 10
+  weaponSpeed: 10
+  weaponSize: 1
+  attackInterval: 2
+  targetTags:
+  - Enemy
+  projectilePrefab: {fileID: 2083385639244669605, guid: de2172d2b627c1547bfd83e019dba9a5, type: 3}
+  spawnCount: 1
+  attackTarget: 0
+  rotateProjectiles: 1
 --- !u!1 &5498076231200794604
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,7 +629,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8684771027232243936
 Transform:
   m_ObjectHideFlags: 0

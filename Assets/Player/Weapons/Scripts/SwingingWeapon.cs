@@ -23,27 +23,75 @@ public class SwingingWeapon : Weapon
     void Awake()
     {
         swingProjectile.SetActive(false);
-        swingProjectiles.Add(Instantiate(swingProjectile, transform));
-        
+        InstantiateSwingProjectiles(attackController.ProjectileCount);
         SetWeaponsActive(false);
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        attackController.ProjectileCountChanged += InstantiateSwingProjectiles;
+    }
+
+    void OnDisable()
+    {
+        attackController.ProjectileCountChanged -= InstantiateSwingProjectiles;
+        SetWeaponsActive(false);
+    }
+
+    private void InstantiateSwingProjectiles(int projectileCount)
+    {
+        if (swingProjectiles.Count == projectileCount)
+        {
+            return;
+        }
+        else if (swingProjectiles.Count > projectileCount)
+        {
+            swingProjectiles.RemoveRange(projectileCount - 1, swingProjectiles.Count - projectileCount);
+            return;
+        }
+        else
+        {
+            int numProjectilesToCreate = projectileCount - swingProjectiles.Count;
+            for (int i=0; i<numProjectilesToCreate; ++i)
+            {
+                swingProjectiles.Add(Instantiate(swingProjectile, transform));
+            }
+        }
     }
 
     protected override IEnumerator Attack()
     {
-        SetWeaponsActive(true);
         SwingArc swingArc = CalculateSwingArc(attackDirection);
 
+        Coroutine firstSwingProjectile = null;
+
+        foreach (GameObject projectile in swingProjectiles)
+        {
+            var swingCoroutine = StartCoroutine(SwingProjectile(projectile, swingArc));
+            firstSwingProjectile ??= swingCoroutine;
+
+            yield return new WaitForSeconds(DELAY_BETWEEN_PROJECTILES);
+        }
+
+        yield return firstSwingProjectile;
+
+        SetWeaponsActive(false);
+    }
+
+    private IEnumerator SwingProjectile(GameObject projectile, SwingArc swingArc)
+    {
+        projectile.SetActive(true);
         float elapsed = 0f;
         while (elapsed <= swingDuration)
         {
             elapsed += Time.deltaTime;
             float t = Mathf.SmoothStep(0, 1, Mathf.Clamp01(elapsed / swingDuration));
             Vector3 rotation = Vector3.Lerp(swingArc.startRotation, swingArc.endRotation, t);
-            transform.localRotation = Quaternion.Euler(rotation);
+            projectile.transform.localRotation = Quaternion.Euler(rotation);
             yield return null;
         }
-
-        SetWeaponsActive(false);
+        projectile.SetActive(false);
     }
 
     private void SetWeaponsActive(bool active)

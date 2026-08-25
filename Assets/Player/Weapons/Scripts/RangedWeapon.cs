@@ -9,6 +9,7 @@ public class RangedWeapon : Weapon
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private int spawnCount = 1;
     [SerializeField] private AttackTarget attackTarget = AttackTarget.Closest;
+    [SerializeField] private bool rotateProjectiles = true;
     
     public enum AttackTarget
     {
@@ -18,7 +19,11 @@ public class RangedWeapon : Weapon
 
     protected override IEnumerator Attack()
     {
-        SpawnProjectile();
+        for (int i=0; i<attackController.ProjectileCount; ++i)
+        {
+            SpawnProjectile();
+            yield return new WaitForSeconds(DELAY_BETWEEN_PROJECTILES);  
+        }
         yield break;
     }
 
@@ -45,6 +50,13 @@ public class RangedWeapon : Weapon
         projectile.speed = WeaponSpeed;
         projectile.targetTags = targetTags;
         projectile.transform.localScale = projectile.transform.localScale * WeaponSize;
+
+        if (rotateProjectiles)
+        {
+            Vector3 direction = target - transform.position;
+            float rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+            projectile.transform.localRotation = Quaternion.Euler(new Vector3(0,0,rotation));
+        }
     }
 
     private Vector3 SelectTarget()

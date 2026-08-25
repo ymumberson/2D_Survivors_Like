@@ -11,6 +11,7 @@ public class AttackController : MonoBehaviour
     [SerializeField] private float projectileSpeedMultiplier = 1f;
     [SerializeField] private float baseProjectileSize = 1f;
     [SerializeField] private float projectileSizeMultiplier = 1f;
+    [SerializeField] private int projectileCount = 1;
 
     public float DamageMultiplier => damageMultiplier;
     public float AttackSpeedMultiplier => attackSpeedMultiplier;
@@ -21,11 +22,13 @@ public class AttackController : MonoBehaviour
     public float AttackSpeed => baseAttackSpeed * attackSpeedMultiplier;
     public float ProjectileSpeed => baseProjectileSpeed * projectileSpeedMultiplier;
     public float ProjectileSize => baseProjectileSize * projectileSizeMultiplier;
+    public int ProjectileCount => projectileCount;
 
     public event Action<float> DamageMultiplierChanged;
     public event Action<float> AttackSpeedMultiplierChanged;
     public event Action<float> ProjectileSpeedMultiplierChanged;
     public event Action<float> ProjectileSizeMultiplierChanged;
+    public event Action<int> ProjectileCountChanged;
 
     public void IncrementDamageMultiplier(float increment)
     {
@@ -89,5 +92,21 @@ public class AttackController : MonoBehaviour
         if (Mathf.Approximately(prev, this.projectileSizeMultiplier)) return;
 
         ProjectileSizeMultiplierChanged?.Invoke(this.projectileSizeMultiplier);
+    }
+
+    public void IncrementProjectileCount(int projectileCountIncrement)
+    {
+        projectileCountIncrement = Math.Max(0, projectileCountIncrement);
+        SetProjectileCount(projectileCount + projectileCountIncrement);
+    }
+
+    public void SetProjectileCount(int projectileCount)
+    {
+        int prevProjectileCount = projectileCount;
+        this.projectileCount = Math.Max(0, projectileCount);
+
+        if (prevProjectileCount == this.projectileCount) return;
+
+        ProjectileCountChanged?.Invoke(this.projectileCount);
     }
 }

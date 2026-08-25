@@ -6,7 +6,7 @@ public class HealthController : MonoBehaviour
 {
     [SerializeField][Min(0)] private float maxHealth = 100f;
     [SerializeField][Min(0)] private float regenerationPerSecond = 0f;
-    [SerializeField][Min(0)] private float damageCooldown = 0.15f;
+    [SerializeField][Min(0)] private float damageCooldown = 0.1f;
     private bool canTakeDamage = true;
     private Coroutine healthRegenerationCoroutine;
     public float HealthRegeneration => regenerationPerSecond;

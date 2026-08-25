@@ -10,13 +10,14 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] private float weaponSize = 1f;
     [SerializeField] private float attackInterval = 1f;
     [SerializeField] protected List<string> targetTags = new();
+    protected const float DELAY_BETWEEN_PROJECTILES = 0.1f;
 
     protected float Damage => attackController.Damage * damageAmount;
     protected float WeaponSpeed => weaponSpeed * attackController.ProjectileSpeed;
     protected float WeaponSize => weaponSize * attackController.ProjectileSize;
     protected float AttackInterval => attackInterval / attackController.AttackSpeed;
     
-    void OnEnable()
+    protected virtual void OnEnable()
     {
         StartCoroutine(AttackLoop());
     }

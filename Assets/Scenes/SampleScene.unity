@@ -4901,7 +4901,7 @@ GameObject:
   - component: {fileID: 347645231}
   m_Layer: 0
   m_Name: BoundingWalls
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6906,7 +6906,7 @@ GameObject:
   - component: {fileID: 507638524}
   m_Layer: 8
   m_Name: Square (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17418,6 +17418,8 @@ MonoBehaviour:
   spawnBounds: {fileID: 1321192680}
   minSpawnDistanceFromPlayer: 0.5
   maxSpawnDistanceFromPlayer: 2
+  healthScaler: 10
+  attackScaler: 20
 --- !u!61 &1321192680
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20574,7 +20576,7 @@ GameObject:
   - component: {fileID: 1609110468}
   m_Layer: 8
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24927,7 +24929,7 @@ GameObject:
   - component: {fileID: 1940330424}
   m_Layer: 8
   m_Name: Square (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25965,7 +25967,7 @@ GameObject:
   - component: {fileID: 2001447703}
   m_Layer: 8
   m_Name: Square (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28677,6 +28679,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 544233098}
     m_Modifications:
+    - target: {fileID: 2458220364155637003, guid: e49be85f005436b4e9aaac658a0d7e08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3332565666542433130, guid: e49be85f005436b4e9aaac658a0d7e08, type: 3}
       propertyPath: m_Name
       value: Player
