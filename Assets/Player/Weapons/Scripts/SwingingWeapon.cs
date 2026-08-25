@@ -86,8 +86,6 @@ public class SwingingWeapon : Weapon
         }
 
         yield return firstSwingProjectile;
-
-        SetWeaponsActive(false);
     }
 
     private IEnumerator SwingProjectile(GameObject projectile, SwingArc swingArc)
@@ -135,8 +133,7 @@ public class SwingingWeapon : Weapon
 
     private SwingArc CalculateSwingArc(Vector3 target)
     {
-        Vector3 direction = target - transform.position;
-        float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+        float targetAngle = RotateTo(transform.position, target).z;
         float halfArc = swingRadius / 2f;
 
         float startAngle = targetAngle - halfArc;

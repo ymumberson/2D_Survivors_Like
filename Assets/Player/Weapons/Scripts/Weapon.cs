@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
@@ -32,4 +33,16 @@ public abstract class Weapon : MonoBehaviour
     }
 
     protected abstract IEnumerator Attack();
+
+    protected Vector3 RotateTo(Vector3 origin, Vector3 target)
+    {
+        Vector3 direction = target - origin;
+        float rotation = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+        return new Vector3(0,0,rotation);
+    }
+
+    protected Quaternion CalculateRotation(Vector3 origin, Vector3 target)
+    {
+        return Quaternion.Euler(RotateTo(origin, target));
+    }
 }
