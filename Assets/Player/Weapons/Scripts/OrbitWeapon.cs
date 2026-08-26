@@ -99,7 +99,7 @@ public class OrbitWeapon : Weapon
         while (elapsed < orbitDuration)
         {
             elapsed += Time.deltaTime;
-            float t = elapsed / orbitDuration;
+            float t = (elapsed / orbitDuration) * attackController.AttackSpeedMultiplier;
             projectile.transform.rotation = Quaternion.Euler(new Vector3(0, 0, startingRotation + offset + t * 360f));
             yield return null;
         }
