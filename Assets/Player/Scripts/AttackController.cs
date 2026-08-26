@@ -100,9 +100,9 @@ public class AttackController : MonoBehaviour
         SetProjectileCount(projectileCount + projectileCountIncrement);
     }
 
-    public void SetProjectileCount(int projectileCount)
+    private void SetProjectileCount(int projectileCount)
     {
-        int prevProjectileCount = projectileCount;
+        int prevProjectileCount = this.projectileCount;
         this.projectileCount = Math.Max(0, projectileCount);
 
         if (prevProjectileCount == this.projectileCount) return;

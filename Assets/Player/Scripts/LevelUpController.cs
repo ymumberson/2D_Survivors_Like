@@ -26,7 +26,7 @@ public class LevelUpController : MonoBehaviour
 
     private void HandleLevelledUp(int newLevel)
     {
-        int randomValue = Random.Range(1,8);
+        int randomValue = Random.Range(1,9);
         switch (randomValue)
         {
             default:
@@ -57,6 +57,10 @@ public class LevelUpController : MonoBehaviour
             case 7:
                 attackController.IncrementProjectileSizeMultiplier(0.2f);
                 Debug.Log("Increasing projectile size mult!");
+                break;
+            case 8:
+                attackController.IncrementProjectileCount(1);
+                Debug.Log("Increasing projectile count!");
                 break;
         }
     }

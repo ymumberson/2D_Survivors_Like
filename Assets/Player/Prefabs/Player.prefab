@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2458220364155637003
 Transform:
   m_ObjectHideFlags: 0
@@ -105,11 +105,11 @@ MonoBehaviour:
   damageAmount: 10
   weaponSpeed: 10
   weaponSize: 1
-  attackInterval: 3
+  attackInterval: 5
   targetTags:
   - Enemy
   orbitProjectile: {fileID: 4275639931925818073}
-  orbitDuration: 2
+  orbitDuration: 3
 --- !u!1 &3332565666542433130
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,7 +528,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7372080753900663598
 Transform:
   m_ObjectHideFlags: 0
@@ -582,7 +582,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6816353835115683468
 Transform:
   m_ObjectHideFlags: 0

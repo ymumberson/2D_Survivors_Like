@@ -7,10 +7,12 @@ public class OrbitWeapon : Weapon
     [SerializeField] private GameObject orbitProjectile;
     [SerializeField] private float orbitDuration = 2f;
     private List<GameObject> orbitProjectiles = new();
+    private Vector3 baseScale = Vector3.one;
 
     void Awake()
     {
         orbitProjectile.SetActive(false);
+        baseScale = orbitProjectile.transform.GetChild(0).localScale;
         InstantiateOrbitProjectiles(attackController.ProjectileCount);
         SetWeaponsActive(false);
     }
@@ -31,25 +33,26 @@ public class OrbitWeapon : Weapon
 
     private void InstantiateOrbitProjectiles(int projectileCount)
     {
-        if (orbitProjectiles.Count == projectileCount)
+        while (orbitProjectiles.Count > projectileCount)
         {
-            return;
+            int lastIndex = orbitProjectiles.Count - 1;
+
+            GameObject projectile = orbitProjectiles[lastIndex];
+
+            orbitProjectiles.RemoveAt(lastIndex);
+            Destroy(projectile);
         }
-        else if (orbitProjectiles.Count > projectileCount)
+
+        while (orbitProjectiles.Count < projectileCount)
         {
-            orbitProjectiles.RemoveRange(projectileCount - 1, orbitProjectiles.Count - projectileCount);
-            return;
-        }
-        else
-        {
-            int numProjectilesToCreate = projectileCount - orbitProjectiles.Count;
-            for (int i=0; i<numProjectilesToCreate; ++i)
-            {
-                orbitProjectiles.Add(Instantiate(orbitProjectile, transform));
-                foreach (Transform child in orbitProjectiles[^1].transform)
+            GameObject projectile =
+                Instantiate(orbitProjectile, transform);
+
+            orbitProjectiles.Add(projectile);
+
+            foreach (Transform child in projectile.transform)
             {
                 child.localScale *= WeaponSize;
-            }
             }
         }
     }
@@ -60,7 +63,7 @@ public class OrbitWeapon : Weapon
         {
             foreach (Transform child in projectile.transform)
             {
-                child.localScale = orbitProjectile.transform.localScale * WeaponSize;
+                child.localScale = baseScale * WeaponSize;
             }
         }
     }
@@ -71,9 +74,10 @@ public class OrbitWeapon : Weapon
 
         float startingRotation = Random.value * 360f;
 
-        for (int i=0; i<orbitProjectiles.Count; ++i)
+        GameObject[] orbitProjectilesCopy = orbitProjectiles.ToArray();
+        for (int i=0; i<orbitProjectilesCopy.Length; ++i)
         {
-            var orbitCoroutine = StartCoroutine(PerformOrbit(orbitProjectiles[i], i, startingRotation));
+            var orbitCoroutine = StartCoroutine(PerformOrbit(orbitProjectilesCopy[i], i, startingRotation));
             firstOrbitProjectile ??= orbitCoroutine;
 
             yield return new WaitForSeconds(DELAY_BETWEEN_PROJECTILES);

@@ -42,24 +42,24 @@ public class SwingingWeapon : Weapon
     }
 
     private void InstantiateSwingProjectiles(int projectileCount)
-    {
-        if (swingProjectiles.Count == projectileCount)
+    {   
+        while (swingProjectiles.Count > projectileCount)
         {
-            return;
+            int lastIndex = swingProjectiles.Count - 1;
+
+            GameObject projectile = swingProjectiles[lastIndex];
+
+            swingProjectiles.RemoveAt(lastIndex);
+            Destroy(projectile);
         }
-        else if (swingProjectiles.Count > projectileCount)
+
+        while (swingProjectiles.Count < projectileCount)
         {
-            swingProjectiles.RemoveRange(projectileCount - 1, swingProjectiles.Count - projectileCount);
-            return;
-        }
-        else
-        {
-            int numProjectilesToCreate = projectileCount - swingProjectiles.Count;
-            for (int i=0; i<numProjectilesToCreate; ++i)
-            {
-                swingProjectiles.Add(Instantiate(swingProjectile, transform));
-                swingProjectiles[^1].transform.localScale *= WeaponSize;
-            }
+            GameObject projectile =
+                Instantiate(swingProjectile, transform);
+
+            swingProjectiles.Add(projectile);
+            swingProjectiles[^1].transform.localScale *= WeaponSize;
         }
     }
 
@@ -77,7 +77,7 @@ public class SwingingWeapon : Weapon
 
         Coroutine firstSwingProjectile = null;
 
-        foreach (GameObject projectile in swingProjectiles)
+        foreach (GameObject projectile in swingProjectiles.ToArray())
         {
             var swingCoroutine = StartCoroutine(SwingProjectile(projectile, swingArc));
             firstSwingProjectile ??= swingCoroutine;
