@@ -18,6 +18,7 @@ public class SwingingWeapon : Weapon
         Down = 3,
         Closest = 4,
         Random = 5,
+        MovementDirection = 6,
     }
 
     void Awake()
@@ -125,6 +126,8 @@ public class SwingingWeapon : Weapon
                 return CalculateSwingArc(transform.position + new Vector3(1,0,0));
             case AttackDirection.Random:
                 return CalculateSwingArc(transform.position + new Vector3(Random.value-0.5f,Random.value-0.5f,0));
+            case AttackDirection.MovementDirection:
+                return CalculateSwingArc(transform.position + MovementDirection);
             default:
             case AttackDirection.Closest:
                 return CalculateSwingArc(GameController.Instance.GetClosestTarget(transform.position));

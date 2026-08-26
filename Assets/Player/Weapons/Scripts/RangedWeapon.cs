@@ -14,6 +14,7 @@ public class RangedWeapon : Weapon
     {
         Closest=0,
         Random=1,
+        MovementDirection=2,
     }
 
     protected override IEnumerator Attack()
@@ -62,6 +63,8 @@ public class RangedWeapon : Weapon
         {
             case AttackTarget.Random:
                 return GameController.Instance.GetRandomTarget();
+            case AttackTarget.MovementDirection:
+                return transform.position + MovementDirection;
             default:
             case AttackTarget.Closest:
                 return GameController.Instance.GetClosestTarget(transform.position);

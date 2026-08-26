@@ -12,11 +12,14 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] private float attackInterval = 1f;
     [SerializeField] protected List<string> targetTags = new();
     protected const float DELAY_BETWEEN_PROJECTILES = 0.1f;
+    private Vector3 previousPosition;
+    private Vector3 movementDirection = Vector3.one;
 
     protected float Damage => attackController.Damage * damageAmount;
     protected float WeaponSpeed => weaponSpeed * attackController.ProjectileSpeed;
     protected float WeaponSize => weaponSize * attackController.ProjectileSize;
     protected float AttackInterval => attackInterval / attackController.AttackSpeed;
+    protected Vector3 MovementDirection => movementDirection;
     
     protected virtual void OnEnable()
     {
@@ -33,6 +36,37 @@ public abstract class Weapon : MonoBehaviour
     }
 
     protected abstract IEnumerator Attack();
+
+    void Update()
+    {
+        CalculateMovementDirection();
+        previousPosition = transform.position;
+    }
+
+    private bool IsStationary()
+    {
+        return (
+            Mathf.Approximately(previousPosition.x, transform.position.x) &&
+            Mathf.Approximately(previousPosition.y, transform.position.y) &&
+            Mathf.Approximately(previousPosition.z, transform.position.z)
+        );
+    }
+
+    private void CalculateMovementDirection()
+    {
+        if (previousPosition == null)
+        {
+            movementDirection = Vector3.one;
+        }
+        else
+        {
+            Vector3 newMoveDirection = (transform.position - previousPosition).normalized;
+            if (newMoveDirection.magnitude > 0)
+            {
+                movementDirection = newMoveDirection;
+            }
+        }
+    }
 
     protected Vector3 RotateTo(Vector3 origin, Vector3 target)
     {
