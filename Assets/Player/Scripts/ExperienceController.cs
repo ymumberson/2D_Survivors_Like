@@ -14,16 +14,33 @@ public class ExperienceController : MonoBehaviour
     public float Experience => _experience;
     private float _levelUpCost;
     public float LevelUpCost => _levelUpCost;
+    public float ExperienceGainMultiplier => experienceGainMultiplier;
 
     public event Action<int> LevelledUp;
     public event Action<float> GainedExperience;
     public event Action<float> ExperienceChanged;
+    public event Action<float> ExperienceGainMultiplierChanged;
 
     void Awake()
     {
         _experience = 0;
         _level = startingLevel;
         _levelUpCost = CalculateLevelUpCost(_level);
+    }
+
+    public void IncrementExperienceGainMultiplier(float increment)
+    {
+        SetExperienceGainMultiplier(experienceGainMultiplier + increment);
+    }
+
+    private void SetExperienceGainMultiplier(float experienceGainMultiplier)
+    {
+        float previous = this.experienceGainMultiplier;
+        this.experienceGainMultiplier = Mathf.Max(0, experienceGainMultiplier);
+
+        if (Mathf.Approximately(previous, this.experienceGainMultiplier)) return;
+
+        ExperienceGainMultiplierChanged?.Invoke(this.experienceGainMultiplier);
     }
 
     public void AddExperience(float experienceGain)

@@ -32,7 +32,6 @@ public class AttackController : MonoBehaviour
 
     public void IncrementDamageMultiplier(float increment)
     {
-        increment = Mathf.Max(0, increment);
         SetDamageMultiplier(damageMultiplier + increment);
     }
     
@@ -48,7 +47,6 @@ public class AttackController : MonoBehaviour
 
     public void IncrementAttackSpeedMultiplier(float increment)
     {
-        increment = Mathf.Max(0, increment);
         SetAttackSpeedMultiplier(attackSpeedMultiplier + increment);
     }
 
@@ -64,7 +62,6 @@ public class AttackController : MonoBehaviour
 
     public void IncrementProjectileSpeedMultiplier(float increment)
     {
-        increment = Mathf.Max(0, increment);
         SetProjectileSpeedMultiplier(projectileSpeedMultiplier + increment);
     }
 
@@ -80,7 +77,6 @@ public class AttackController : MonoBehaviour
 
     public void IncrementProjectileSizeMultiplier(float increment)
     {
-        increment = Mathf.Max(0, increment);
         SetProjectileSizeMultiplier(projectileSizeMultiplier + increment);
     }
 
@@ -96,7 +92,6 @@ public class AttackController : MonoBehaviour
 
     public void IncrementProjectileCount(int projectileCountIncrement)
     {
-        projectileCountIncrement = Math.Max(0, projectileCountIncrement);
         SetProjectileCount(projectileCount + projectileCountIncrement);
     }
 

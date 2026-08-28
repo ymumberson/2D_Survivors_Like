@@ -132,7 +132,6 @@ public class HealthController : MonoBehaviour
 
     public void IncreaseMaxHealth(float increase)
     {
-        increase = Mathf.Max(0, increase);
         SetMaxHealth(maxHealth + increase);
     }
     

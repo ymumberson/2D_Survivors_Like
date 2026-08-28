@@ -4,12 +4,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovementController : MovementController
 {
-    [SerializeField] private float baseMovementSpeed = 2f;
-    private float movementSpeedMultiplier = 1;
+    // [SerializeField] private float baseMovementSpeed = 2f;
+    // private float movementSpeedMultiplier = 1;
 
     private InputAction moveAction;
 
-    public event Action<float> MovementSpeedMultiplierChanged;
+    // public event Action<float> MovementSpeedMultiplierChanged;
 
     void Awake()
     {
@@ -26,23 +26,23 @@ public class PlayerMovementController : MovementController
         if (moveAction.IsPressed())
         {
             Vector2 moveValue = moveAction.ReadValue<Vector2>().normalized;
-            base.Move(moveValue * Time.deltaTime * baseMovementSpeed * movementSpeedMultiplier);
+            Move(moveValue * Time.deltaTime * MovementSpeed);
         }
     }
 
-    public void IncrementMovementSpeedMultiplier(float increase)
-    {
-        increase = Mathf.Max(0, increase);
-        SetMovementSpeedMultiplier(movementSpeedMultiplier + increase);
-    }
+    // public void IncrementMovementSpeedMultiplier(float increase)
+    // {
+    //     increase = Mathf.Max(0, increase);
+    //     SetMovementSpeedMultiplier(movementSpeedMultiplier + increase);
+    // }
 
-    public void SetMovementSpeedMultiplier(float multiplier)
-    {
-        float prev = movementSpeedMultiplier;
-        movementSpeedMultiplier = Mathf.Max(0, multiplier);
+    // public void SetMovementSpeedMultiplier(float multiplier)
+    // {
+    //     float prev = movementSpeedMultiplier;
+    //     movementSpeedMultiplier = Mathf.Max(0, multiplier);
 
-        if (Mathf.Approximately(prev, movementSpeedMultiplier)) return;
+    //     if (Mathf.Approximately(prev, movementSpeedMultiplier)) return;
 
-        MovementSpeedMultiplierChanged?.Invoke(movementSpeedMultiplier);
-    }
+    //     MovementSpeedMultiplierChanged?.Invoke(movementSpeedMultiplier);
+    // }
 }

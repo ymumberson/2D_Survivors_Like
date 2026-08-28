@@ -4,7 +4,13 @@ using UnityEngine;
 public class MovementController : MonoBehaviour
 {
     [SerializeField] Transform rootTransform;
+    [SerializeField] private float baseMovementSpeed = 1f;
+    [SerializeField] private float movementSpeedMultiplier = 1f;
     private Rigidbody2D _rigidBody;
+
+    public float MovementSpeed => baseMovementSpeed * movementSpeedMultiplier;
+
+    public event Action<float> MovementSpeedMultiplierChanged;
 
     void Awake()
     {
@@ -29,5 +35,20 @@ public class MovementController : MonoBehaviour
         {
             rootTransform.position = position;
         }
+    }
+
+    public void IncrementMovementSpeedMultiplier(float increase)
+    {
+        SetMovementSpeedMultiplier(movementSpeedMultiplier + increase);
+    }
+
+    private void SetMovementSpeedMultiplier(float movementSpeedMultiplier)
+    {
+        float previous = this.movementSpeedMultiplier;
+        this.movementSpeedMultiplier = Mathf.Max(0, movementSpeedMultiplier);
+
+        if (Mathf.Approximately(previous, this.movementSpeedMultiplier)) return;
+
+        MovementSpeedMultiplierChanged?.Invoke(this.movementSpeedMultiplier);
     }
 }

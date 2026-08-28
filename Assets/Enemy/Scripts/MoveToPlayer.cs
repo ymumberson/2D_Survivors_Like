@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class MoveToPlayer : MovementController
 {
-    [SerializeField] private float moveSpeed;
-
     // Update is called once per frame
     void Update()
     {
@@ -18,7 +16,7 @@ public class MoveToPlayer : MovementController
         HealthController healthController = player.GetComponentInChildren<HealthController>();
         if (!healthController || healthController.IsDead) return;
 
-        Vector2 toPlayer = (player.transform.position - transform.position).normalized * moveSpeed * Time.deltaTime;
+        Vector2 toPlayer = (player.transform.position - transform.position).normalized * MovementSpeed * Time.deltaTime;
 
         Move(toPlayer);
     }
