@@ -168,6 +168,7 @@ MonoBehaviour:
   attackController: {fileID: 4976517518687749712}
   experienceController: {fileID: 3560164276733817231}
   movementController: {fileID: 547285897258733094}
+  inventoryController: {fileID: 757219391398365921}
   disableOnDied:
   - {fileID: 3955399858171307674}
 --- !u!114 &3027806116004537361
