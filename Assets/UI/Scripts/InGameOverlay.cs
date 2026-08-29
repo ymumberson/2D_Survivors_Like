@@ -11,37 +11,50 @@ public class InGameOverlay : MonoBehaviour
 
     private HealthController _healthController;
     private ExperienceController _experienceController;
-    private bool hasRunStart = false;
     private int previousSeconds = -1;
+    private bool isInitialized = false;
+    private bool _isSubscribed = false;
 
+    public void Initialise(Player player)
+    {
+        _healthController = player.HealthController;
+        _experienceController = player.ExperienceController;
+        
+        isInitialized = true;
+
+        TrySubscribe();
+    }
+    
     void OnEnable()
     {
-        if (!hasRunStart) return;
-
-        _healthController.HealthChanged += HandleHealthChanged;
-        _healthController.MaxHealthChanged += HandleMaxHealthChanged;
-        _experienceController.ExperienceChanged += HandleExperienceChanged;
-    }
-
-    void Start()
-    {
-        Initialise();
-        hasRunStart = true;
-        OnEnable();
+        TrySubscribe();
     }
 
     void OnDisable()
     {
+        Unsubscribe();
+    }
+
+    private void TrySubscribe()
+    {
+        if (!isInitialized || _isSubscribed || !isActiveAndEnabled) return;
+
+        _healthController.HealthChanged += HandleHealthChanged;
+        _healthController.MaxHealthChanged += HandleMaxHealthChanged;
+        _experienceController.ExperienceChanged += HandleExperienceChanged;
+        
+        _isSubscribed = true;
+    }
+
+    private void Unsubscribe()
+    {
+        if (!_isSubscribed) return;
+        
         _healthController.HealthChanged -= HandleHealthChanged;
         _healthController.MaxHealthChanged -= HandleMaxHealthChanged;
         _experienceController.ExperienceChanged -= HandleExperienceChanged;
-    }
 
-    private void Initialise()
-    {
-        Player player = GameController.Instance.GetPlayer();
-        _healthController = player.GetComponentInChildren<HealthController>();
-        _experienceController = player.GetComponentInChildren<ExperienceController>();
+        _isSubscribed = false;
     }
 
     void Update()

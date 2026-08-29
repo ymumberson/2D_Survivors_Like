@@ -7671,8 +7671,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameController
   setTimeScale: 1
-  _player: {fileID: 830062712}
+  player: {fileID: 830062712}
   enemySpawner: {fileID: 1321192679}
+  uiController: {fileID: 1175292617}
 --- !u!4 &544233098
 Transform:
   m_ObjectHideFlags: 0
@@ -16491,6 +16492,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1175292617 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2607116580197207467, guid: 3e2675da567d30747a1e8b479448269a, type: 3}
+  m_PrefabInstance: {fileID: 6936123586140267807}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c7b2d7ba8b82f74a8d6ae89032e1e5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIController
 --- !u!1 &1179292297
 GameObject:
   m_ObjectHideFlags: 0
@@ -17405,7 +17417,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34c3fad8ac15da640ae243f769f9603b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
-  gameController: {fileID: 544233097}
   enemyPrefabs:
   - {fileID: 1603734588926745079, guid: 5b1bef29f03fd7a4593a6b2ebdc05e0c, type: 3}
   - {fileID: 8408282348341547909, guid: 940dfcb608be589409113aed1bafc492, type: 3}

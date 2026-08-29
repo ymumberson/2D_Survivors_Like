@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private GameController gameController;
     [SerializeField] private List<GameObject> enemyPrefabs = new();
     [SerializeField] private GameObject enemySpawnWarningIndicatorPrefab;
     [SerializeField] private float warningDuration = 1f;
@@ -17,6 +16,10 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float maxSpawnDistanceFromPlayer = 2f;
     [SerializeField] private float healthScaler = 10f;
     [SerializeField] private float attackScaler = 20f;
+    private GameController _gameController;
+    private Player _player;
+    private bool _isInitialized;
+    private bool _isSubscribed;
     private float spawnInterval;
     private int spawnCount;
     private Dictionary<HealthController, GameObject> enemies = new();
@@ -29,14 +32,45 @@ public class EnemySpawner : MonoBehaviour
         spawnCount = baseSpawnCount;
     }
 
+    public void Initialize(GameController gameController, Player player)
+    {
+        _gameController = gameController;
+        _player = player;
+        _isInitialized = true;
+
+        TrySubscribe();
+    }
+
     void OnEnable()
     {
-        gameController.DifficultyChanged += HandleDifficultyChanged;
+        TrySubscribe();
     }
 
     void OnDisable()
     {
-        gameController.DifficultyChanged -= HandleDifficultyChanged;
+        TryUnsubscribe();
+    }
+
+    private bool TrySubscribe()
+    {
+        if (_isSubscribed || !_isInitialized || !isActiveAndEnabled) return false;
+
+        _gameController.DifficultyChanged += HandleDifficultyChanged;
+
+        _isSubscribed = true;
+
+        return true;
+    }
+
+    private bool TryUnsubscribe()
+    {
+        if (!_isSubscribed) return false;
+
+        _gameController.DifficultyChanged -= HandleDifficultyChanged;
+
+        _isSubscribed = false;
+
+        return true;
     }
 
     void Start()
@@ -81,10 +115,11 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy(Vector3 spawnLocation)
     {
-        var enemyPrefab = GetEnemyForDifficulty(gameController.DifficultyLevel);
+        var enemyPrefab = GetEnemyForDifficulty(_gameController.DifficultyLevel);
         var enemyGO = Instantiate(enemyPrefab, this.transform);
         enemyGO.transform.position = spawnLocation;
         Enemy enemy = enemyGO.GetComponent<Enemy>();
+        enemy.Initialize(_player);
         var healthController = enemy.HealthController;
         enemies[healthController] = enemyGO;
         healthController.Died += () => enemies.Remove(healthController);
@@ -192,7 +227,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void ScaleEnemyDifficulty(Enemy enemy)
     {
-        float difficulty = gameController.DifficultyLevel;
+        float difficulty = _gameController.DifficultyLevel;
 
         if (enemy.HealthController)
         {

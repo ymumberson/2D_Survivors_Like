@@ -2,7 +2,16 @@ using UnityEngine;
 
 public class MoveToPlayer : MovementController
 {
+    private Player _player;
+    private bool isInitialized;
+    
     // Update is called once per frame
+    public void Initialize(Player player)
+    {
+        _player = player;
+        isInitialized = true;
+    }
+    
     void Update()
     {
         Move();
@@ -10,13 +19,11 @@ public class MoveToPlayer : MovementController
 
     private void Move()
     {
-        Player player = GameController.Instance.GetPlayer();
-        if (!player) return;
+        if (!_player) return;
 
-        HealthController healthController = player.GetComponentInChildren<HealthController>();
-        if (!healthController || healthController.IsDead) return;
+        if (!_player.HealthController || _player.HealthController.IsDead) return;
 
-        Vector2 toPlayer = (player.transform.position - transform.position).normalized * MovementSpeed * Time.deltaTime;
+        Vector2 toPlayer = (_player.transform.position - transform.position).normalized * MovementSpeed * Time.deltaTime;
 
         Move(toPlayer);
     }

@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    [SerializeField] private float setTimeScale = 1;
-    
     public static GameController Instance;
-    [SerializeField] private Player _player;
+    [SerializeField] private Player player;
     [SerializeField] private EnemySpawner enemySpawner;
+    [SerializeField] private UIController uiController;
     private const float DIFFICULTY_SCALING_FACTOR = 60f; // Larger = slower scaling
     private int difficultyLevel;
     private float _elapsedTime = 0f;
     public float ElapsedTime => _elapsedTime;
     public int DifficultyLevel => difficultyLevel;
+    public Player Player => player;
 
     public event Action GameEnded;
     public event Action<int> DifficultyChanged;
@@ -23,7 +23,7 @@ public class GameController : MonoBehaviour
     {
         if (Instance)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
         else
         {
@@ -31,22 +31,23 @@ public class GameController : MonoBehaviour
         }
 
         CapFPS();
+
+        uiController.Initialize(player);
+        enemySpawner.Initialize(this, player);
     }
 
     void OnEnable()
     {
-        GetPlayer().GetComponentInChildren<HealthController>().Died += HandlePlayerDied;
+        player.HealthController.Died += HandlePlayerDied;
     }
 
     void OnDisable()
     {
-        GetPlayer().GetComponentInChildren<HealthController>().Died -= HandlePlayerDied;
+        player.HealthController.Died -= HandlePlayerDied;
     }
 
     void Update()
     {
-        Time.timeScale = setTimeScale;
-        
         _elapsedTime += Time.deltaTime;
         int newDifficulty = GetDifficultyLevel();
         if (newDifficulty != difficultyLevel)
@@ -54,11 +55,6 @@ public class GameController : MonoBehaviour
             difficultyLevel = newDifficulty;
             DifficultyChanged?.Invoke(difficultyLevel);
         }
-    }
-
-    public Player GetPlayer()
-    {
-        return _player;
     }
 
     public Dictionary<HealthController, GameObject> GetEnemies()

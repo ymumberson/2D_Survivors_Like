@@ -1,73 +1,18 @@
-using System;
-using System.Runtime.CompilerServices;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class UIController : MonoBehaviour
 {
-    [SerializeField] private GameController gameController;
+    [SerializeField] private PauseController pauseController;
     [SerializeField] private PauseMenu pauseMenu;
     [SerializeField] private InGameOverlay inGameUI;
     [SerializeField] private GameOverMenu gameOverMenu;
-    
-    private InputAction openMenu;
-    private bool _isPaused = false;
-    public bool IsPaused => _isPaused;
+    [SerializeField] private LevelUpMenu levelUpMenu;
 
-    void Awake()
+    public void Initialize(Player player)
     {
-        openMenu = InputSystem.actions.FindAction("OpenMenu");
-        pauseMenu.gameObject.SetActive(false);
-    }
-
-    void OnEnable()
-    {
-        gameController.GameEnded += EnableGameOverMenu;
-    }
-
-    void OnDisable()
-    {
-        gameController.GameEnded -= EnableGameOverMenu;
-    }
-
-    void Update()
-    {
-        CheckOpenMenu();
-    }
-
-    public void CheckOpenMenu()
-    {
-        if (!openMenu.WasPressedThisFrame()) return;
-
-        if (_isPaused)
-            UnPauseGame();
-        else
-            PauseGame();
-    }
-
-    public void PauseGame()
-    {
-        if (_isPaused) return;
-
-        pauseMenu.gameObject.SetActive(true);
-        Time.timeScale = 0;
-        _isPaused = true;
-    }
-
-    public void UnPauseGame()
-    {
-        if (!_isPaused) return;
-
-        pauseMenu.gameObject.SetActive(false);
-        Time.timeScale = 1;
-        _isPaused = false;
-    }
-
-    private void EnableGameOverMenu()
-    {
-        UnPauseGame();
-
-        gameOverMenu.gameObject.SetActive(true);
+        inGameUI.Initialise(player);
+        levelUpMenu.Initialize(player, pauseController);
+        gameOverMenu.Initialize(player, pauseController);
+        pauseMenu.Initialize(pauseController);
     }
 }
