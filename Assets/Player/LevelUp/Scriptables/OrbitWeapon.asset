@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc4b4fca497ad9244945ae74f43d8ee8, type: 3}
+  m_Name: OrbitWeapon
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponUpgrade
+  title: Orbit
+  description: Adds the orbit weapon
+  image: {fileID: -5326636717214948786, guid: 04883684aefcb0147b1ff8c1b976a4ca, type: 3}
+  rarity: 3
+  weaponPrefab: {fileID: 545960439291766948, guid: 83a1409bef168864e921c9858222558a, type: 3}

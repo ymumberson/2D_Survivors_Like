@@ -241,7 +241,7 @@ public class EnemySpawner : MonoBehaviour
 
         if (enemy.EnemyDeathHandler)
         {
-            enemy.EnemyDeathHandler.SetExperienceDropMultiplier(Mathf.Sqrt(difficulty));
+            enemy.EnemyDeathHandler.SetExperienceDropMultiplier(1 + Mathf.Sqrt(difficulty));
         }
     }
 

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60c22c59dfc3a0243bd7eb97ec43150b, type: 3}
   m_Name: ProjectileCountUpgrade
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileCountUpgrade
-  title: 
-  description: 
+  title: Projectiles++
+  description: Increases amount of projectiles
   image: {fileID: 0}
-  amount: 0
+  rarity: 2
+  amount: 1

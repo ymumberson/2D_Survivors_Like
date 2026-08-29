@@ -13,21 +13,21 @@ public class OrbitWeapon : Weapon
     {
         orbitProjectile.SetActive(false);
         baseScale = orbitProjectile.transform.GetChild(0).localScale;
-        InstantiateOrbitProjectiles(attackController.ProjectileCount);
+        InstantiateOrbitProjectiles(_attackController.ProjectileCount);
         SetWeaponsActive(false);
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
-        attackController.ProjectileCountChanged += InstantiateOrbitProjectiles;
-        attackController.ProjectileSizeMultiplierChanged += HandleWeaponSizeChanged;
+        _attackController.ProjectileCountChanged += InstantiateOrbitProjectiles;
+        _attackController.ProjectileSizeMultiplierChanged += HandleWeaponSizeChanged;
     }
 
     void OnDisable()
     {
-        attackController.ProjectileCountChanged -= InstantiateOrbitProjectiles;
-        attackController.ProjectileSizeMultiplierChanged -= HandleWeaponSizeChanged;
+        _attackController.ProjectileCountChanged -= InstantiateOrbitProjectiles;
+        _attackController.ProjectileSizeMultiplierChanged -= HandleWeaponSizeChanged;
         SetWeaponsActive(false);
     }
 
@@ -47,6 +47,9 @@ public class OrbitWeapon : Weapon
         {
             GameObject projectile =
                 Instantiate(orbitProjectile, transform);
+
+            Weapon weapon = projectile.gameObject.GetComponentInChildren<Weapon>(true);
+            weapon.Initialize(_attackController);
 
             orbitProjectiles.Add(projectile);
 
@@ -99,7 +102,7 @@ public class OrbitWeapon : Weapon
         while (elapsed < orbitDuration)
         {
             elapsed += Time.deltaTime;
-            float t = (elapsed / orbitDuration) * attackController.AttackSpeedMultiplier;
+            float t = (elapsed / orbitDuration) * _attackController.AttackSpeedMultiplier;
             projectile.transform.rotation = Quaternion.Euler(new Vector3(0, 0, startingRotation + offset + t * 360f));
             yield return null;
         }

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e6f4432c8e8ec549868ec946ad29296, type: 3}
   m_Name: AttackSpeedUpgrade
   m_EditorClassIdentifier: Assembly-CSharp::AttackSpeedUpgrade
-  title: 
-  description: 
+  title: AttackSpeed++
+  description: Increases attack speed
   image: {fileID: 0}
-  amount: 0
+  rarity: 0
+  amount: 0.1

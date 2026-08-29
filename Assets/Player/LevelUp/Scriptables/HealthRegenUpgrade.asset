@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d728933d96b0c7c499b876d3429ea827, type: 3}
   m_Name: HealthRegenUpgrade
   m_EditorClassIdentifier: Assembly-CSharp::HealthRegenerationUpgrade
-  title: 
-  description: 
+  title: Healing Serum
+  description: Increases natural healing
   image: {fileID: 0}
-  amount: 0
+  rarity: 0
+  amount: 0.2

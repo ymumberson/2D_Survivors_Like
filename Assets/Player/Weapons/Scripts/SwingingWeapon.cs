@@ -24,21 +24,21 @@ public class SwingingWeapon : Weapon
     void Awake()
     {
         swingProjectile.SetActive(false);
-        InstantiateSwingProjectiles(attackController.ProjectileCount);
+        InstantiateSwingProjectiles(_attackController.ProjectileCount);
         SetWeaponsActive(false);
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
-        attackController.ProjectileCountChanged += InstantiateSwingProjectiles;
-        attackController.ProjectileSizeMultiplierChanged += HandleWeaponSizeChanged;
+        _attackController.ProjectileCountChanged += InstantiateSwingProjectiles;
+        _attackController.ProjectileSizeMultiplierChanged += HandleWeaponSizeChanged;
     }
 
     void OnDisable()
     {
-        attackController.ProjectileCountChanged -= InstantiateSwingProjectiles;
-        attackController.ProjectileSizeMultiplierChanged -= HandleWeaponSizeChanged;
+        _attackController.ProjectileCountChanged -= InstantiateSwingProjectiles;
+        _attackController.ProjectileSizeMultiplierChanged -= HandleWeaponSizeChanged;
         SetWeaponsActive(false);
     }
 
@@ -58,6 +58,11 @@ public class SwingingWeapon : Weapon
         {
             GameObject projectile =
                 Instantiate(swingProjectile, transform);
+
+            Weapon weapon = projectile.gameObject.GetComponent<Weapon>();
+            weapon.Initialize(_attackController);
+
+            projectile.SetActive(false);
 
             swingProjectiles.Add(projectile);
             swingProjectiles[^1].transform.localScale *= WeaponSize;

@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &273233811363369883
 Transform:
   m_ObjectHideFlags: 0
@@ -54,8 +54,10 @@ MonoBehaviour:
   attackController: {fileID: 7262337047835363524}
   experienceController: {fileID: 0}
   movementController: {fileID: 5868354538919642589}
+  inventoryController: {fileID: 0}
   disableOnDied: []
-  enemyDeathHandler: {fileID: 0}
+  enemyDeathHandler: {fileID: 3862844576466827236}
+  contactDamage: {fileID: 1836055173213932643}
 --- !u!70 &3515987109432037290
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -133,7 +135,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveToPlayer
   rootTransform: {fileID: 273233811363369883}
-  moveSpeed: 1
+  baseMovementSpeed: 1
+  movementSpeedMultiplier: 1
 --- !u!1 &3832507579941944143
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,6 +191,7 @@ MonoBehaviour:
   projectileSpeedMultiplier: 1
   baseProjectileSize: 1
   projectileSizeMultiplier: 1
+  projectileCount: 1
 --- !u!114 &1836055173213932643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,7 +204,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d391e71739c9525489edfa1dcae9219d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ContactDamage
-  attackController: {fileID: 7262337047835363524}
   damageAmount: 10
   weaponSpeed: 10
   weaponSize: 1

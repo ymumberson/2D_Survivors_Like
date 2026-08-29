@@ -3,6 +3,7 @@ using UnityEngine;
 public class Enemy : Character
 {
     [SerializeField] private EnemyDeathHandler enemyDeathHandler;
+    [SerializeField] private ContactDamage contactDamage;
     private Player _player;
     private bool isInitialized;
     public EnemyDeathHandler EnemyDeathHandler => enemyDeathHandler;
@@ -13,5 +14,8 @@ public class Enemy : Character
         isInitialized = true;
 
         (MovementController as MoveToPlayer).Initialize(_player);
+        contactDamage.Initialize(AttackController);
+
+        gameObject.SetActive(true);
     }
 }

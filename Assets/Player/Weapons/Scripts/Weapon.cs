@@ -5,7 +5,6 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
-    [SerializeField] protected AttackController attackController;
     [SerializeField] private float damageAmount = 10f;
     [SerializeField] private float weaponSpeed = 10f;
     [SerializeField] private float weaponSize = 1f;
@@ -14,13 +13,20 @@ public abstract class Weapon : MonoBehaviour
     protected const float DELAY_BETWEEN_PROJECTILES = 0.1f;
     private Vector3 previousPosition;
     private Vector3 movementDirection = Vector3.one;
+    protected AttackController _attackController;
 
-    protected float Damage => attackController.Damage * damageAmount;
-    protected float WeaponSpeed => weaponSpeed * attackController.ProjectileSpeed;
-    protected float WeaponSize => weaponSize * attackController.ProjectileSize;
-    protected float AttackInterval => attackInterval / attackController.AttackSpeed;
+    protected float Damage => _attackController.Damage * damageAmount;
+    protected float WeaponSpeed => weaponSpeed * _attackController.ProjectileSpeed;
+    protected float WeaponSize => weaponSize * _attackController.ProjectileSize;
+    protected float AttackInterval => attackInterval / _attackController.AttackSpeed;
     protected Vector3 MovementDirection => movementDirection;
     
+    public virtual void Initialize(AttackController attackController)
+    {
+        _attackController = attackController;
+        gameObject.SetActive(true);
+    }
+
     protected virtual void OnEnable()
     {
         StartCoroutine(AttackLoop());

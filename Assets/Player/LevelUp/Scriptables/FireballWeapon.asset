@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc4b4fca497ad9244945ae74f43d8ee8, type: 3}
+  m_Name: FireballWeapon
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponUpgrade
+  title: Fireball
+  description: Adds the fireball weapon
+  image: {fileID: -5326636717214948786, guid: 04883684aefcb0147b1ff8c1b976a4ca, type: 3}
+  rarity: 3
+  weaponPrefab: {fileID: 7321618002743514322, guid: 68ebd8ab4554fa9408aa31c36493d20e, type: 3}

@@ -106,6 +106,6 @@ public class GameController : MonoBehaviour
 
     private int GetDifficultyLevel()
     {
-        return Mathf.FloorToInt(ElapsedTime / DIFFICULTY_SCALING_FACTOR);
+        return Mathf.FloorToInt(1 + (ElapsedTime / DIFFICULTY_SCALING_FACTOR));
     }
 }

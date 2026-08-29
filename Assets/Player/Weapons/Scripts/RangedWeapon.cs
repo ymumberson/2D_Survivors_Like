@@ -19,7 +19,7 @@ public class RangedWeapon : Weapon
 
     protected override IEnumerator Attack()
     {
-        for (int i=0; i<attackController.ProjectileCount; ++i)
+        for (int i=0; i<_attackController.ProjectileCount; ++i)
         {
             SpawnProjectile();
             yield return new WaitForSeconds(DELAY_BETWEEN_PROJECTILES);  

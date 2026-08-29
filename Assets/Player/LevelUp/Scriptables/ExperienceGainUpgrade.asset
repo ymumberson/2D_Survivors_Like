@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77fe1b71ca4301445b0e75683402538d, type: 3}
   m_Name: ExperienceGainUpgrade
   m_EditorClassIdentifier: Assembly-CSharp::ExperienceGainUpgrade
-  title: 
-  description: 
+  title: Quick Learner
+  description: Increases experience gain
   image: {fileID: 0}
-  amount: 0
+  rarity: 1
+  amount: 0.1
