@@ -4,7 +4,7 @@ A work-in-progress 2D survivors-like game built in Unity.
 
 The gameplay is heavily inspired by **Vampire Survivors**, but the main goal of this project isn't to create something particularly innovative. I'm using the familiar survivors-like format as a way to practise game development, WebGL development, and writing clean, maintainable code.
 
-![Gameplay](./gameplay.gif)
+![Gameplay](https://github.com/ymumberson/2D_Survivors_Like/blob/a53340f190842fa969e0a9e8c226d2fcd82501d6/gameplay.gif)
 
 ## About
 
