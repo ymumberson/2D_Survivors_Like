@@ -6,7 +6,6 @@ public class WeaponController : MonoBehaviour
     [SerializeField] private AttackController attackController;
     [SerializeField] private GameObject startingWeapon;
     private Dictionary<GameObject, Weapon> weapons = new();
-    private const float DAMAGE_INCREASE = 5;
 
     void Start()
     {
@@ -39,7 +38,7 @@ public class WeaponController : MonoBehaviour
 
     private void ModifyWeaponStats(Weapon weapon)
     {
-        
+        //TODO: Allow modifying a weapon's base stats
     }
 
     private void InstantiateWeapon(GameObject weaponPrefab)

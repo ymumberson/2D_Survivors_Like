@@ -6,6 +6,7 @@ public abstract class LevelUpItem : ScriptableObject
     public string description;
     public Sprite image;
     public Rarity rarity;
+    public int poolCount = int.MaxValue;
 
     public abstract void Apply(Player player);
     public abstract void Remove(Player player);
