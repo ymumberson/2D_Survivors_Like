@@ -286,6 +286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7912773107130481773}
   - component: {fileID: 1138193125185644867}
+  - component: {fileID: 7392733877438084555}
   - component: {fileID: 8178633063226155938}
   - component: {fileID: 6357781934292791219}
   m_Layer: 0
@@ -330,16 +331,31 @@ MonoBehaviour:
   levelUpItemPrefab: {fileID: 5857644341791175465, guid: 4be8eb8a83b24714c905d38698f44c63, type: 3}
   levelUpMenuPanel: {fileID: 3389349807192675572}
   numItemsOffered: 3
+  itemPool: {fileID: 7392733877438084555}
+--- !u!114 &7392733877438084555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6166665606327529282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f88a817cc704b44c8d738d324e51468, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemPool
+  uncommonThreshold: 40
+  rareThreshold: 75
+  legendaryThreshold: 95
   levelUpItemPool:
+  - {fileID: 11400000, guid: cce1dbb0766cda74494c3b86fa0d57fe, type: 2}
   - {fileID: 11400000, guid: fea107967256df64e83de83aa41d7528, type: 2}
   - {fileID: 11400000, guid: d510eca939c395d40b91590eafcfabbb, type: 2}
+  - {fileID: 11400000, guid: 99722ceda4e6d4844845e64579f43f9a, type: 2}
   - {fileID: 11400000, guid: 320586dad5959b642a27b37aba9ecaa3, type: 2}
   - {fileID: 11400000, guid: 56e7ad53900399d4ab76f46c275b1efb, type: 2}
-  - {fileID: 11400000, guid: 14aabc51cf47a644b9cab2293bd45cdf, type: 2}
-  - {fileID: 11400000, guid: cce1dbb0766cda74494c3b86fa0d57fe, type: 2}
-  - {fileID: 11400000, guid: 99722ceda4e6d4844845e64579f43f9a, type: 2}
   - {fileID: 11400000, guid: 395e07a77fc859f47946f8c18aa7234c, type: 2}
-  - {fileID: 11400000, guid: e680b9e546bbb034888ac400821e84a2, type: 2}
+  - {fileID: 11400000, guid: 14aabc51cf47a644b9cab2293bd45cdf, type: 2}
 --- !u!222 &8178633063226155938
 CanvasRenderer:
   m_ObjectHideFlags: 0

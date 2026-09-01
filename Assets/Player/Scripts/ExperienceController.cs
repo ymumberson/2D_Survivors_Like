@@ -67,8 +67,6 @@ public class ExperienceController : MonoBehaviour
         }
 
         ExperienceChanged?.Invoke(_experience);
-
-        Debug.Log("Gained experience: " + _experience);
     }
 
     private void LevelUp()

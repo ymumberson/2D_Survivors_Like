@@ -16,4 +16,5 @@ MonoBehaviour:
   description: Adds the fireball weapon
   image: {fileID: -5326636717214948786, guid: 04883684aefcb0147b1ff8c1b976a4ca, type: 3}
   rarity: 3
+  poolCount: 1
   weaponPrefab: {fileID: 7321618002743514322, guid: 68ebd8ab4554fa9408aa31c36493d20e, type: 3}

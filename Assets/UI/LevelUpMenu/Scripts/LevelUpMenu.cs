@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class LevelUpMenu : MonoBehaviour
@@ -7,7 +6,7 @@ public class LevelUpMenu : MonoBehaviour
     [SerializeField] private GameObject levelUpItemPrefab;
     [SerializeField] private GameObject levelUpMenuPanel;
     [SerializeField] private int numItemsOffered = 3;
-    [SerializeField] private List<LevelUpItem> levelUpItemPool = new();
+    [SerializeField] private ItemPool itemPool;
     private List<LevelUpItemUI> levelUpItemPanels = new();
     private PauseController _pauseController;
     private Player _player;
@@ -65,7 +64,7 @@ public class LevelUpMenu : MonoBehaviour
 
     private void InstantiateLevelUpItemPanels()
     {
-        numItemsOffered = Mathf.Min(numItemsOffered, levelUpItemPool.Count);
+        numItemsOffered = Mathf.Min(numItemsOffered, itemPool.Count);
 
         for (int i=0; i<numItemsOffered; ++i)
         {
@@ -76,19 +75,29 @@ public class LevelUpMenu : MonoBehaviour
 
     private void RandomizeLevelUpItemsOffered()
     {
-        List<LevelUpItem> pool = levelUpItemPool.FindAll((item) => item != null);
-        foreach (LevelUpItemUI panel in levelUpItemPanels)
+        CheckRemainingLootPoolSize();
+        
+        List<LevelUpItem> randomItems = itemPool.GetRandomItems(levelUpItemPanels.Count);
+        for (int i=0; i<randomItems.Count; i++)
         {
-            LevelUpItem item = SelectRandomLevelUpItem(pool);
-            pool.Remove(item);
-            panel.SetContent(item, () => SelectLevelUpItem(item));
+            LevelUpItem item = randomItems[i];
+            levelUpItemPanels[i].SetContent(item, () => SelectLevelUpItem(item));
         }
     }
 
-    private LevelUpItem SelectRandomLevelUpItem(List<LevelUpItem> pool)
+    private void CheckRemainingLootPoolSize()
     {
-        int randomIndex = Random.Range(0, pool.Count);
-        return pool[randomIndex];
+        numItemsOffered = Mathf.Min(numItemsOffered, itemPool.Count);
+
+        if (levelUpItemPanels.Count != numItemsOffered)
+        {
+            foreach (var panel in levelUpItemPanels)
+            {
+                Destroy(panel.gameObject);
+            }
+            levelUpItemPanels.Clear();
+            InstantiateLevelUpItemPanels();
+        }
     }
 
     private void SelectLevelUpItem(LevelUpItem item)
@@ -96,5 +105,6 @@ public class LevelUpMenu : MonoBehaviour
         _player.InventoryController.AddLevelUpItem(item);
         levelUpMenuPanel.SetActive(false);
         _pauseController.ReleasePause();
+        itemPool.ItemSelected(item);
     }
 }
