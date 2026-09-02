@@ -118,6 +118,29 @@ public class ItemPool : MonoBehaviour
 
     public void ItemSelected(LevelUpItem item)
     {
-        
+        switch (item.rarity)
+            {
+                case LevelUpItem.Rarity.Common:
+                    DecrementItemPool(item, commonItemPool);
+                    break;
+                case LevelUpItem.Rarity.Uncommon:
+                    DecrementItemPool(item, uncommonItemPool);
+                    break;
+                case LevelUpItem.Rarity.Rare:
+                    DecrementItemPool(item, rareItemPool);
+                    break;
+                case LevelUpItem.Rarity.Legendary:
+                    DecrementItemPool(item, legendaryItemPool);
+                    break;
+            }
+    }
+
+    private void DecrementItemPool(LevelUpItem item, Dictionary<LevelUpItem, int> pool)
+    {
+        if (!pool.ContainsKey(item)) return;
+
+        pool[item]--;
+        if (pool[item] <= 0)
+            pool.Remove(item);
     }
 }

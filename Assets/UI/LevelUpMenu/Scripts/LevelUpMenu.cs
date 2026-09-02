@@ -12,6 +12,7 @@ public class LevelUpMenu : MonoBehaviour
     private Player _player;
     private bool isInitialized = false;
     private bool isSubscribed = false;
+    private int _openRequests;
 
     public void Initialize(Player player, PauseController pauseController)
     {
@@ -57,9 +58,36 @@ public class LevelUpMenu : MonoBehaviour
 
     private void HandlePlayerLevelledUp(int newLevel)
     {
-        RandomizeLevelUpItemsOffered();
-        levelUpMenuPanel.SetActive(true);
-        _pauseController.RequestPause();
+        RequestOpen();
+    }
+
+    private void RequestOpen()
+    {
+        _openRequests++;
+
+        // Open menu and randomize content if first request
+        if (_openRequests == 1)
+        {
+            levelUpMenuPanel.SetActive(true);
+            _pauseController.RequestPause();
+            RandomizeLevelUpItemsOffered();
+        }
+    }
+
+    private void ReleaseOpen()
+    {
+        _openRequests--;
+
+        // If no more requests then close the menu
+        if (_openRequests <= 0)
+        {
+            levelUpMenuPanel.SetActive(false);
+            _pauseController.ReleasePause();
+        }
+        else // Else keep the menu open and re-ranzomize
+        {
+            RandomizeLevelUpItemsOffered();
+        }
     }
 
     private void InstantiateLevelUpItemPanels()
@@ -103,8 +131,7 @@ public class LevelUpMenu : MonoBehaviour
     private void SelectLevelUpItem(LevelUpItem item)
     {
         _player.InventoryController.AddLevelUpItem(item);
-        levelUpMenuPanel.SetActive(false);
-        _pauseController.ReleasePause();
         itemPool.ItemSelected(item);
+        ReleaseOpen();
     }
 }
