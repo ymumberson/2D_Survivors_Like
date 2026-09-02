@@ -5,7 +5,7 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject pausePanel;
     private PauseController _pauseController;
-    private bool isInitialized;
+    private GameFlowController _gameFlowController;
     private InputAction openMenu;
     private bool _isPaused = false;
 
@@ -15,10 +15,10 @@ public class PauseMenu : MonoBehaviour
         pausePanel.SetActive(false);
     }
 
-    public void Initialize(PauseController pauseController)
+    public void Initialize(PauseController pauseController, GameFlowController gameFlowController)
     {
         _pauseController = pauseController;
-        isInitialized = true;
+        _gameFlowController = gameFlowController;
     }
 
     void Update()
@@ -26,21 +26,50 @@ public class PauseMenu : MonoBehaviour
         CheckOpenMenu();
     }
 
-    public void CheckOpenMenu()
+    private void CheckOpenMenu()
     {
         if (!openMenu.WasPressedThisFrame()) return;
 
         if (_isPaused)
         {
-            _pauseController.ReleasePause();
-            _isPaused = false;
+            Unpause();
         }
         else
         {
-            _pauseController.RequestPause();
-            _isPaused = true;
-            
+            Pause();
         } 
-        pausePanel.SetActive(_isPaused);
+    }
+
+    private void Pause()
+    {
+        if (_isPaused) return;
+
+        _pauseController.RequestPause();
+        _isPaused = true;
+        pausePanel.SetActive(true);
+    }
+
+    private void Unpause()
+    {
+        if (!_isPaused) return;
+
+        _pauseController.ReleasePause();
+        _isPaused = false;
+        pausePanel.SetActive(false);
+    }
+
+    public void OnContinue()
+    {
+        Unpause();
+    }
+
+    public void OnOptions()
+    {
+        
+    }
+
+    public void OnRestart()
+    {
+        _gameFlowController.RestartGame();
     }
 }

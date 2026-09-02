@@ -8,11 +8,11 @@ public class UIController : MonoBehaviour
     [SerializeField] private GameOverMenu gameOverMenu;
     [SerializeField] private LevelUpMenu levelUpMenu;
 
-    public void Initialize(Player player)
+    public void Initialize(Player player, GameFlowController gameFlowController)
     {
         inGameUI.Initialise(player);
         levelUpMenu.Initialize(player, pauseController);
-        gameOverMenu.Initialize(player, pauseController);
-        pauseMenu.Initialize(pauseController);
+        gameOverMenu.Initialize(player, pauseController, gameFlowController);
+        pauseMenu.Initialize(pauseController, gameFlowController);
     }
 }

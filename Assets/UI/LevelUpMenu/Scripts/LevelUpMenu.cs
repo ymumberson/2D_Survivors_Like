@@ -21,7 +21,10 @@ public class LevelUpMenu : MonoBehaviour
         isInitialized = true;
         TrySubscribe();
         levelUpMenuPanel.SetActive(false);
+        itemPool.Initialise();
         InstantiateLevelUpItemPanels();
+
+        Debug.Log($"Initialise: {gameObject.name} (" + numItemsOffered + ")");
     }
 
     void OnEnable()
@@ -116,7 +119,7 @@ public class LevelUpMenu : MonoBehaviour
     private void CheckRemainingLootPoolSize()
     {
         numItemsOffered = Mathf.Min(numItemsOffered, itemPool.Count);
-
+        
         if (levelUpItemPanels.Count != numItemsOffered)
         {
             foreach (var panel in levelUpItemPanels)

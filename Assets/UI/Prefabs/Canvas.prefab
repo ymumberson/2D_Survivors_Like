@@ -33,10 +33,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4917599583534221482}
   - {fileID: 5769342390056120811}
-  - {fileID: 2617391773503000015}
   - {fileID: 2845661424044801032}
+  - {fileID: 2617391773503000015}
+  - {fileID: 4917599583534221482}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -56,7 +56,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c7b2d7ba8b82f74a8d6ae89032e1e5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIController
-  gameController: {fileID: 0}
   pauseController: {fileID: 9182026644716329840}
   pauseMenu: {fileID: 8091469408851350565}
   inGameUI: {fileID: 8391179313063532413}

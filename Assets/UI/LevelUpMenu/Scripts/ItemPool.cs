@@ -20,7 +20,7 @@ public class ItemPool : MonoBehaviour
         legendaryItemPool.Count
     );
 
-    void Awake()
+    public void Initialise()
     {
         InitialiseItemPools();
     }

@@ -4,13 +4,15 @@ public class GameOverMenu : MonoBehaviour
 {
     private Player _player;
     private PauseController _pauseController;
+    private GameFlowController _gameFlowController;
     private bool _isInitialized;
     private bool _isSubscribed;
     
-    public void Initialize(Player player, PauseController pauseController)
+    public void Initialize(Player player, PauseController pauseController, GameFlowController gameFlowController)
     {
         _player = player;
         _pauseController = pauseController;
+        _gameFlowController = gameFlowController;
         _isInitialized = true;
         TrySubscribe();
     }
@@ -47,5 +49,10 @@ public class GameOverMenu : MonoBehaviour
     {
         gameObject.SetActive(true);
         _pauseController.RequestPause();
+    }
+
+    public void OnRestart()
+    {
+        _gameFlowController.RestartGame();
     }
 }

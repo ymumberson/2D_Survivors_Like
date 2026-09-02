@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private Player player;
     [SerializeField] private EnemySpawner enemySpawner;
     [SerializeField] private UIController uiController;
+    [SerializeField] private GameFlowController gameFlowController;
     private const float DIFFICULTY_SCALING_FACTOR = 60f; // Larger = slower scaling
     private int difficultyLevel;
     private float _elapsedTime = 0f;
@@ -32,7 +33,7 @@ public class GameController : MonoBehaviour
 
         CapFPS();
 
-        uiController.Initialize(player);
+        uiController.Initialize(player, gameFlowController);
         enemySpawner.Initialize(this, player);
     }
 

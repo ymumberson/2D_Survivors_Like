@@ -7651,6 +7651,7 @@ GameObject:
   m_Component:
   - component: {fileID: 544233098}
   - component: {fileID: 544233097}
+  - component: {fileID: 544233099}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -7670,10 +7671,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d4b3336367357f4f9890dd17d633225, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameController
-  setTimeScale: 1
   player: {fileID: 830062712}
   enemySpawner: {fileID: 1321192679}
   uiController: {fileID: 1175292617}
+  gameFlowController: {fileID: 544233099}
 --- !u!4 &544233098
 Transform:
   m_ObjectHideFlags: 0
@@ -7692,6 +7693,18 @@ Transform:
   - {fileID: 1321192678}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &544233099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544233096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e8fd48626dd91c46a587b4af2fbb6e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameFlowController
 --- !u!1 &546611312
 GameObject:
   m_ObjectHideFlags: 0
