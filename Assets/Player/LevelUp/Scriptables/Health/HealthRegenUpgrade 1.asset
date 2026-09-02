@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e6f4432c8e8ec549868ec946ad29296, type: 3}
-  m_Name: AttackSpeedUpgrade
-  m_EditorClassIdentifier: Assembly-CSharp::AttackSpeedUpgrade
-  title: AttackSpeed++
-  description: Increases attack speed
+  m_Script: {fileID: 11500000, guid: d728933d96b0c7c499b876d3429ea827, type: 3}
+  m_Name: HealthRegenUpgrade 1
+  m_EditorClassIdentifier: Assembly-CSharp::HealthRegenerationUpgrade
+  title: Healing Serum
+  description: Increases natural healing
   image: {fileID: 0}
   rarity: 1
   poolCount: 2147483647
-  amount: 0.1
+  amount: 0.5

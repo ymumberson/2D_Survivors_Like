@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ProjectileSpeedUpgrade", menuName = "Level Up/Attack/Projectile Speed")]
 public class ProjectileSpeedUpgrade : LevelUpItem
 {
-    [SerializeField, Min(0)] private int amount;
+    [SerializeField, Min(0)] private float amount;
     
     public override void Apply(Player player)
     {

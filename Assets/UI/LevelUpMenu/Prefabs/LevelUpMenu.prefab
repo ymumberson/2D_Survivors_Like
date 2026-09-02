@@ -344,18 +344,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f88a817cc704b44c8d738d324e51468, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPool
-  uncommonThreshold: 40
-  rareThreshold: 75
-  legendaryThreshold: 95
+  uncommonThreshold: 60
+  rareThreshold: 80
+  legendaryThreshold: 97
   levelUpItemPool:
   - {fileID: 11400000, guid: cce1dbb0766cda74494c3b86fa0d57fe, type: 2}
-  - {fileID: 11400000, guid: fea107967256df64e83de83aa41d7528, type: 2}
-  - {fileID: 11400000, guid: d510eca939c395d40b91590eafcfabbb, type: 2}
   - {fileID: 11400000, guid: 99722ceda4e6d4844845e64579f43f9a, type: 2}
-  - {fileID: 11400000, guid: 320586dad5959b642a27b37aba9ecaa3, type: 2}
-  - {fileID: 11400000, guid: 56e7ad53900399d4ab76f46c275b1efb, type: 2}
   - {fileID: 11400000, guid: 395e07a77fc859f47946f8c18aa7234c, type: 2}
+  - {fileID: 11400000, guid: fea107967256df64e83de83aa41d7528, type: 2}
+  - {fileID: 11400000, guid: 9543fbcc1a3c66c40b8b85302c26cae0, type: 2}
+  - {fileID: 11400000, guid: 2fb3c5719424bff4f8cceeceda11505d, type: 2}
+  - {fileID: 11400000, guid: 0d594b65e65af3c4a99ece7bcf088592, type: 2}
   - {fileID: 11400000, guid: 14aabc51cf47a644b9cab2293bd45cdf, type: 2}
+  - {fileID: 11400000, guid: cbf7554cf53541549afc27cf05401775, type: 2}
+  - {fileID: 11400000, guid: 7638f068535ea354380210a74b27fa51, type: 2}
+  - {fileID: 11400000, guid: 53fe19ccba3636147b7706f95b93fe77, type: 2}
+  - {fileID: 11400000, guid: d510eca939c395d40b91590eafcfabbb, type: 2}
+  - {fileID: 11400000, guid: 322d0d307e4e33a4db1fa0995592cfb7, type: 2}
+  - {fileID: 11400000, guid: 320586dad5959b642a27b37aba9ecaa3, type: 2}
+  - {fileID: 11400000, guid: 7c72e2277e879e3408a4092960f94d7e, type: 2}
+  - {fileID: 11400000, guid: 277f0a51bd56d0c43b98c8a3d438069f, type: 2}
+  - {fileID: 11400000, guid: a954b9c32c763d04d8128082a0bb8078, type: 2}
+  - {fileID: 11400000, guid: 56e7ad53900399d4ab76f46c275b1efb, type: 2}
+  - {fileID: 11400000, guid: d48ae23782b2438458cc3b851ef71b43, type: 2}
+  - {fileID: 11400000, guid: c7ef35015d026dd45a5cb890290248c1, type: 2}
 --- !u!222 &8178633063226155938
 CanvasRenderer:
   m_ObjectHideFlags: 0
