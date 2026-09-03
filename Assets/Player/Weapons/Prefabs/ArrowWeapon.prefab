@@ -51,5 +51,5 @@ MonoBehaviour:
   targetTags:
   - Enemy
   projectilePrefab: {fileID: 2083385639244669605, guid: de2172d2b627c1547bfd83e019dba9a5, type: 3}
-  attackTarget: 0
+  attackTarget: 2
   rotateProjectiles: 1

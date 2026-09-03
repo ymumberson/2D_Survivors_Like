@@ -15,6 +15,6 @@ MonoBehaviour:
   title: Quick Boots
   description: Increases movement speed
   image: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  rarity: 1
+  rarity: 2
   poolCount: 2147483647
-  amount: 0.25
+  amount: 0.5

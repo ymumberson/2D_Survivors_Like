@@ -54,7 +54,7 @@ MonoBehaviour:
   swingProjectile: {fileID: 7429435026508202226}
   swingDuration: 0.5
   swingRadius: 160
-  attackDirection: 4
+  attackDirection: 6
 --- !u!1 &7429435026508202226
 GameObject:
   m_ObjectHideFlags: 0
