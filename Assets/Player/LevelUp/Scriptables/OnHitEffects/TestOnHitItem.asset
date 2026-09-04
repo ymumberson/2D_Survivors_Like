@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6217b04c3e617e34498d882c7b35a1fb, type: 3}
+  m_Name: TestOnHitItem
+  m_EditorClassIdentifier: Assembly-CSharp::TestOnHitItem
+  title: On Hit Item
+  description: Adds a test onhit effect
+  image: {fileID: 21300000, guid: 7b9c7bdc5458ef741a7293f2e8a62b79, type: 3}
+  rarity: 0
+  poolCount: 2147483647

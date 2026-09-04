@@ -9,7 +9,13 @@ public class Projectile : MonoBehaviour
     public List<string> targetTags = new();
     public List<string> obstacleTags = new();
     public bool destroyOnTargetCollision = true;
+    private OnHitController _onHitController;
 
+    public void Initialise(OnHitController onHitController)
+    {
+        _onHitController = onHitController;
+    }
+    
     void FixedUpdate()
     {
         transform.position = 
@@ -29,6 +35,9 @@ public class Projectile : MonoBehaviour
             if (!hc) return;
 
             hc.Damage(damage);
+
+            if (_onHitController)
+                _onHitController.OnHit(collision.gameObject);
 
             if (destroyOnTargetCollision)
             {

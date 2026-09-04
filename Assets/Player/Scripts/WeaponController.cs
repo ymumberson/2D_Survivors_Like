@@ -4,6 +4,7 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour
 {
     [SerializeField] private AttackController attackController;
+    [SerializeField] private OnHitController onHitController;
     [SerializeField] private GameObject startingWeapon;
     private Dictionary<GameObject, Weapon> weapons = new();
 
@@ -45,7 +46,7 @@ public class WeaponController : MonoBehaviour
     {
         GameObject weaponGO = Instantiate(weaponPrefab, transform);
         Weapon weapon = weaponGO.GetComponent<Weapon>();
-        weapon.Initialize(attackController);
+        weapon.Initialize(attackController, onHitController);
         weapons.Add(weaponPrefab, weapon);
     }
 

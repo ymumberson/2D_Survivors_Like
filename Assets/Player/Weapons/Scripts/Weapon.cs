@@ -14,6 +14,7 @@ public abstract class Weapon : MonoBehaviour
     private Vector3 previousPosition;
     private Vector3 movementDirection = Vector3.one;
     protected AttackController _attackController;
+    protected OnHitController _onHitController;
 
     protected float Damage => _attackController.Damage * damageAmount;
     protected float WeaponSpeed => weaponSpeed * _attackController.ProjectileSpeed;
@@ -21,9 +22,10 @@ public abstract class Weapon : MonoBehaviour
     protected float AttackInterval => attackInterval / _attackController.AttackSpeed;
     protected Vector3 MovementDirection => movementDirection;
     
-    public virtual void Initialize(AttackController attackController)
+    public virtual void Initialize(AttackController attackController, OnHitController onHitController)
     {
         _attackController = attackController;
+        _onHitController = onHitController;
         gameObject.SetActive(true);
     }
 

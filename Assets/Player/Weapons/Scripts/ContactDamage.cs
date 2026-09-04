@@ -5,7 +5,7 @@ using UnityEngine;
 public class ContactDamage : Weapon
 {
     private Dictionary<HealthController, Coroutine> toDamage = new();
-
+    
     void OnDisable()
     {
         foreach (Coroutine coroutine in toDamage.Values)
@@ -27,6 +27,9 @@ public class ContactDamage : Weapon
         // Deal initial contact damage, then start DoT
         healthController.Damage(Damage);
         toDamage[healthController] = StartCoroutine(DamageOverTime(healthController));
+
+        if (_onHitController)
+            _onHitController.OnHit(healthController.gameObject);
     }
 
     void OnTriggerExit2D(Collider2D collision)
@@ -50,6 +53,9 @@ public class ContactDamage : Weapon
                 break;
 
             healthController.Damage(Damage);
+
+            if (_onHitController)
+                _onHitController.OnHit(healthController.gameObject);
         }
 
         toDamage.Remove(healthController);
