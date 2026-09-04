@@ -39,6 +39,7 @@ public class EnemySpawner : MonoBehaviour
         _isInitialized = true;
 
         TrySubscribe();
+        StartCoroutine(SpawnLoop());
     }
 
     void OnEnable()
@@ -71,11 +72,6 @@ public class EnemySpawner : MonoBehaviour
         _isSubscribed = false;
 
         return true;
-    }
-
-    void Start()
-    {
-        StartCoroutine(SpawnLoop());
     }
 
     private IEnumerator SpawnLoop()
