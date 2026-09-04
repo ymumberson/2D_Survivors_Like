@@ -16,9 +16,8 @@ public class OnHitController : MonoBehaviour
             onHitEffects.Remove(onHitEffect);
     }
 
-    public void OnHit(GameObject hit)
+    public void OnHit(HitContext hit)
     {
-        Debug.Log("Hit: " + hit);
         foreach (OnHitEffect onHitEffect in onHitEffects)
         {
             onHitEffect.OnHit(hit);

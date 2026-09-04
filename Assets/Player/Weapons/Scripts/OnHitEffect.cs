@@ -1,16 +1,6 @@
 using UnityEngine;
 
-public abstract class OnHitEffect : LevelUpItem
+public abstract class OnHitEffect : ScriptableObject
 {
-    public override void Apply(Player player)
-    {
-        player.OnHitController.AddOnHitEffect(this);
-    }
-
-    public override void Remove(Player player)
-    {
-        player.OnHitController.RemoveOnHitEffect(this);
-    }
-
-    public abstract void OnHit(GameObject hit);
+    public abstract void OnHit(HitContext hit);
 }

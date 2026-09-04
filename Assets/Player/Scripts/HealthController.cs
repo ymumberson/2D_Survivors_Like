@@ -17,7 +17,10 @@ public class HealthController : MonoBehaviour
         get;
         private set;
     }
+    public Character Character => _character;
+
     private float _health;
+    private Character _character;
 
     public event Action<float> MaxHealthChanged;
     public event Action<float> HealthChanged;
@@ -29,6 +32,11 @@ public class HealthController : MonoBehaviour
     private void Awake()
     {
         _health = maxHealth;
+    }
+
+    public void Initialize(Character character)
+    {
+        _character = character;
     }
 
     void OnEnable()

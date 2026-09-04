@@ -8,6 +8,8 @@ public class Character : MonoBehaviour
     [SerializeField] private ExperienceController experienceController;
     [SerializeField] private MovementController movementController;
     [SerializeField] private InventoryController inventoryController;
+    [SerializeField] WeaponController weaponController;
+    [SerializeField] OnHitController onHitController;
     [SerializeField] private List<GameObject> disableOnDied = new();
 
     public HealthController HealthController => healthController;
@@ -15,6 +17,14 @@ public class Character : MonoBehaviour
     public ExperienceController ExperienceController => experienceController;
     public MovementController MovementController => movementController;
     public InventoryController InventoryController => inventoryController;
+    public WeaponController WeaponController => weaponController;
+    public OnHitController OnHitController => onHitController;
+
+    void Awake()
+    {
+        healthController?.Initialize(this);
+        weaponController?.Initialise(this);
+    }
 
     void OnEnable()
     {

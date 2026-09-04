@@ -12,7 +12,7 @@ public class Enemy : Character
         _player = player;
 
         (MovementController as MoveToPlayer).Initialize(_player);
-        contactDamage.Initialize(AttackController, null);
+        contactDamage.Initialize(this);
 
         gameObject.SetActive(true);
     }

@@ -49,7 +49,7 @@ public class OrbitWeapon : Weapon
                 Instantiate(orbitProjectile, transform);
 
             Weapon weapon = projectile.gameObject.GetComponentInChildren<Weapon>(true);
-            weapon.Initialize(_attackController, _onHitController);
+            weapon.Initialize(_character);
 
             orbitProjectiles.Add(projectile);
 

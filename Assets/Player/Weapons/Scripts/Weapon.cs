@@ -13,6 +13,7 @@ public abstract class Weapon : MonoBehaviour
     protected const float DELAY_BETWEEN_PROJECTILES = 0.1f;
     private Vector3 previousPosition;
     private Vector3 movementDirection = Vector3.one;
+    protected Character _character;
     protected AttackController _attackController;
     protected OnHitController _onHitController;
 
@@ -22,10 +23,11 @@ public abstract class Weapon : MonoBehaviour
     protected float AttackInterval => attackInterval / _attackController.AttackSpeed;
     protected Vector3 MovementDirection => movementDirection;
     
-    public virtual void Initialize(AttackController attackController, OnHitController onHitController)
+    public virtual void Initialize(Character character)
     {
-        _attackController = attackController;
-        _onHitController = onHitController;
+        _character = character;
+        _attackController = character.AttackController;
+        _onHitController = character.OnHitController;
         gameObject.SetActive(true);
     }
 

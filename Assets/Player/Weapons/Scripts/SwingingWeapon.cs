@@ -60,7 +60,7 @@ public class SwingingWeapon : Weapon
                 Instantiate(swingProjectile, transform);
 
             Weapon weapon = projectile.gameObject.GetComponent<Weapon>();
-            weapon.Initialize(_attackController, _onHitController);
+            weapon.Initialize(_character);
 
             projectile.SetActive(false);
 

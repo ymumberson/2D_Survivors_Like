@@ -28,8 +28,8 @@ public class ContactDamage : Weapon
         healthController.Damage(Damage);
         toDamage[healthController] = StartCoroutine(DamageOverTime(healthController));
 
-        if (_onHitController)
-            _onHitController.OnHit(healthController.gameObject);
+        // Apply OnHit effect only on the initial hit
+        ApplyOnHitEffect(healthController);
     }
 
     void OnTriggerExit2D(Collider2D collision)
@@ -53,12 +53,20 @@ public class ContactDamage : Weapon
                 break;
 
             healthController.Damage(Damage);
-
-            if (_onHitController)
-                _onHitController.OnHit(healthController.gameObject);
         }
 
         toDamage.Remove(healthController);
+    }
+
+    private void ApplyOnHitEffect(HealthController hit)
+    {
+        if (_onHitController)
+            _onHitController.OnHit(new HitContext(
+                _character,
+                hit.Character,
+                Damage,
+                MovementDirection
+            ));
     }
 
     private void StopDamage(HealthController healthController)
