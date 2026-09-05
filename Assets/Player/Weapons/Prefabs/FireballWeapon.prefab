@@ -44,6 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aba079eb2870ec448790bfbe1dcc30c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangedWeapon
+  weaponStats:
+    DamageAmount: 10
+    WeaponSpeed: 10
+    WeaponSize: 1
+    AttackInterval: 1
   damageAmount: 10
   weaponSpeed: 10
   weaponSize: 1

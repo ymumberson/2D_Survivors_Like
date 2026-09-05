@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static Weapon;
 
 public class WeaponController : MonoBehaviour
 {
@@ -10,14 +11,14 @@ public class WeaponController : MonoBehaviour
     public void Initialise(Character character)
     {
         _character = character;
-        AddWeapon(startingWeapon);
+        AddWeapon(startingWeapon, new WeaponStats());
     }
 
-    public void AddWeapon(GameObject weaponPrefab)
+    public void AddWeapon(GameObject weaponPrefab, WeaponStats statsIncrease)
     {
         if (weapons.ContainsKey(weaponPrefab))
         {
-            ModifyWeaponStats(weapons[weaponPrefab]);
+            weapons[weaponPrefab].IncreaseStats(statsIncrease);
         }
         else
         {
@@ -25,21 +26,16 @@ public class WeaponController : MonoBehaviour
         }
     }
 
-    public void RemoveWeapon(GameObject weaponPrefab)
+    public void RemoveWeapon(GameObject weaponPrefab, WeaponStats statsDecrease)
     {
         if (weapons.ContainsKey(weaponPrefab))
         {
-            ModifyWeaponStats(weapons[weaponPrefab]);
+            weapons[weaponPrefab].DecreaseStats(statsDecrease);
         }
         else
         {
             DestroyWeapon(weaponPrefab);
         }
-    }
-
-    private void ModifyWeaponStats(Weapon weapon)
-    {
-        //TODO: Allow modifying a weapon's base stats
     }
 
     private void InstantiateWeapon(GameObject weaponPrefab)
