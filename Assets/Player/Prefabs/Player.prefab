@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4064894618984947493}
   - component: {fileID: 8004389792483858206}
   - component: {fileID: 3027806116004537361}
-  - component: {fileID: 6132402118812485659}
+  - component: {fileID: 5175557418758304422}
   - component: {fileID: 542034426858268792}
   - component: {fileID: 547285897258733094}
   m_Layer: 7
@@ -59,10 +59,10 @@ MonoBehaviour:
   experienceController: {fileID: 3560164276733817231}
   movementController: {fileID: 547285897258733094}
   inventoryController: {fileID: 757219391398365921}
-  disableOnDied:
-  - {fileID: 3955399858171307674}
   weaponController: {fileID: 9195721463475860392}
   onHitController: {fileID: 4635057726205296753}
+  disableOnDied:
+  - {fileID: 3955399858171307674}
 --- !u!114 &3027806116004537361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,8 +81,8 @@ MonoBehaviour:
   revive: 0
   _currentHealth: 0
   experienceGain: 0
---- !u!70 &6132402118812485659
-CapsuleCollider2D:
+--- !u!61 &5175557418758304422
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -115,9 +115,18 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
-  m_Direction: 0
+  m_Offset: {x: -0.007529974, y: -0.08701253}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.59666383, y: 1.6472335}
+  m_EdgeRadius: 0
 --- !u!50 &542034426858268792
 Rigidbody2D:
   serializedVersion: 5
@@ -131,7 +140,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 1
   m_AngularDamping: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -227,8 +236,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b83ea4ed3c976b04fbbab51d824cbab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponController
-  attackController: {fileID: 4976517518687749712}
-  onHitController: {fileID: 4635057726205296753}
   startingWeapon: {fileID: 507277018454945523, guid: ba63827c28e579444b3211a937c68162, type: 3}
 --- !u!114 &4635057726205296753
 MonoBehaviour:
@@ -324,7 +331,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 20
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 117222e6e588a8044be008c3600ad1d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -509,7 +516,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.006208211, y: 0.007760346}
+  m_Offset: {x: -0.0061671734, y: -0.085829735}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -519,7 +526,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.95654255, y: 1.9343358}
+  m_Size: {x: 0.612162, y: 1.6570337}
   m_EdgeRadius: 0
 --- !u!1 &7669911761979410409
 GameObject:
