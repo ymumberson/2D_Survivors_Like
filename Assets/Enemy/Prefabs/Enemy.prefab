@@ -55,6 +55,8 @@ MonoBehaviour:
   experienceController: {fileID: 0}
   movementController: {fileID: 5868354538919642589}
   inventoryController: {fileID: 0}
+  weaponController: {fileID: 0}
+  onHitController: {fileID: 0}
   disableOnDied: []
   enemyDeathHandler: {fileID: 3862844576466827236}
   contactDamage: {fileID: 1836055173213932643}
@@ -204,10 +206,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d391e71739c9525489edfa1dcae9219d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ContactDamage
-  damageAmount: 10
-  weaponSpeed: 10
-  weaponSize: 1
-  attackInterval: 1
+  weaponStats:
+    DamageAmount: 20
+    WeaponSpeed: 1
+    WeaponSize: 1
+    AttackInterval: 0.25
   targetTags:
   - Player
 --- !u!61 &8754800339601117848
