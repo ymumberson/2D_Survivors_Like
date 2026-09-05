@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
-    [SerializeField] private WeaponStats weaponStats;
+    [SerializeField] protected WeaponStats weaponStats;
     [SerializeField] protected List<string> targetTags = new();
     protected const float DELAY_BETWEEN_PROJECTILES = 0.1f;
     private Vector3 previousPosition;
@@ -86,15 +86,27 @@ public abstract class Weapon : MonoBehaviour
         return Quaternion.Euler(RotateTo(origin, target));
     }
 
+    public void SetWeaponStats(WeaponStats weaponStats)
+    {
+        this.weaponStats = weaponStats;
+    }
+
     public void IncreaseStats(WeaponStats statsIncrease)
     {
-        //TODO
+        weaponStats.IncreaseStats(statsIncrease);
+        OnStatsChanged();
     }
 
     public void DecreaseStats(WeaponStats statsDecrease)
     {
-        //TODO
+        weaponStats.DecreaseStats(statsDecrease);
+        OnStatsChanged();
     }
+
+    /// <summary>
+    /// Gets called when base weapon stats are modified. Override this update internal states when this happens.
+    /// </summary>
+    protected virtual void OnStatsChanged() {}
 
     [System.Serializable]
     public struct WeaponStats
@@ -115,6 +127,22 @@ public abstract class Weapon : MonoBehaviour
             WeaponSpeed = weaponSpeed;
             WeaponSize = weaponSize;
             AttackInterval = attackInterval;
+        }
+
+        public void IncreaseStats(WeaponStats statsIncrease)
+        {
+            DamageAmount += statsIncrease.DamageAmount;
+            WeaponSpeed += statsIncrease.WeaponSpeed;
+            WeaponSize += statsIncrease.WeaponSize;
+            AttackInterval += statsIncrease.AttackInterval;
+        }
+
+        public void DecreaseStats(WeaponStats statsDecrease)
+        {
+            DamageAmount -= statsDecrease.DamageAmount;
+            WeaponSpeed -= statsDecrease.WeaponSpeed;
+            WeaponSize -= statsDecrease.WeaponSize;
+            AttackInterval -= statsDecrease.AttackInterval;
         }
     }
 }

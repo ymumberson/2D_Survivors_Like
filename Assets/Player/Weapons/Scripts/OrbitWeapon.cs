@@ -50,6 +50,7 @@ public class OrbitWeapon : Weapon
 
             Weapon weapon = projectile.gameObject.GetComponentInChildren<Weapon>(true);
             weapon.Initialize(_character);
+            weapon.SetWeaponStats(weaponStats);
 
             orbitProjectiles.Add(projectile);
 
@@ -68,6 +69,17 @@ public class OrbitWeapon : Weapon
             {
                 child.localScale = baseScale * WeaponSize;
             }
+        }
+    }
+
+    protected override void OnStatsChanged()
+    {
+        base.OnStatsChanged();
+        foreach (GameObject projectile in orbitProjectiles)
+        {
+            Weapon weapon = projectile.GetComponentInChildren<Weapon>();
+            weapon.SetWeaponStats(weaponStats);
+            weapon.gameObject.transform.localScale = baseScale * WeaponSize;
         }
     }
 
