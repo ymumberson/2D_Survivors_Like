@@ -50,10 +50,6 @@ MonoBehaviour:
     WeaponSpeed: 10
     WeaponSize: 1
     AttackInterval: 1
-  damageAmount: 10
-  weaponSpeed: 10
-  weaponSize: 1
-  attackInterval: 1
   targetTags:
   - Enemy
   swingProjectile: {fileID: 7429435026508202226}
@@ -212,13 +208,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ContactDamage
   weaponStats:
-    DamageAmount: 0
-    WeaponSpeed: 0
-    WeaponSize: 0
-    AttackInterval: 0
-  damageAmount: 10
-  weaponSpeed: 10
-  weaponSize: 1
-  attackInterval: 1
+    DamageAmount: 10
+    WeaponSpeed: 10
+    WeaponSize: 1
+    AttackInterval: 1
   targetTags:
   - Enemy
