@@ -3,13 +3,11 @@ using UnityEngine;
 public class MoveToPlayer : MovementController
 {
     private Player _player;
-    private bool isInitialized;
     
     // Update is called once per frame
     public void Initialize(Player player)
     {
         _player = player;
-        isInitialized = true;
     }
     
     void Update()

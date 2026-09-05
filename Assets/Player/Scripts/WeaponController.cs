@@ -3,12 +3,13 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-    [SerializeField] private AttackController attackController;
     [SerializeField] private GameObject startingWeapon;
     private Dictionary<GameObject, Weapon> weapons = new();
+    private Character _character;
 
-    void Start()
+    public void Initialise(Character character)
     {
+        _character = character;
         AddWeapon(startingWeapon);
     }
 
@@ -45,7 +46,7 @@ public class WeaponController : MonoBehaviour
     {
         GameObject weaponGO = Instantiate(weaponPrefab, transform);
         Weapon weapon = weaponGO.GetComponent<Weapon>();
-        weapon.Initialize(attackController);
+        weapon.Initialize(_character);
         weapons.Add(weaponPrefab, weapon);
     }
 
