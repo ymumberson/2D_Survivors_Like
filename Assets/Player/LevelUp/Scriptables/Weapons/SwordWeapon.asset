@@ -16,5 +16,10 @@ MonoBehaviour:
   description: Adds the sword weapon
   image: {fileID: 21300000, guid: b66c2f6b23c07ea41b0e48b79336e626, type: 3}
   rarity: 3
-  poolCount: 1
+  poolCount: 10
   weaponPrefab: {fileID: 507277018454945523, guid: ba63827c28e579444b3211a937c68162, type: 3}
+  additionalStats:
+    DamageAmount: 1
+    WeaponSpeed: 0.1
+    WeaponSize: 0.05
+    AttackInterval: 0.05

@@ -16,5 +16,10 @@ MonoBehaviour:
   description: Adds the orbit weapon
   image: {fileID: -5326636717214948786, guid: 04883684aefcb0147b1ff8c1b976a4ca, type: 3}
   rarity: 3
-  poolCount: 1
+  poolCount: 10
   weaponPrefab: {fileID: 545960439291766948, guid: 83a1409bef168864e921c9858222558a, type: 3}
+  additionalStats:
+    DamageAmount: 1
+    WeaponSpeed: 0.1
+    WeaponSize: 0.05
+    AttackInterval: 0.05

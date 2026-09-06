@@ -61,6 +61,7 @@ public class SwingingWeapon : Weapon
 
             Weapon weapon = projectile.gameObject.GetComponent<Weapon>();
             weapon.Initialize(_character);
+            weapon.SetWeaponStats(weaponStats);
 
             projectile.SetActive(false);
 
@@ -74,6 +75,18 @@ public class SwingingWeapon : Weapon
         foreach (GameObject projectile in swingProjectiles)
         {
             projectile.transform.localScale = swingProjectile.transform.localScale * WeaponSize;
+        }
+    }
+
+    protected override void OnStatsChanged()
+    {
+        base.OnStatsChanged();
+        foreach (GameObject projectile in swingProjectiles)
+        {
+            projectile.transform.localScale = swingProjectile.transform.localScale * WeaponSize;
+
+            Weapon weapon = projectile.GetComponentInChildren<Weapon>();
+            weapon.SetWeaponStats(weaponStats);
         }
     }
 

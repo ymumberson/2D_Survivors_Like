@@ -1,14 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
-    [SerializeField] private float damageAmount = 10f;
-    [SerializeField] private float weaponSpeed = 10f;
-    [SerializeField] private float weaponSize = 1f;
-    [SerializeField] private float attackInterval = 1f;
+    [SerializeField] protected WeaponStats weaponStats;
     [SerializeField] protected List<string> targetTags = new();
     protected const float DELAY_BETWEEN_PROJECTILES = 0.1f;
     private Vector3 previousPosition;
@@ -17,10 +13,10 @@ public abstract class Weapon : MonoBehaviour
     protected AttackController _attackController;
     protected OnHitController _onHitController;
 
-    protected float Damage => _attackController.Damage * damageAmount;
-    protected float WeaponSpeed => weaponSpeed * _attackController.ProjectileSpeed;
-    protected float WeaponSize => weaponSize * _attackController.ProjectileSize;
-    protected float AttackInterval => attackInterval / _attackController.AttackSpeed;
+    protected float Damage => _attackController.Damage * weaponStats.DamageAmount;
+    protected float WeaponSpeed => weaponStats.WeaponSpeed * _attackController.ProjectileSpeed;
+    protected float WeaponSize => weaponStats.WeaponSize * _attackController.ProjectileSize;
+    protected float AttackInterval => weaponStats.AttackInterval / _attackController.AttackSpeed;
     protected Vector3 MovementDirection => movementDirection;
     
     public virtual void Initialize(Character character)
@@ -88,5 +84,65 @@ public abstract class Weapon : MonoBehaviour
     protected Quaternion CalculateRotation(Vector3 origin, Vector3 target)
     {
         return Quaternion.Euler(RotateTo(origin, target));
+    }
+
+    public void SetWeaponStats(WeaponStats weaponStats)
+    {
+        this.weaponStats = weaponStats;
+    }
+
+    public void IncreaseStats(WeaponStats statsIncrease)
+    {
+        weaponStats.IncreaseStats(statsIncrease);
+        OnStatsChanged();
+    }
+
+    public void DecreaseStats(WeaponStats statsDecrease)
+    {
+        weaponStats.DecreaseStats(statsDecrease);
+        OnStatsChanged();
+    }
+
+    /// <summary>
+    /// Gets called when base weapon stats are modified. Override this update internal states when this happens.
+    /// </summary>
+    protected virtual void OnStatsChanged() {}
+
+    [System.Serializable]
+    public struct WeaponStats
+    {
+        public float DamageAmount;
+        public float WeaponSpeed;
+        public float WeaponSize;
+        public float AttackInterval;
+
+        public WeaponStats(
+            float damageAmount,
+            float weaponSpeed,
+            float weaponSize,
+            float attackInterval
+        )
+        {
+            DamageAmount = damageAmount;
+            WeaponSpeed = weaponSpeed;
+            WeaponSize = weaponSize;
+            AttackInterval = attackInterval;
+        }
+
+        public void IncreaseStats(WeaponStats statsIncrease)
+        {
+            DamageAmount += statsIncrease.DamageAmount;
+            WeaponSpeed += statsIncrease.WeaponSpeed;
+            WeaponSize += statsIncrease.WeaponSize;
+            AttackInterval += statsIncrease.AttackInterval;
+        }
+
+        public void DecreaseStats(WeaponStats statsDecrease)
+        {
+            DamageAmount -= statsDecrease.DamageAmount;
+            WeaponSpeed -= statsDecrease.WeaponSpeed;
+            WeaponSize -= statsDecrease.WeaponSize;
+            AttackInterval -= statsDecrease.AttackInterval;
+        }
     }
 }

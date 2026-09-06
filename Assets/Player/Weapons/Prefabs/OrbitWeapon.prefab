@@ -45,10 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6f7e4558b565e341913c1aa8e578210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OrbitWeapon
-  damageAmount: 10
-  weaponSpeed: 10
-  weaponSize: 1
-  attackInterval: 5
+  weaponStats:
+    DamageAmount: 10
+    WeaponSpeed: 10
+    WeaponSize: 1
+    AttackInterval: 5
   targetTags:
   - Enemy
   orbitProjectile: {fileID: 3778657350054901874}
@@ -236,9 +237,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d391e71739c9525489edfa1dcae9219d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ContactDamage
-  damageAmount: 10
-  weaponSpeed: 10
-  weaponSize: 1
-  attackInterval: 1
+  weaponStats:
+    DamageAmount: 10
+    WeaponSpeed: 10
+    WeaponSize: 1
+    AttackInterval: 1
   targetTags:
   - Enemy
