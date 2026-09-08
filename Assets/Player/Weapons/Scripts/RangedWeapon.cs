@@ -38,7 +38,7 @@ public class RangedWeapon : Weapon
 
         GameObject projectileGO = Instantiate(projectilePrefab, transform.position, transform.rotation);
         Projectile projectile = projectileGO.GetComponent<Projectile>();
-        projectile.Initialise(_character);
+        projectile.Initialise(this);
 
         if (!projectile)
         {

@@ -60,7 +60,7 @@ MonoBehaviour:
   movementController: {fileID: 547285897258733094}
   inventoryController: {fileID: 757219391398365921}
   weaponController: {fileID: 9195721463475860392}
-  onHitController: {fileID: 4635057726205296753}
+  hitController: {fileID: 4635057726205296753}
   disableOnDied:
   - {fileID: 3955399858171307674}
 --- !u!114 &3027806116004537361

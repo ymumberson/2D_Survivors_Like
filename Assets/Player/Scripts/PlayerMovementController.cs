@@ -4,12 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovementController : MovementController
 {
-    // [SerializeField] private float baseMovementSpeed = 2f;
-    // private float movementSpeedMultiplier = 1;
-
     private InputAction moveAction;
-
-    // public event Action<float> MovementSpeedMultiplierChanged;
 
     void Awake()
     {
@@ -29,20 +24,4 @@ public class PlayerMovementController : MovementController
             Move(moveValue * Time.deltaTime * MovementSpeed);
         }
     }
-
-    // public void IncrementMovementSpeedMultiplier(float increase)
-    // {
-    //     increase = Mathf.Max(0, increase);
-    //     SetMovementSpeedMultiplier(movementSpeedMultiplier + increase);
-    // }
-
-    // public void SetMovementSpeedMultiplier(float multiplier)
-    // {
-    //     float prev = movementSpeedMultiplier;
-    //     movementSpeedMultiplier = Mathf.Max(0, multiplier);
-
-    //     if (Mathf.Approximately(prev, movementSpeedMultiplier)) return;
-
-    //     MovementSpeedMultiplierChanged?.Invoke(movementSpeedMultiplier);
-    // }
 }

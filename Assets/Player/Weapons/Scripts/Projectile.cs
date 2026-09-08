@@ -9,13 +9,11 @@ public class Projectile : MonoBehaviour
     public List<string> targetTags = new();
     public List<string> obstacleTags = new();
     public bool destroyOnTargetCollision = true;
-    private Character _character;
-    private OnHitController _onHitController;
+    private Weapon _weapon;
 
-    public void Initialise(Character character)
+    public void Initialise(Weapon weapon)
     {
-        _character = character;
-        _onHitController = character.OnHitController;
+        _weapon = weapon;
     }
     
     void FixedUpdate()
@@ -36,9 +34,7 @@ public class Projectile : MonoBehaviour
 
             if (!hc) return;
 
-            hc.Damage(damage);
-
-            ApplyOnHitEffect(hc);
+            _weapon.ProcessHit(hc, HitController.HitType.Initial);
 
             if (destroyOnTargetCollision)
             {
@@ -51,16 +47,5 @@ public class Projectile : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    private void ApplyOnHitEffect(HealthController hit)
-    {
-        if (_onHitController)
-            _onHitController.OnHit(new HitContext(
-                _character,
-                hit.Character,
-                damage,
-                direction
-            ));
     }
 }

@@ -7,11 +7,11 @@ public class OnHitLevelUpItem : LevelUpItem
 
     public override void Apply(Player player)
     {
-        player.OnHitController.AddOnHitEffect(onHitEffect);
+        player.HitController.AddOnHitEffect(onHitEffect);
     }
 
     public override void Remove(Player player)
     {
-        player.OnHitController.RemoveOnHitEffect(onHitEffect);
+        player.HitController.RemoveOnHitEffect(onHitEffect);
     }
 }

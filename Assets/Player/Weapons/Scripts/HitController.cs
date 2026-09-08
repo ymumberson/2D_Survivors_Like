@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OnHitController : MonoBehaviour
+public class HitController : MonoBehaviour
 {
     /// <summary>
     /// All owned on-hit effects and the amount owned of each.
@@ -44,15 +44,30 @@ public class OnHitController : MonoBehaviour
         }
     }
 
+    public void ProcessHit(HitContext hit, HitType hitType)
+    {
+        hit.Target.HealthController.Damage(hit.Damage);
+        hit.Target.MovementController.ApplyKnockback(hit.Direction, hit.Knockback);
+
+        if (hitType == HitType.Initial)
+            ApplyOnHitEffects(hit);
+    }
+
     /// <summary>
     /// Trigger a hit. This will attempt to apply all on-hit effects currently owned.
     /// </summary>
     /// <param name="hit">Hit context</param>
-    public void OnHit(HitContext hit)
+    private void ApplyOnHitEffects(HitContext hit)
     {
         foreach (var (onHitEffect, stackCount) in onHitEffects)
         {
             onHitEffect.OnHit(hit, stackCount);
         }
+    }
+
+    public enum HitType
+    {
+        Initial=0,
+        Repeat=1,
     }
 }
