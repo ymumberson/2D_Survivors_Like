@@ -17431,12 +17431,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   enemyPrefabs:
+  - {fileID: 5947058920756762340, guid: 7b4f65b5aa6e95b448fc872c8e0abeba, type: 3}
+  - {fileID: 71540484047746324, guid: 2850420c091e3e14c8074e7595501360, type: 3}
   - {fileID: 1603734588926745079, guid: 5b1bef29f03fd7a4593a6b2ebdc05e0c, type: 3}
   - {fileID: 8408282348341547909, guid: 940dfcb608be589409113aed1bafc492, type: 3}
   - {fileID: 1235831072813813976, guid: f19058a9bc01b7e44bf2ff03eadb1c25, type: 3}
   enemySpawnWarningIndicatorPrefab: {fileID: 7830581112748324103, guid: 7770bc60e7a5597418ea884ffb5abdd3, type: 3}
   warningDuration: 0
-  baseSpawnCount: 3
+  baseSpawnCount: 5
   baseSpawnInterval: 3
   minSpawnInterval: 0.5
   spawnBounds: {fileID: 1321192680}
