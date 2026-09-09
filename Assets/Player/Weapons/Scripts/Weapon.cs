@@ -11,19 +11,20 @@ public abstract class Weapon : MonoBehaviour
     private Vector3 movementDirection = Vector3.one;
     protected Character _character;
     protected AttackController _attackController;
-    protected OnHitController _onHitController;
+    protected HitController _onHitController;
 
     protected float Damage => _attackController.Damage * weaponStats.DamageAmount;
     protected float WeaponSpeed => weaponStats.WeaponSpeed * _attackController.ProjectileSpeed;
     protected float WeaponSize => weaponStats.WeaponSize * _attackController.ProjectileSize;
     protected float AttackInterval => weaponStats.AttackInterval / _attackController.AttackSpeed;
     protected Vector3 MovementDirection => movementDirection;
+    protected float Knockback => weaponStats.Knockback;
     
     public virtual void Initialize(Character character)
     {
         _character = character;
         _attackController = character.AttackController;
-        _onHitController = character.OnHitController;
+        _onHitController = character.HitController;
         gameObject.SetActive(true);
     }
 
@@ -47,6 +48,21 @@ public abstract class Weapon : MonoBehaviour
     {
         CalculateMovementDirection();
         previousPosition = transform.position;
+    }
+
+    public void ProcessHit(HealthController hit, HitController.HitType hitType)
+    {
+        if (!_onHitController) return;
+
+        HitContext hitContext = 
+            new HitContext(
+                _character,
+                hit.Character,
+                Damage,
+                (hit.Character.transform.position - _character.transform.position).normalized,
+                Knockback
+            );
+        _onHitController.ProcessHit(hitContext, hitType);
     }
 
     private bool IsStationary()
@@ -115,18 +131,21 @@ public abstract class Weapon : MonoBehaviour
         public float WeaponSpeed;
         public float WeaponSize;
         public float AttackInterval;
+        public float Knockback;
 
         public WeaponStats(
             float damageAmount,
             float weaponSpeed,
             float weaponSize,
-            float attackInterval
+            float attackInterval,
+            float knockback
         )
         {
             DamageAmount = damageAmount;
             WeaponSpeed = weaponSpeed;
             WeaponSize = weaponSize;
             AttackInterval = attackInterval;
+            Knockback = knockback;
         }
 
         public void IncreaseStats(WeaponStats statsIncrease)
@@ -135,6 +154,7 @@ public abstract class Weapon : MonoBehaviour
             WeaponSpeed += statsIncrease.WeaponSpeed;
             WeaponSize += statsIncrease.WeaponSize;
             AttackInterval += statsIncrease.AttackInterval;
+            Knockback += statsIncrease.Knockback;
         }
 
         public void DecreaseStats(WeaponStats statsDecrease)
@@ -143,6 +163,7 @@ public abstract class Weapon : MonoBehaviour
             WeaponSpeed -= statsDecrease.WeaponSpeed;
             WeaponSize -= statsDecrease.WeaponSize;
             AttackInterval -= statsDecrease.AttackInterval;
+            Knockback -= statsDecrease.Knockback;
         }
     }
 }

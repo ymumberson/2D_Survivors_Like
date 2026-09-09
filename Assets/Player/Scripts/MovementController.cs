@@ -7,8 +7,11 @@ public class MovementController : MonoBehaviour
     [SerializeField] private float baseMovementSpeed = 1f;
     [SerializeField] private float movementSpeedMultiplier = 1f;
     private Rigidbody2D _rigidBody;
+    private Vector2 movementDirection = Vector2.zero;
 
     public float MovementSpeed => baseMovementSpeed * movementSpeedMultiplier;
+
+    public Vector2 MovementDirection => movementDirection;
 
     public event Action<float> MovementSpeedMultiplierChanged;
 
@@ -20,6 +23,8 @@ public class MovementController : MonoBehaviour
     public void Move(Vector2 moveAmount)
     {
         if (!rootTransform) return;
+
+        movementDirection = moveAmount.normalized;
 
         SetPosition(new Vector2(rootTransform.position.x + moveAmount.x, rootTransform.position.y + moveAmount.y));
     }
@@ -50,5 +55,20 @@ public class MovementController : MonoBehaviour
         if (Mathf.Approximately(previous, this.movementSpeedMultiplier)) return;
 
         MovementSpeedMultiplierChanged?.Invoke(this.movementSpeedMultiplier);
+    }
+
+    public void ApplyKnockback(Vector3 direction, float magnitude)
+    {
+        if (!rootTransform) return;
+
+        direction.Normalize();
+
+        if (_rigidBody)
+        {
+            _rigidBody.AddForce(direction * magnitude);
+        } else
+        {
+            rootTransform.position = rootTransform.position + direction * magnitude;
+        }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static HitController;
 
 public class ContactDamage : Weapon
 {
@@ -25,11 +26,8 @@ public class ContactDamage : Weapon
         if (toDamage.ContainsKey(healthController)) return;
 
         // Deal initial contact damage, then start DoT
-        healthController.Damage(Damage);
+        ProcessHit(healthController, HitType.Initial);
         toDamage[healthController] = StartCoroutine(DamageOverTime(healthController));
-
-        // Apply OnHit effect only on the initial hit
-        ApplyOnHitEffect(healthController);
     }
 
     void OnTriggerExit2D(Collider2D collision)
@@ -52,21 +50,10 @@ public class ContactDamage : Weapon
             if (healthController == null || healthController.IsDead)
                 break;
 
-            healthController.Damage(Damage);
+            ProcessHit(healthController, HitType.Repeat);
         }
 
         toDamage.Remove(healthController);
-    }
-
-    private void ApplyOnHitEffect(HealthController hit)
-    {
-        if (_onHitController)
-            _onHitController.OnHit(new HitContext(
-                _character,
-                hit.Character,
-                Damage,
-                MovementDirection
-            ));
     }
 
     private void StopDamage(HealthController healthController)

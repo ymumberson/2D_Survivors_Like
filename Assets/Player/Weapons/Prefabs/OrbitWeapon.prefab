@@ -50,6 +50,7 @@ MonoBehaviour:
     WeaponSpeed: 10
     WeaponSize: 1
     AttackInterval: 5
+    Knockback: 200
   targetTags:
   - Enemy
   orbitProjectile: {fileID: 3778657350054901874}
@@ -242,5 +243,6 @@ MonoBehaviour:
     WeaponSpeed: 10
     WeaponSize: 1
     AttackInterval: 1
+    Knockback: 0
   targetTags:
   - Enemy
