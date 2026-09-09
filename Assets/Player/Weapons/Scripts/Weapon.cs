@@ -59,7 +59,7 @@ public abstract class Weapon : MonoBehaviour
                 _character,
                 hit.Character,
                 Damage,
-                -hit.Character.MovementController.MovementDirection,
+                (hit.Character.transform.position - _character.transform.position).normalized,
                 Knockback
             );
         _onHitController.ProcessHit(hitContext, hitType);
