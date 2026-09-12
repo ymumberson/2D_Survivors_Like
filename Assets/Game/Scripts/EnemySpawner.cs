@@ -30,14 +30,6 @@ public class EnemySpawner : MonoBehaviour
     {
         spawnInterval = baseSpawnInterval;
         spawnCount = baseSpawnCount;
-
-        for (int i=0; i<30; i++)
-        {
-            for (int j=0; j<3; ++j)
-            {
-                Debug.Log($"Difficulty ({i}) -> {GetEnemyForDifficulty(i).name}");
-            }
-        }
     }
 
     public void Initialize(GameController gameController, Player player)
