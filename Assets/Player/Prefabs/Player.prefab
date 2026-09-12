@@ -168,7 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovementController
   rootTransform: {fileID: 4064894618984947493}
   baseMovementSpeed: 2
-  movementSpeedMultiplier: 1
+  movementSpeedMultiplier: 1.5
 --- !u!1 &3955399858171307674
 GameObject:
   m_ObjectHideFlags: 0
