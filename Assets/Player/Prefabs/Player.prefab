@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5175557418758304422}
   - component: {fileID: 542034426858268792}
   - component: {fileID: 547285897258733094}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovementController
   rootTransform: {fileID: 4064894618984947493}
   baseMovementSpeed: 2
-  movementSpeedMultiplier: 1
+  movementSpeedMultiplier: 1.5
 --- !u!1 &3955399858171307674
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,7 +597,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

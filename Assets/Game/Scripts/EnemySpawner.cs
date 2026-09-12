@@ -125,7 +125,7 @@ public class EnemySpawner : MonoBehaviour
 
     private GameObject GetEnemyForDifficulty(int difficultyLevel)
     {
-        float difficultyPerTier = 20f;
+        float difficultyPerTier = _gameController.MaxTime / 60f / enemyPrefabs.Count;
         float targetTier = Mathf.Clamp(
             difficultyLevel / difficultyPerTier,
             0f,

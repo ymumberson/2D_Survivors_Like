@@ -212,6 +212,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 637145284464294660, guid: a80257f82decf0e4c967bc893f097141, type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 637145284464294660, guid: a80257f82decf0e4c967bc893f097141, type: 3}
       propertyPath: m_TargetGraphic
       value: 
       objectReference: {fileID: 0}
@@ -362,6 +366,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 637145284464294660, guid: a80257f82decf0e4c967bc893f097141, type: 3}
       propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 637145284464294660, guid: a80257f82decf0e4c967bc893f097141, type: 3}
+      propertyPath: m_Interactable
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 637145284464294660, guid: a80257f82decf0e4c967bc893f097141, type: 3}

@@ -1,13 +1,16 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject pausePanel;
+    [SerializeField] private GameObject settingsPanel;
     private PauseController _pauseController;
     private GameFlowController _gameFlowController;
     private InputAction openMenu;
     private bool _isPaused = false;
+    private Stack<GameObject> openPanels = new();
 
     void Awake()
     {
@@ -32,11 +35,11 @@ public class PauseMenu : MonoBehaviour
 
         if (_isPaused)
         {
-            Unpause();
+            CloseMostRecentPanel();
         }
         else
         {
-            Pause();
+            Pause(); 
         } 
     }
 
@@ -46,7 +49,7 @@ public class PauseMenu : MonoBehaviour
 
         _pauseController.RequestPause();
         _isPaused = true;
-        pausePanel.SetActive(true);
+        OpenPanel(pausePanel);
     }
 
     private void Unpause()
@@ -55,7 +58,45 @@ public class PauseMenu : MonoBehaviour
 
         _pauseController.ReleasePause();
         _isPaused = false;
-        pausePanel.SetActive(false);
+        
+        while (openPanels.Count > 0)
+        {
+            openPanels.Pop().SetActive(false);
+        }
+    }
+
+    public void CloseMostRecentPanel()
+    {
+        if (openPanels.Count == 0)
+        {
+            Unpause();
+            return;
+        }
+
+        GameObject mostRecentPanel = openPanels.Pop();
+        mostRecentPanel.SetActive(false);
+
+        if (openPanels.Count <= 0)
+        {
+            Unpause();
+        }
+        else
+        {
+            GameObject nextPanel = openPanels.Peek();
+            nextPanel.SetActive(true);
+        }
+    }
+
+    private void OpenPanel(GameObject panel)
+    {
+        if (openPanels.Count > 0)
+        {
+            GameObject currentPanel = openPanels.Peek();
+            currentPanel.SetActive(false);
+        }
+
+        panel.SetActive(true);
+        openPanels.Push(panel);
     }
 
     public void OnContinue()
@@ -65,7 +106,7 @@ public class PauseMenu : MonoBehaviour
 
     public void OnOptions()
     {
-        
+        OpenPanel(settingsPanel);
     }
 
     public void OnRestart()
