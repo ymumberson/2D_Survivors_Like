@@ -11,9 +11,11 @@ public class GameController : MonoBehaviour
     [SerializeField] private UIController uiController;
     [SerializeField] private GameFlowController gameFlowController;
     private const float DIFFICULTY_SCALING_FACTOR = 60f; // Larger = slower scaling
+    private const int MAX_TIME = 60*30;
     private int difficultyLevel;
     private float _elapsedTime = 0f;
     public float ElapsedTime => _elapsedTime;
+    public float MaxTime => MAX_TIME;
     public int DifficultyLevel => difficultyLevel;
     public Player Player => player;
 
