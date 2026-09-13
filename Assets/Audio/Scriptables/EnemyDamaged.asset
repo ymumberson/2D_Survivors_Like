@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 136ba697fcce904419cd2f5a1e3ed117, type: 3}
-  m_Name: SwordAttack
+  m_Name: EnemyDamaged
   m_EditorClassIdentifier: Assembly-CSharp::SoundEffect
   clips:
-  - {fileID: 8300000, guid: 61c421adc1eca3240b14ef3d1444fc2f, type: 3}
+  - {fileID: 8300000, guid: 85fa9cd5ade4ccf45b2a0c67631db3f3, type: 3}
   volume: 0.6
-  pitchMin: 1
-  pitchMax: 1
+  pitchMin: 0.7
+  pitchMax: 0.9
   loop: 0

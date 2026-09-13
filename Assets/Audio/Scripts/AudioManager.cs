@@ -88,4 +88,32 @@ public class AudioManager : MonoBehaviour
         source.pitch = sound.Pitch;
         source.loop = sound.Loop;
     }
+
+    public void SetMasterVolume(float volume)
+    {
+        volume = Mathf.Clamp01(volume);
+        //TODO set volume
+        Debug.Log($"Setting master volume to {volume}");
+    }
+    
+    public void SetMusicVolume(float volume)
+    {
+        volume = Mathf.Clamp01(volume);
+        //TODO set volume
+        Debug.Log($"Setting music volume to {volume}");
+    }
+
+    public void SetSFXVolume(float volume)
+    {
+        volume = Mathf.Clamp01(volume);
+        //TODO set volume
+        Debug.Log($"Setting sfx volume to {volume}");
+    }
+
+    public void SetUIVolume(float volume)
+    {
+        volume = Mathf.Clamp01(volume);
+        //TODO set volume
+        Debug.Log($"Setting ui volume to {volume}");
+    }
 }
