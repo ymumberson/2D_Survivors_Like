@@ -143,7 +143,7 @@ MonoBehaviour:
   m_text: Level Up Item Title
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 666a648ec70db7d4fa5fb7d29787e709, type: 2}
-  m_sharedMaterial: {fileID: -2703742662994441514, guid: 666a648ec70db7d4fa5fb7d29787e709, type: 2}
+  m_sharedMaterial: {fileID: 1543029179137345636, guid: 666a648ec70db7d4fa5fb7d29787e709, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -356,7 +356,7 @@ MonoBehaviour:
   m_text: Rarity
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 666a648ec70db7d4fa5fb7d29787e709, type: 2}
-  m_sharedMaterial: {fileID: -2703742662994441514, guid: 666a648ec70db7d4fa5fb7d29787e709, type: 2}
+  m_sharedMaterial: {fileID: 1543029179137345636, guid: 666a648ec70db7d4fa5fb7d29787e709, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -438,6 +438,7 @@ GameObject:
   - component: {fileID: 7744667976469174462}
   - component: {fileID: 8437311244142849124}
   - component: {fileID: 8086558654150473885}
+  - component: {fileID: 5384399954453572729}
   - component: {fileID: 6859466483619336023}
   - component: {fileID: 1610314133036684168}
   m_Layer: 0
@@ -569,7 +570,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7744667976469174462}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5384399954453572729}
+        m_TargetAssemblyTypeName: PlaySound, Assembly-CSharp
+        m_MethodName: PlayUISound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5384399954453572729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5857644341791175465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b551acccd8dc2b54ea9453750db8933a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlaySound
+  sound: {fileID: 11400000, guid: f7ac1797e02e73b4ab480551cde1447d, type: 2}
 --- !u!114 &6859466483619336023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -678,7 +704,7 @@ MonoBehaviour:
   m_text: Level up item description
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 666a648ec70db7d4fa5fb7d29787e709, type: 2}
-  m_sharedMaterial: {fileID: -2703742662994441514, guid: 666a648ec70db7d4fa5fb7d29787e709, type: 2}
+  m_sharedMaterial: {fileID: 1543029179137345636, guid: 666a648ec70db7d4fa5fb7d29787e709, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

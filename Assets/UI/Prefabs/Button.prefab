@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8889108080420510071}
   - component: {fileID: 285999548736940872}
   - component: {fileID: 2054273219320615709}
+  - component: {fileID: 3775133041604001207}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -120,7 +121,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 285999548736940872}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3775133041604001207}
+        m_TargetAssemblyTypeName: PlaySound, Assembly-CSharp
+        m_MethodName: PlayUISound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3775133041604001207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952121482019555041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b551acccd8dc2b54ea9453750db8933a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlaySound
+  sound: {fileID: 11400000, guid: f7ac1797e02e73b4ab480551cde1447d, type: 2}
 --- !u!1 &2780942134901191378
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,7 +215,7 @@ MonoBehaviour:
   m_text: Button
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 666a648ec70db7d4fa5fb7d29787e709, type: 2}
-  m_sharedMaterial: {fileID: -2703742662994441514, guid: 666a648ec70db7d4fa5fb7d29787e709, type: 2}
+  m_sharedMaterial: {fileID: 1543029179137345636, guid: 666a648ec70db7d4fa5fb7d29787e709, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
