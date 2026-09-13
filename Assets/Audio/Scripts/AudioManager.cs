@@ -63,6 +63,7 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
+        musicAudioSource.Stop();
         ConfigureAudioSource(musicAudioSource, sound, musicGroup);
         musicAudioSource.clip = clip;
         musicAudioSource.Play();
