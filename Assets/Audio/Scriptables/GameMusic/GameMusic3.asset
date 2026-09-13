@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 136ba697fcce904419cd2f5a1e3ed117, type: 3}
-  m_Name: EnemyDamaged
+  m_Name: GameMusic3
   m_EditorClassIdentifier: Assembly-CSharp::SoundEffect
   clips:
-  - {fileID: 8300000, guid: 85fa9cd5ade4ccf45b2a0c67631db3f3, type: 3}
+  - {fileID: 8300000, guid: ab9051f091a25ae49b300cec9dfd281e, type: 3}
   volume: 1
-  pitchMin: 0.7
-  pitchMax: 0.9
+  pitchMin: 0.9
+  pitchMax: 1.1
   loop: 0

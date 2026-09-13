@@ -185,7 +185,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameMusicController
   gameMusic:
-  - {fileID: 11400000, guid: 035e8126aec19e9498d73806e6c29d84, type: 2}
+  - {fileID: 11400000, guid: ec3e322b6a173a6479aa4aa56ec582f4, type: 2}
+  - {fileID: 11400000, guid: f9a1c03ca18de1f479df533a246baa22, type: 2}
+  - {fileID: 11400000, guid: 4b1a8a7dd3d5b9046b11b3c0068b644f, type: 2}
+  - {fileID: 11400000, guid: ceb78a1231cf1124eb1294085ec90442, type: 2}
+  - {fileID: 11400000, guid: 41f696d88478ddc47a336d3a6e11d053, type: 2}
 --- !u!1001 &5382996053279471405
 PrefabInstance:
   m_ObjectHideFlags: 0
