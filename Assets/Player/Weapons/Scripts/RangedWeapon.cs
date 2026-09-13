@@ -22,6 +22,7 @@ public class RangedWeapon : Weapon
         for (int i=0; i<_attackController.ProjectileCount; ++i)
         {
             SpawnProjectile();
+            InvokeAttacked(HitController.HitType.Initial);
             yield return new WaitForSeconds(DELAY_BETWEEN_PROJECTILES);  
         }
         yield break;

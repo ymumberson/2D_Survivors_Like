@@ -90,6 +90,7 @@ public class OrbitWeapon : Weapon
         float startingRotation = Random.value * 360f;
 
         GameObject[] orbitProjectilesCopy = orbitProjectiles.ToArray();
+        InvokeAttacked(HitController.HitType.Initial);
         for (int i=0; i<orbitProjectilesCopy.Length; ++i)
         {
             var orbitCoroutine = StartCoroutine(PerformOrbit(orbitProjectilesCopy[i], i, startingRotation));
