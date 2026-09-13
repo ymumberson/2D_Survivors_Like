@@ -11,7 +11,7 @@ public class VolumeSettings : MonoBehaviour
     private const string MASTER_VOLUME_PLAYER_PREF = "MasterVolume";
     private const string MUSIC_VOLUME_PLAYER_PREF = "MusicVolume";
     private const string SFX_VOLUME_PLAYER_PREF = "SFXVolume";
-    private const string UI_VOLUME_PLAYER_PREF = "MasterVolume";
+    private const string UI_VOLUME_PLAYER_PREF = "UIVolume";
     private const float DEFAULT_VOLUME = 1f;
 
     private float _masterVolume = 1f;
@@ -30,7 +30,7 @@ public class VolumeSettings : MonoBehaviour
     private float InitialiseSlider(string playerPrefsKey, Slider volumeSlider)
     {
         float loadedValue = PlayerPrefs.GetFloat(playerPrefsKey, DEFAULT_VOLUME);
-        volumeSlider.value = loadedValue;
+        volumeSlider.SetValueWithoutNotify(loadedValue);
         return loadedValue;
     }
 

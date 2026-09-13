@@ -6,9 +6,21 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance { get; private set;}
 
     [SerializeField] private AudioMixer audioMixer;
+    [SerializeField] private AudioMixerGroup musicGroup;
+    [SerializeField] private AudioMixerGroup sfxGroup;
+    [SerializeField] private AudioMixerGroup uiGroup;
     [SerializeField] private AudioSource musicAudioSource;
     [SerializeField] private AudioSource sfxAudioSource;
     [SerializeField] private AudioSource uiAudioSource;
+    private const string MASTER_VOLUME_KEY = "MasterVolume";
+    private const string MUSIC_VOLUME_KEY = "MusicVolume";
+    private const string SFX_VOLUME_KEY = "SFXVolume";
+    private const string UI_VOLUME_KEY = "UIVolume";
+    private const string MASTER_VOLUME_PLAYER_PREF = "MasterVolume";
+    private const string MUSIC_VOLUME_PLAYER_PREF = "MusicVolume";
+    private const string SFX_VOLUME_PLAYER_PREF = "SFXVolume";
+    private const string UI_VOLUME_PLAYER_PREF = "UIVolume";
+    private const float DEFAULT_VOLUME = 1f;
 
     void Awake()
     {
@@ -20,8 +32,20 @@ public class AudioManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
 
-        //TODO: Add audio sources into the mixer
+    void Start()
+    {
+        InitialiseFromPlayerPrefs();
+    }
+
+    private void InitialiseFromPlayerPrefs()
+    {
+        SetMasterVolume(PlayerPrefs.GetFloat(MASTER_VOLUME_PLAYER_PREF, DEFAULT_VOLUME));
+        SetMusicVolume(PlayerPrefs.GetFloat(MUSIC_VOLUME_PLAYER_PREF, DEFAULT_VOLUME));
+        SetSFXVolume(PlayerPrefs.GetFloat(SFX_VOLUME_PLAYER_PREF, DEFAULT_VOLUME));
+        SetUIVolume(PlayerPrefs.GetFloat(UI_VOLUME_PLAYER_PREF, DEFAULT_VOLUME));
+
     }
 
     public void PlayMusic(SoundEffect sound)
@@ -39,7 +63,7 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        ConfigureAudioSource(musicAudioSource, sound);
+        ConfigureAudioSource(musicAudioSource, sound, musicGroup);
         musicAudioSource.clip = clip;
         musicAudioSource.Play();
     }
@@ -59,7 +83,7 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        ConfigureAudioSource(sfxAudioSource, sound);
+        ConfigureAudioSource(sfxAudioSource, sound, sfxGroup);
         sfxAudioSource.PlayOneShot(clip);
     }
 
@@ -78,42 +102,46 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        ConfigureAudioSource(uiAudioSource, sound);
+        ConfigureAudioSource(uiAudioSource, sound, uiGroup);
         uiAudioSource.PlayOneShot(clip);
     }
 
-    private void ConfigureAudioSource(AudioSource source, SoundEffect sound)
+    private void ConfigureAudioSource(AudioSource source, SoundEffect sound, AudioMixerGroup group)
     {
         source.volume = sound.Volume;
         source.pitch = sound.Pitch;
         source.loop = sound.Loop;
+        source.outputAudioMixerGroup = group;
     }
 
     public void SetMasterVolume(float volume)
     {
         volume = Mathf.Clamp01(volume);
-        //TODO set volume
-        Debug.Log($"Setting master volume to {volume}");
+        audioMixer.SetFloat(MASTER_VOLUME_KEY, LinearToDecibels(volume));
     }
     
     public void SetMusicVolume(float volume)
     {
         volume = Mathf.Clamp01(volume);
-        //TODO set volume
-        Debug.Log($"Setting music volume to {volume}");
+        audioMixer.SetFloat(MUSIC_VOLUME_KEY, LinearToDecibels(volume));
     }
 
     public void SetSFXVolume(float volume)
     {
         volume = Mathf.Clamp01(volume);
-        //TODO set volume
-        Debug.Log($"Setting sfx volume to {volume}");
+        audioMixer.SetFloat(SFX_VOLUME_KEY, LinearToDecibels(volume));
     }
 
     public void SetUIVolume(float volume)
     {
         volume = Mathf.Clamp01(volume);
-        //TODO set volume
-        Debug.Log($"Setting ui volume to {volume}");
+        audioMixer.SetFloat(UI_VOLUME_KEY, LinearToDecibels(volume));
+    }
+
+    private float LinearToDecibels(float volume)
+    {
+        return volume <= 0.0001f
+            ? -80f
+            : Mathf.Log10(volume) * 20f;
     }
 }
