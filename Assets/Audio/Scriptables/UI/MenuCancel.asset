@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 136ba697fcce904419cd2f5a1e3ed117, type: 3}
-  m_Name: FireballAttack
+  m_Name: MenuCancel
   m_EditorClassIdentifier: Assembly-CSharp::SoundEffect
   clips:
-  - {fileID: 8300000, guid: a83e1c6de2f783d419be56132b20aa69, type: 3}
-  volume: 0.5
+  - {fileID: 8300000, guid: d6c2d95b2fea17a40b594daf74e731da, type: 3}
+  soundType: 2
+  volume: 1
   pitchMin: 1
   pitchMax: 1
   loop: 0

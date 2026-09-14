@@ -4,42 +4,22 @@ using UnityEngine;
 public class PlaySound : MonoBehaviour
 {
     [SerializeField] private SoundEffect sound;
+    [SerializeField] private bool playOnEnable = false;
 
-    public void PlaySFXSound()
+    void OnEnable()
+    {
+        if (playOnEnable)
+            Play();
+    }
+
+    public void Play()
     {
         if (!sound || !AudioManager.Instance)
         {
-            LogWarning();
+            Debug.LogWarning($"Sound effect not assigned on gameobject {gameObject.name}");
             return;
         }
 
-        AudioManager.Instance.PlaySFX(sound);
-    }
-
-    public void PlayUISound()
-    {
-        if (!sound || !AudioManager.Instance)
-        {
-            LogWarning();
-            return;
-        }
-
-        AudioManager.Instance.PlayUI(sound);
-    }
-
-    public void PlayMusicSound()
-    {
-        if (!sound || !AudioManager.Instance)
-        {
-            LogWarning();
-            return;
-        }
-
-        AudioManager.Instance.PlayMusic(sound);
-    }
-
-    private void LogWarning()
-    {
-        Debug.LogWarning($"Sound effect not assigned on gameobject {gameObject.name}");
+        AudioManager.Instance.Play(sound);
     }
 }

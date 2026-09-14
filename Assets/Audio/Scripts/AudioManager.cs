@@ -48,7 +48,24 @@ public class AudioManager : MonoBehaviour
 
     }
 
-    public void PlayMusic(SoundEffect sound)
+    public void Play(SoundEffect sound)
+    {
+        switch (sound.ClipSoundType)
+        {
+            case SoundEffect.SoundType.Music:
+                PlayMusic(sound);
+                break;
+            default:
+            case SoundEffect.SoundType.SFX:
+                PlaySFX(sound);
+                break;
+            case SoundEffect.SoundType.UI:
+                PlayUI(sound);
+                break;
+        }
+    }
+
+    private void PlayMusic(SoundEffect sound)
     {
         if (!musicAudioSource)
         {
@@ -69,7 +86,7 @@ public class AudioManager : MonoBehaviour
         musicAudioSource.Play();
     }
     
-    public void PlaySFX(SoundEffect sound)
+    private void PlaySFX(SoundEffect sound)
     {
         if (!sfxAudioSource)
         {
@@ -88,7 +105,7 @@ public class AudioManager : MonoBehaviour
         sfxAudioSource.PlayOneShot(clip);
     }
 
-    public void PlayUI(SoundEffect sound)
+    private void PlayUI(SoundEffect sound)
     {
         if (!uiAudioSource)
         {

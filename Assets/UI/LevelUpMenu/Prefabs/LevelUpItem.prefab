@@ -573,7 +573,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5384399954453572729}
         m_TargetAssemblyTypeName: PlaySound, Assembly-CSharp
-        m_MethodName: PlayUISound
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -596,6 +596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlaySound
   sound: {fileID: 11400000, guid: f7ac1797e02e73b4ab480551cde1447d, type: 2}
+  playOnEnable: 0
 --- !u!114 &6859466483619336023
 MonoBehaviour:
   m_ObjectHideFlags: 0

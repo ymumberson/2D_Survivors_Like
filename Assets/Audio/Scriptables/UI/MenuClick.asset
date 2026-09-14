@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 136ba697fcce904419cd2f5a1e3ed117, type: 3}
-  m_Name: EnemyDamaged
+  m_Name: MenuClick
   m_EditorClassIdentifier: Assembly-CSharp::SoundEffect
   clips:
-  - {fileID: 8300000, guid: 85fa9cd5ade4ccf45b2a0c67631db3f3, type: 3}
+  - {fileID: 8300000, guid: 7f5e3bf2567527a4ebbe74002a98d9c4, type: 3}
+  soundType: 2
   volume: 1
-  pitchMin: 0.7
-  pitchMax: 0.9
+  pitchMin: 1
+  pitchMax: 1
   loop: 0

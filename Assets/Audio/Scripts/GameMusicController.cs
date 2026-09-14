@@ -30,7 +30,7 @@ public class GameMusicController : MonoBehaviour
             {
                 SoundEffect musicTrack = gameMusic[i];
                 previousTrack = musicTrack;
-                AudioManager.Instance.PlayMusic(musicTrack);
+                AudioManager.Instance.Play(musicTrack);
                 yield return new WaitForSeconds(musicTrack.Clip.length);
             }
         }

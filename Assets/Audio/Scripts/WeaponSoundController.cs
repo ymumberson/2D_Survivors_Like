@@ -26,6 +26,6 @@ public class WeaponSoundController : MonoBehaviour
     {
         if (hitType != HitController.HitType.Initial) return;
 
-        AudioManager.Instance.PlaySFX(attackSound);
+        AudioManager.Instance.Play(attackSound);
     }
 }

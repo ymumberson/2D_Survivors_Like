@@ -47,6 +47,6 @@ public class HealthSoundController : MonoBehaviour
     {
         if (!sound || !AudioManager.Instance) return;
 
-        AudioManager.Instance.PlaySFX(sound);
+        AudioManager.Instance.Play(sound);
     }
 }
