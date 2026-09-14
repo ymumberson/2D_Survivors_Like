@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6200669462475948518}
   - component: {fileID: 58643384243639509}
   - component: {fileID: 1884806427584486507}
+  - component: {fileID: 9174970614614326269}
   m_Layer: 13
   m_Name: ExperienceOrb
   m_TagString: Untagged
@@ -85,6 +86,21 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 1
+--- !u!114 &9174970614614326269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535772265059924698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b551acccd8dc2b54ea9453750db8933a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlaySound
+  sound: {fileID: 11400000, guid: 44be220c0a3a4c949a157a1bb8290943, type: 2}
+  playOnEnable: 0
+  playOnDisable: 1
 --- !u!1 &2377316856901829801
 GameObject:
   m_ObjectHideFlags: 0

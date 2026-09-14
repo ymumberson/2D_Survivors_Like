@@ -5,10 +5,17 @@ public class PlaySound : MonoBehaviour
 {
     [SerializeField] private SoundEffect sound;
     [SerializeField] private bool playOnEnable = false;
+    [SerializeField] private bool playOnDisable = false;
 
     void OnEnable()
     {
         if (playOnEnable)
+            Play();
+    }
+
+    void OnDisable()
+    {
+        if (playOnDisable)
             Play();
     }
 

@@ -102,7 +102,7 @@ public class AudioManager : MonoBehaviour
         }
 
         ConfigureAudioSource(sfxAudioSource, sound, sfxGroup);
-        sfxAudioSource.PlayOneShot(clip);
+        sfxAudioSource.PlayOneShot(clip, sound.Volume);
     }
 
     private void PlayUI(SoundEffect sound)
@@ -121,7 +121,7 @@ public class AudioManager : MonoBehaviour
         }
 
         ConfigureAudioSource(uiAudioSource, sound, uiGroup);
-        uiAudioSource.PlayOneShot(clip);
+        uiAudioSource.PlayOneShot(clip, sound.Volume);
     }
 
     private void ConfigureAudioSource(AudioSource source, SoundEffect sound, AudioMixerGroup group)
