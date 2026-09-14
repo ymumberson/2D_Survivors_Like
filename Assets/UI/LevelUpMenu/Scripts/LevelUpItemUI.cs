@@ -8,9 +8,14 @@ public class LevelUpItemUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI title;
     [SerializeField] private Image image;
     [SerializeField] private TextMeshProUGUI description;
+    [SerializeField] private Image rarityBackground;
     [SerializeField] private TextMeshProUGUI rarity;
     [SerializeField] private Sprite fallbackImage;
     [SerializeField] private Button button;
+    [SerializeField] private Color commonColor = Color.white;
+    [SerializeField] private Color uncommonColor = Color.white;
+    [SerializeField] private Color rareColor = Color.white;
+    [SerializeField] private Color legendaryColor = Color.white;
     private UnityAction _previousOnClick;
 
     public void SetContent(LevelUpItem levelUpItem, UnityAction onClick)
@@ -25,5 +30,22 @@ public class LevelUpItemUI : MonoBehaviour
         
         button.onClick.AddListener(onClick);
         _previousOnClick = onClick;
+
+        switch (levelUpItem.rarity)
+        {
+            default:
+            case LevelUpItem.Rarity.Common:
+                rarityBackground.color = commonColor;
+                break;
+            case LevelUpItem.Rarity.Uncommon:
+                rarityBackground.color = uncommonColor;
+                break;
+            case LevelUpItem.Rarity.Rare:
+                rarityBackground.color = rareColor;
+                break;
+            case LevelUpItem.Rarity.Legendary:
+                rarityBackground.color = legendaryColor;
+                break;
+        }
     }
 }
