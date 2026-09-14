@@ -15,7 +15,7 @@ public class SoundEffect : ScriptableObject
             ? clips[Random.Range(0, clips.Length)]
             : null;
     public float Volume => volume;
-    public float Pitch => Random.Range(pitchMin, pitchMax);
+    public float Pitch => pitchMin >= pitchMax ? pitchMax : Random.Range(pitchMin, pitchMax);
     public bool Loop => loop;
     public SoundType ClipSoundType => soundType;
 

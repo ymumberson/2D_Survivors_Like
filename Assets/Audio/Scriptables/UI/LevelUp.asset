@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LevelUp
   m_EditorClassIdentifier: Assembly-CSharp::SoundEffect
   clips:
-  - {fileID: 8300000, guid: 7f5e3bf2567527a4ebbe74002a98d9c4, type: 3}
+  - {fileID: 8300000, guid: 5e16899390ef20547a6db5bb584cb1a5, type: 3}
   soundType: 2
   volume: 1
   pitchMin: 1

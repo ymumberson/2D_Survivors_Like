@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 136ba697fcce904419cd2f5a1e3ed117, type: 3}
   m_Name: ExperiencePickup
   m_EditorClassIdentifier: Assembly-CSharp::SoundEffect
-  clips: []
+  clips:
+  - {fileID: 8300000, guid: 21abdda4d2e13f640bc4fadd6c72b9b8, type: 3}
   soundType: 1
-  volume: 1
+  volume: 0.5
   pitchMin: 0.9
   pitchMax: 1.1
   loop: 0
