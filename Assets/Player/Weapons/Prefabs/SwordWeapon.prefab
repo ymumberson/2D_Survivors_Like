@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2619356336525603672}
   - component: {fileID: 6413707895713104478}
+  - component: {fileID: 779108967217492984}
   m_Layer: 0
   m_Name: SwordWeapon
   m_TagString: Untagged
@@ -57,6 +58,19 @@ MonoBehaviour:
   swingDuration: 0.5
   swingRadius: 160
   attackDirection: 4
+--- !u!114 &779108967217492984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507277018454945523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b783d3d1fe875c4d838e7436b731950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponSoundController
+  attackSound: {fileID: 11400000, guid: 43f63381fdeb647458641279aeccfea0, type: 2}
 --- !u!1 &7429435026508202226
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4338743349209520668}
   - component: {fileID: 272176240624489845}
+  - component: {fileID: 4732061733256698841}
   m_Layer: 0
   m_Name: FireballWeapon
   m_TagString: Untagged
@@ -55,3 +56,16 @@ MonoBehaviour:
   projectilePrefab: {fileID: 804817685301968405, guid: 55c509184f6822f418e634a836e759fb, type: 3}
   attackTarget: 1
   rotateProjectiles: 1
+--- !u!114 &4732061733256698841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7321618002743514322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b783d3d1fe875c4d838e7436b731950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponSoundController
+  attackSound: {fileID: 11400000, guid: 4cc67dbc3ead0a54db30a737162a18bf, type: 2}

@@ -100,6 +100,7 @@ public class SwingingWeapon : Weapon
         {
             var swingCoroutine = StartCoroutine(SwingProjectile(projectile, swingArc));
             firstSwingProjectile ??= swingCoroutine;
+            InvokeAttacked(HitController.HitType.Initial);
 
             yield return new WaitForSeconds(DELAY_BETWEEN_PROJECTILES);
         }

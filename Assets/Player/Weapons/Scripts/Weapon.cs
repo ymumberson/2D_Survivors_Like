@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,8 @@ public abstract class Weapon : MonoBehaviour
     protected float AttackInterval => weaponStats.AttackInterval / _attackController.AttackSpeed;
     protected Vector3 MovementDirection => movementDirection;
     protected float Knockback => weaponStats.Knockback;
+
+    public event Action<HitController.HitType> Attacked;
     
     public virtual void Initialize(Character character)
     {
@@ -44,6 +47,11 @@ public abstract class Weapon : MonoBehaviour
 
     protected abstract IEnumerator Attack();
 
+    protected void InvokeAttacked(HitController.HitType hitType)
+    {
+        Attacked?.Invoke(hitType);
+    }
+
     void Update()
     {
         CalculateMovementDirection();
@@ -63,6 +71,7 @@ public abstract class Weapon : MonoBehaviour
                 Knockback
             );
         _onHitController.ProcessHit(hitContext, hitType);
+        InvokeAttacked(hitType);
     }
 
     private bool IsStationary()

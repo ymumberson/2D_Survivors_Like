@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4572445372790066642}
   - component: {fileID: 365559327577401134}
+  - component: {fileID: 6980109223858831419}
   m_Layer: 0
   m_Name: OrbitWeapon
   m_TagString: Untagged
@@ -55,6 +56,19 @@ MonoBehaviour:
   - Enemy
   orbitProjectile: {fileID: 3778657350054901874}
   orbitDuration: 3
+--- !u!114 &6980109223858831419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545960439291766948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b783d3d1fe875c4d838e7436b731950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponSoundController
+  attackSound: {fileID: 11400000, guid: 700f8e7529fd5b74393f7b6daf82397a, type: 2}
 --- !u!1 &3778657350054901874
 GameObject:
   m_ObjectHideFlags: 0

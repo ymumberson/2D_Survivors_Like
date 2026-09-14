@@ -709,81 +709,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2167065454727326033, guid: 859cc6e5d74ded94b9c2fd8779dc8537, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2167065454727326033, guid: 859cc6e5d74ded94b9c2fd8779dc8537, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2167065454727326033, guid: 859cc6e5d74ded94b9c2fd8779dc8537, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2167065454727326033, guid: 859cc6e5d74ded94b9c2fd8779dc8537, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2167065454727326033, guid: 859cc6e5d74ded94b9c2fd8779dc8537, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2167065454727326033, guid: 859cc6e5d74ded94b9c2fd8779dc8537, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2850245582093827221, guid: 859cc6e5d74ded94b9c2fd8779dc8537, type: 3}
       propertyPath: m_Name
       value: PauseMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 3002107373902900834, guid: 859cc6e5d74ded94b9c2fd8779dc8537, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3002107373902900834, guid: 859cc6e5d74ded94b9c2fd8779dc8537, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3002107373902900834, guid: 859cc6e5d74ded94b9c2fd8779dc8537, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3002107373902900834, guid: 859cc6e5d74ded94b9c2fd8779dc8537, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3002107373902900834, guid: 859cc6e5d74ded94b9c2fd8779dc8537, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3002107373902900834, guid: 859cc6e5d74ded94b9c2fd8779dc8537, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8299942677335619149, guid: 859cc6e5d74ded94b9c2fd8779dc8537, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8299942677335619149, guid: 859cc6e5d74ded94b9c2fd8779dc8537, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8299942677335619149, guid: 859cc6e5d74ded94b9c2fd8779dc8537, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8299942677335619149, guid: 859cc6e5d74ded94b9c2fd8779dc8537, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8299942677335619149, guid: 859cc6e5d74ded94b9c2fd8779dc8537, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8299942677335619149, guid: 859cc6e5d74ded94b9c2fd8779dc8537, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -927,6 +855,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7736531267459551195}
     m_Modifications:
+    - target: {fileID: 2331123831762318815, guid: c416fdf2f343b3e4684d3378e6fd9399, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 1543029179137345636, guid: 666a648ec70db7d4fa5fb7d29787e709, type: 2}
     - target: {fileID: 3039502634581040829, guid: c416fdf2f343b3e4684d3378e6fd9399, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
