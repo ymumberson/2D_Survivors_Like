@@ -445,6 +445,7 @@ GameObject:
   - component: {fileID: 3943626957611756766}
   - component: {fileID: 9091033066235900983}
   - component: {fileID: 8667208930400650531}
+  - component: {fileID: 6354950999150326231}
   m_Layer: 10
   m_Name: Health
   m_TagString: Player
@@ -528,6 +529,21 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.612162, y: 1.6570337}
   m_EdgeRadius: 0
+--- !u!114 &6354950999150326231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6560199491776402293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd8c1a1a081de034bba0e4422976e6b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealthSoundController
+  damagedSound: {fileID: 11400000, guid: fcbacf4f6af0e0c42aafe6b98cb23fdc, type: 2}
+  healedSound: {fileID: 0}
+  diedSound: {fileID: 11400000, guid: fcbacf4f6af0e0c42aafe6b98cb23fdc, type: 2}
 --- !u!1 &7669911761979410409
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 136ba697fcce904419cd2f5a1e3ed117, type: 3}
-  m_Name: SwordAttack
+  m_Name: OrbitEnable
   m_EditorClassIdentifier: Assembly-CSharp::SoundEffect
   clips:
   - {fileID: 8300000, guid: a83e1c6de2f783d419be56132b20aa69, type: 3}
