@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class MovementController : MonoBehaviour
@@ -59,16 +60,30 @@ public class MovementController : MonoBehaviour
 
     public void ApplyKnockback(Vector3 direction, float magnitude)
     {
-        if (!rootTransform) return;
+        StartCoroutine(ApplyKnockbackOverTime(direction, magnitude));
+    }
 
-        direction.Normalize();
+    private IEnumerator ApplyKnockbackOverTime(Vector3 direction, float magnitude)
+    {
+        if (rootTransform)
+        {
+            direction.Normalize();
 
-        if (_rigidBody)
-        {
-            _rigidBody.AddForce(direction * magnitude);
-        } else
-        {
-            rootTransform.position = rootTransform.position + direction * magnitude;
+            float interval = 0f;
+            float delay = 0.1f;
+            float multiplier = magnitude / delay;
+            while (interval <= delay)
+            {
+                if (_rigidBody)
+                {
+                    _rigidBody.AddForce(direction * magnitude * Time.deltaTime);
+                } else
+                {
+                    rootTransform.position = rootTransform.position + direction * magnitude * Time.deltaTime * multiplier;
+                }
+                interval += Time.deltaTime;
+                yield return null;
+            }
         }
     }
 }
