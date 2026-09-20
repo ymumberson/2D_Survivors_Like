@@ -4,7 +4,9 @@ public class MoveToPlayer : MovementController
 {
     [SerializeField] private float avoidanceRadius = 1f;
     [SerializeField] private LayerMask avoidanceLayer;
-    private static float SLEEP_TIME = 0.25f;
+    private const float SLEEP_TIME = 0.25f;
+    private const float AVOIDANCE_RADIUS = 0.7071f; // ~45 degrees
+    private const float BLOCKED_TIMEOUT_DURATION = 0.1f;
     private float sleepTimer = 0f;
     private bool sleep = false;
     private Player _player;
@@ -12,29 +14,22 @@ public class MoveToPlayer : MovementController
 
     private bool moveLeftToAvoid = false;
     
-    // Update is called once per frame
     public void Initialize(Player player)
     {
         _player = player;
         moveLeftToAvoid = Random.Range(0f,1f) > 0.5f ? true : false;
     }
 
-    void Update()
-    {
-        Vector3 toPlayer = (_player.transform.position - transform.position).normalized;
-        Debug.DrawLine(transform.position, transform.position + toPlayer*avoidanceRadius);
-    }
-
     void FixedUpdate()
     {
-        if (sleepTimer > SLEEP_TIME)
+        if (sleepTimer > SLEEP_TIME) // Checks if sleep duration is over
         {
             sleep = false;
             sleepTimer = 0;
             return;
         }
 
-        if (sleep)
+        if (sleep) // Continue sleeping
         {
             sleepTimer += Time.fixedDeltaTime;
             return;
@@ -52,6 +47,7 @@ public class MoveToPlayer : MovementController
         Vector2 toPlayer = (_player.transform.position - transform.position).normalized;
         Vector2 moveDirection = toPlayer;
 
+        // Check for characters within specified radius that would block path to player
         Collider2D[] withinRadius = Physics2D.OverlapCircleAll(
             transform.position,
             avoidanceRadius,
@@ -64,18 +60,11 @@ public class MoveToPlayer : MovementController
             Character character = collision.gameObject.GetComponent<Character>();
             if (character)
             {
-                // Vector2 knockbackDirection = (Vector2)character.transform.position - (Vector2)transform.position;
-                // float distance = knockbackDirection.magnitude;
-                // knockbackDirection.Normalize();
-                // character.MovementController.ApplyKnockback(knockbackDirection, Mathf.Log10(1f+ distance * knockbackAmount * 9f));
-
                 Vector2 toCollision = (Vector2)character.transform.position - (Vector2)transform.position;
-                if (Vector3.Dot(toPlayer.normalized, toCollision.normalized) > 0.7071f) // Check if would block path to player
+                
+                // Check if would block path to player, within a radius degree radius
+                if (Vector3.Dot(toPlayer.normalized, toCollision.normalized) > AVOIDANCE_RADIUS)
                 {
-                    // return; // TODO: Alter direction or stop moving forward here.
-
-                    moveDirection = moveLeftToAvoid ? Vector3.Cross(new Vector3(0, 0, -1), toPlayer) : Vector3.Cross(new Vector3(0, 0, 1), toPlayer);
-                    Debug.LogError($"Avoiding enemy. Moving direction {moveDirection} instead of {MovementDirection}");
                     blocked = true;
                     break;
                 }
@@ -89,8 +78,23 @@ public class MoveToPlayer : MovementController
         if (blocked)
         {
             sleep = true;
-            blockedTimer += Time.fixedDeltaTime;
-            if (blockedTimer >= 0.1f) return;
+            blockedTimer += Time.fixedDeltaTime; // Sleep if still blocked after certain time
+            if (blockedTimer >= BLOCKED_TIMEOUT_DURATION) return;
+
+            // Set direction to go in to try and avoid the obstacle
+            moveDirection = moveLeftToAvoid ? Vector2.Perpendicular(toPlayer) : -Vector2.Perpendicular(toPlayer);
+
+            float rayDistance = MovementSpeed * Time.fixedDeltaTime;
+
+            // Check if direction is free of another obstacle
+            RaycastHit2D hit = Physics2D.Raycast(
+                transform.position,
+                moveDirection,
+                rayDistance,
+                avoidanceLayer
+            );
+
+            if (hit.collider != null) return;
         }
         else
         {
