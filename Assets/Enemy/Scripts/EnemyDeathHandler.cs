@@ -8,6 +8,7 @@ public class EnemyDeathHandler : MonoBehaviour
     [SerializeField] private float experienceDropAmount = 1;
     [SerializeField] private float experienceDropMultiplier = 1;
     private HealthController _healthController;
+    private float experienceRadius = 1f;
 
     public float ExperienceDropAmount => experienceDropAmount;
     public float ExperienceDropMultiplier => experienceDropMultiplier;
@@ -15,6 +16,9 @@ public class EnemyDeathHandler : MonoBehaviour
     void Awake()
     {
         _healthController = GetComponent<HealthController>();
+        experienceRadius = 
+            experiencePrefab.GetComponent<CircleCollider2D>().radius
+            * experiencePrefab.transform.localScale.x;
     }
 
     void OnEnable()
@@ -54,10 +58,38 @@ public class EnemyDeathHandler : MonoBehaviour
     {
         if (!experiencePrefab) return;
 
+        float experienceAmount = experienceDropAmount * experienceDropMultiplier;
+
+        Experience existingExperience = CheckForExistingDroppedExperience(transform.position, experienceRadius);
+
+        if (existingExperience)
+        {
+            existingExperience.experienceAmount += experienceAmount;
+            return;
+        }
+
         GameObject experienceGO = Instantiate(experiencePrefab, transform.position, transform.rotation);
         Experience experience = experienceGO.GetComponent<Experience>();
 
         if (experience)
-            experience.experienceAmount = experienceDropAmount * experienceDropMultiplier;
+            experience.experienceAmount = experienceAmount;
+    }
+
+    private Experience CheckForExistingDroppedExperience(Vector3 location, float radius)
+    {
+        var collisions = Physics2D.OverlapCircleAll(
+            location,
+            radius
+        );
+
+        foreach (var collision in collisions)
+        {
+            if (collision.TryGetComponent<Experience>(out Experience existingExperience))
+            {
+                return existingExperience;
+            }
+        }
+
+        return null;
     }
 }
