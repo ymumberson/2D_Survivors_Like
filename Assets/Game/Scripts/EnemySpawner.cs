@@ -8,6 +8,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private List<GameObject> enemyPrefabs = new();
     [SerializeField] private GameObject enemySpawnWarningIndicatorPrefab;
     [SerializeField] private float warningDuration = 1f;
+    [SerializeField] private int maxEnemiesAlive = 200;
     [SerializeField] private int baseSpawnCount = 1;
     [SerializeField] private float baseSpawnInterval = 5f;
     [SerializeField] private float minSpawnInterval = 0.5f;
@@ -25,6 +26,7 @@ public class EnemySpawner : MonoBehaviour
     private Dictionary<HealthController, GameObject> enemies = new();
 
     public Dictionary<HealthController, GameObject> Enemies => enemies;
+    private int enemiesAlive = 0;
 
     void Awake()
     {
@@ -111,6 +113,8 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy(Vector3 spawnLocation)
     {
+        if (enemiesAlive >= maxEnemiesAlive) return;
+
         var enemyPrefab = GetEnemyForDifficulty(_gameController.DifficultyLevel);
         var enemyGO = Instantiate(enemyPrefab, this.transform);
         enemyGO.transform.position = spawnLocation;
@@ -118,9 +122,16 @@ public class EnemySpawner : MonoBehaviour
         enemy.Initialize(_player);
         var healthController = enemy.HealthController;
         enemies[healthController] = enemyGO;
-        healthController.Died += () => enemies.Remove(healthController);
+        healthController.Died += () => EnemyDied(healthController);
 
         ScaleEnemyDifficulty(enemy);
+        enemiesAlive++;
+    }
+
+    private void EnemyDied(HealthController enemy)
+    {
+        enemies.Remove(enemy);
+        enemiesAlive--;
     }
 
     private GameObject GetEnemyForDifficulty(int difficultyLevel)
