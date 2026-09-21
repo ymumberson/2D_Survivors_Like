@@ -9,6 +9,7 @@ public class MovementController : MonoBehaviour
     [SerializeField] private float movementSpeedMultiplier = 1f;
     private Rigidbody2D _rigidBody;
     private Vector2 movementDirection = Vector2.zero;
+    private Coroutine knockbackCoroutine;
 
     public float MovementSpeed => baseMovementSpeed * movementSpeedMultiplier;
 
@@ -23,11 +24,16 @@ public class MovementController : MonoBehaviour
 
     public void Move(Vector2 moveAmount)
     {
-        if (!rootTransform) return;
+        if (!rootTransform || IsBeingKnockedBack()) return;
 
         movementDirection = moveAmount.normalized;
 
-        SetPosition(new Vector2(rootTransform.position.x + moveAmount.x, rootTransform.position.y + moveAmount.y));
+        ApplyMovement(moveAmount);
+    }
+
+    private void ApplyMovement(Vector2 moveAmount)
+    {
+        SetPosition((Vector2)rootTransform.position + moveAmount);
     }
 
     public void SetPosition(Vector2 position)
@@ -60,7 +66,15 @@ public class MovementController : MonoBehaviour
 
     public void ApplyKnockback(Vector3 direction, float magnitude)
     {
-        StartCoroutine(ApplyKnockbackOverTime(direction, magnitude));
+        if (magnitude <= 0) return;
+
+        if (knockbackCoroutine != null)
+        {
+            StopCoroutine(knockbackCoroutine);
+            knockbackCoroutine = null;
+        }
+
+        knockbackCoroutine = StartCoroutine(ApplyKnockbackOverTime(direction, magnitude));
     }
 
     private IEnumerator ApplyKnockbackOverTime(Vector3 direction, float magnitude)
@@ -71,19 +85,20 @@ public class MovementController : MonoBehaviour
 
             float interval = 0f;
             float delay = 0.1f;
-            float multiplier = magnitude / delay;
+            float force = magnitude / delay;
             while (interval <= delay)
             {
-                if (_rigidBody)
-                {
-                    _rigidBody.AddForce(direction * magnitude * Time.deltaTime);
-                } else
-                {
-                    rootTransform.position = rootTransform.position + direction * magnitude * Time.deltaTime * multiplier;
-                }
+                ApplyMovement(direction * force * Time.deltaTime);
                 interval += Time.deltaTime;
                 yield return null;
             }
         }
+
+        knockbackCoroutine = null;
+    }
+
+    public bool IsBeingKnockedBack()
+    {
+        return knockbackCoroutine != null;
     }
 }

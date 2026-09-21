@@ -51,7 +51,7 @@ MonoBehaviour:
     WeaponSpeed: 10
     WeaponSize: 1
     AttackInterval: 1
-    Knockback: 200
+    Knockback: 2
   targetTags:
   - Enemy
   swingProjectile: {fileID: 7429435026508202226}

@@ -50,7 +50,7 @@ MonoBehaviour:
     WeaponSpeed: 10
     WeaponSize: 1
     AttackInterval: 2
-    Knockback: 200
+    Knockback: 2
   targetTags:
   - Enemy
   projectilePrefab: {fileID: 2083385639244669605, guid: de2172d2b627c1547bfd83e019dba9a5, type: 3}
