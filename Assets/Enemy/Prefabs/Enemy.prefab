@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &273233811363369883
 Transform:
   m_ObjectHideFlags: 0
@@ -90,7 +90,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -118,8 +118,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0.5
+  m_Mass: 0.1
+  m_LinearDamping: 0.05
   m_AngularDamping: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -146,8 +146,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveToPlayer
   rootTransform: {fileID: 273233811363369883}
-  baseMovementSpeed: 1
+  baseMovementSpeed: 0.75
   movementSpeedMultiplier: 1
+  avoidanceRadius: 0.5
+  avoidanceLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &3832507579941944143
 GameObject:
   m_ObjectHideFlags: 0

@@ -71,16 +71,6 @@ public abstract class Weapon : MonoBehaviour
                 Knockback
             );
         _onHitController.ProcessHit(hitContext, hitType);
-        InvokeAttacked(hitType);
-    }
-
-    private bool IsStationary()
-    {
-        return (
-            Mathf.Approximately(previousPosition.x, transform.position.x) &&
-            Mathf.Approximately(previousPosition.y, transform.position.y) &&
-            Mathf.Approximately(previousPosition.z, transform.position.z)
-        );
     }
 
     private void CalculateMovementDirection()

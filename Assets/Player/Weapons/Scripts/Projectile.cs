@@ -1,8 +1,10 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    [SerializeField] private float maxLifeTime = 3f;
     public Vector2 direction = Vector2.zero;
     public float speed = 1;
     public float damage = 1;
@@ -14,6 +16,7 @@ public class Projectile : MonoBehaviour
     public void Initialise(Weapon weapon)
     {
         _weapon = weapon;
+        StartCoroutine(DestroyAfterMaxLifetime());
     }
     
     void FixedUpdate()
@@ -47,5 +50,11 @@ public class Projectile : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private IEnumerator DestroyAfterMaxLifetime()
+    {
+        yield return new WaitForSeconds(maxLifeTime);
+        Destroy(gameObject);
     }
 }
