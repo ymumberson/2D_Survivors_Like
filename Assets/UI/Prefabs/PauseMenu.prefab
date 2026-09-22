@@ -222,10 +222,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Playlist
   musicList:
+  - {fileID: 11400000, guid: 4063b9f156c345a4bbb7ba118edcbc9c, type: 2}
   - {fileID: 11400000, guid: 402b292924a81aa41b53e0d8552321ff, type: 2}
   - {fileID: 11400000, guid: 70c7727580cb31f4daed577b6019da5b, type: 2}
   - {fileID: 11400000, guid: 1a897fd88da8da44fa517664555cd813, type: 2}
   - {fileID: 11400000, guid: 63b6c989303e4f648ade198035f4436b, type: 2}
+  - {fileID: 11400000, guid: 8107b5c1be8e083459defc8f942c6d9e, type: 2}
+  - {fileID: 11400000, guid: c2553faaa8627994792f5f83b8a5c9fd, type: 2}
   - {fileID: 11400000, guid: 4460bd1f65d388b47857476798f80df1, type: 2}
 --- !u!1 &3953689758083583135
 GameObject:
