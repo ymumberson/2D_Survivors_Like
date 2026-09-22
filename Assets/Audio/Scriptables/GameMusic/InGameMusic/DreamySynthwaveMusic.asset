@@ -9,13 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 136ba697fcce904419cd2f5a1e3ed117, type: 3}
-  m_Name: GameMusic5
-  m_EditorClassIdentifier: Assembly-CSharp::SoundEffect
+  m_Script: {fileID: 11500000, guid: a498f7efcc7e98e49bb218ac3e06fe06, type: 3}
+  m_Name: DreamySynthwaveMusic
+  m_EditorClassIdentifier: Assembly-CSharp::Music
   clips:
   - {fileID: 8300000, guid: 983f4c66c3e1acd46a6a09c9c7041ad0, type: 3}
   soundType: 0
   volume: 1
-  pitchMin: 1
-  pitchMax: 1
+  pitchMin: 0.9
+  pitchMax: 1.1
   loop: 0
+  title: Dreamy Synthwave Music
+  author: Tunetank
+  url: https://pixabay.com/music/video-games-dreamy-synthwave-music-347512/
