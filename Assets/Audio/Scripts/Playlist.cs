@@ -14,14 +14,12 @@ public class Playlist : MonoBehaviour
     public string SongTitle => currentSong != null ? currentSong.Title : "";
     public string SongAuthor => currentSong != null ? currentSong.Author : "";
     public string SongURL => currentSong != null ? currentSong.URL : "";
-    public int debugIndex => nextSong;
-    public string NextSongTitle => nextMusic.Count > 0 ? nextMusic.Peek().Title : musicList[nextSong].Title;
-    public string PreviousSongTitle => previousMusic.Count > 0 ? previousMusic.Peek().Title : "";
+    public int songCount => musicList.Length;
+    public Music CurrentSong => currentSong;
 
     void Awake()
     {
         ShuffleMusic();
-        Next();
     }
 
     public Music Next()
@@ -47,7 +45,7 @@ public class Playlist : MonoBehaviour
 
     public Music Previous()
     {
-        if (previousMusic.Count == 0) return null;
+        if (previousMusic.Count == 0) return currentSong;
 
         // Store the song we're currently on so we play it next
         if (currentSong != null)
@@ -90,30 +88,5 @@ public class Playlist : MonoBehaviour
         }
 
         nextSong = 0;
-    }
-}
-
-[CustomEditor(typeof(Playlist))]
-public class PlaylistEditor : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        base.OnInspectorGUI();
-
-        EditorGUILayout.Space();
-
-        Playlist playlist = (Playlist)target;
-
-        GUILayout.Label($"Current: {playlist.SongTitle}");
-
-        if (GUILayout.Button("Next"))
-        {
-            playlist.Next();
-        }
-
-        if (GUILayout.Button("Previous"))
-        {
-            playlist.Previous();
-        }
     }
 }

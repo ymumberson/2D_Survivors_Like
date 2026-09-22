@@ -1,49 +1,76 @@
+using System;
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 
 public class GameMusicController : MonoBehaviour
 {
-    [SerializeField] private SoundEffect[] gameMusic;
+    [SerializeField] private Playlist gameMusic;
+    private float timer = 0;
+    private float songDuration = 0;
+
+    public Music CurrentSong => gameMusic.CurrentSong;
+
+    public event Action<Music> SongChanged;
 
     private void Start()
     {
-        if (gameMusic == null || gameMusic.Length == 0 || !AudioManager.Instance) return;
-
-        StartCoroutine(PlayMusic());
+        if (gameMusic == null || gameMusic.songCount == 0 || !AudioManager.Instance)
+            enabled = false;
     }
 
-    private IEnumerator PlayMusic()
+    void Update()
     {
-        SoundEffect previousTrack = null;
-        
-        while (true)
+        timer += Time.unscaledDeltaTime;
+
+        if (timer < songDuration) return;
+
+        Next();
+    }
+
+    public void Next()
+    {
+        SetSong(gameMusic.Next());
+    }
+
+    public void Previous()
+    {
+        SetSong(gameMusic.Previous());
+    }
+
+    private void SetSong(Music song)
+    {
+        if (song == null) return;
+
+        AudioManager.Instance.Play(song);
+        songDuration = song.Clip.length;
+        timer = 0;
+
+        SongChanged.Invoke(song);
+    }
+}
+
+[CustomEditor(typeof(GameMusicController))]
+public class GameMusicControllerEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+
+        EditorGUILayout.Space();
+
+        GameMusicController controller = (GameMusicController)target;
+
+        GUILayout.Label($"Current: {controller.CurrentSong.Title}");
+
+        if (GUILayout.Button("Next"))
         {
-            ShuffleMusic();
-
-            if (gameMusic.Length > 1 && gameMusic[0] == previousTrack)
-            {
-                int swapIndex = Random.Range(1, gameMusic.Length);
-                (gameMusic[0], gameMusic[swapIndex]) = (gameMusic[swapIndex], gameMusic[0]);
-            }
-
-            for (int i=0; i<gameMusic.Length; ++i)
-            {
-                SoundEffect musicTrack = gameMusic[i];
-                previousTrack = musicTrack;
-                AudioManager.Instance.Play(musicTrack);
-                yield return new WaitForSecondsRealtime(musicTrack.Clip.length);
-            }
+            controller.Next();
         }
-    }
 
-    private void ShuffleMusic()
-    {
-        if (gameMusic == null || gameMusic.Length <= 1) return;
-
-        for (int i = gameMusic.Length - 1; i > 0; i--)
+        if (GUILayout.Button("Previous"))
         {
-            int j = Random.Range(0, i + 1);
-            (gameMusic[i], gameMusic[j]) = (gameMusic[j], gameMusic[i]);
+            controller.Previous();
         }
     }
 }

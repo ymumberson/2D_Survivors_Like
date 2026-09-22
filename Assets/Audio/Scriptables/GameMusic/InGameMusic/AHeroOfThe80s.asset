@@ -16,8 +16,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ab9051f091a25ae49b300cec9dfd281e, type: 3}
   soundType: 0
   volume: 1
-  pitchMin: 0.9
-  pitchMax: 1.1
+  pitchMin: 1
+  pitchMax: 1
   loop: 0
   title: A Hero of the 80s
   author: Grand_Project

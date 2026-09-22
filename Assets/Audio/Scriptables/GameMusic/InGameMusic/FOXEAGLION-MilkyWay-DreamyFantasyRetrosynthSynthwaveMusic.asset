@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Music
   clips:
   - {fileID: 8300000, guid: c982bb024beb85c47b5cba892d6486c8, type: 3}
-  soundType: 1
+  soundType: 0
   volume: 1
-  pitchMin: 0.9
-  pitchMax: 1.1
+  pitchMin: 1
+  pitchMax: 1
   loop: 0
   title: FOXEAGLION - Milky Way - Dreamy Fantasy Retrosynth Synthwave Music
   author: michitheonlyone

@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 4249919322229195413}
   - component: {fileID: 5735219549235935741}
   - component: {fileID: 5366065496190969107}
+  - component: {fileID: 5831809141463948933}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -185,7 +186,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09ab238323e955345a3706ac310ce93a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameMusicController
-  gameMusic:
+  gameMusic: {fileID: 5831809141463948933}
+--- !u!114 &5831809141463948933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7701443331395601844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecc421406d76aee4f8f4e9e322ea983d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Playlist
+  musicList:
   - {fileID: 11400000, guid: 402b292924a81aa41b53e0d8552321ff, type: 2}
   - {fileID: 11400000, guid: 70c7727580cb31f4daed577b6019da5b, type: 2}
   - {fileID: 11400000, guid: 1a897fd88da8da44fa517664555cd813, type: 2}

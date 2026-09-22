@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -25,6 +26,8 @@ public class AudioManager : MonoBehaviour
     public const float DEFAULT_SFX_VOLUME = 0.5f;
     public const float DEFAULT_UI_VOLUME = 0.5f;
 
+    public event Action MusicFinished;
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -48,7 +51,6 @@ public class AudioManager : MonoBehaviour
         SetMusicVolume(PlayerPrefs.GetFloat(MUSIC_VOLUME_PLAYER_PREF, DEFAULT_MUSIC_VOLUME));
         SetSFXVolume(PlayerPrefs.GetFloat(SFX_VOLUME_PLAYER_PREF, DEFAULT_SFX_VOLUME));
         SetUIVolume(PlayerPrefs.GetFloat(UI_VOLUME_PLAYER_PREF, DEFAULT_UI_VOLUME));
-
     }
 
     public void Play(SoundEffect sound)

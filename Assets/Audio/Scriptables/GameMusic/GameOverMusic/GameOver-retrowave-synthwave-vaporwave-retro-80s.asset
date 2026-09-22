@@ -16,8 +16,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c513b590b729c45488be14dd76c13be0, type: 3}
   soundType: 0
   volume: 1
-  pitchMin: 0.9
-  pitchMax: 1.1
+  pitchMin: 1
+  pitchMax: 1
   loop: 1
   title: Game Over ( retrowaver, synthwave, vaporwave, retro, 80s )
   author: Artur_Aravidi_Music
