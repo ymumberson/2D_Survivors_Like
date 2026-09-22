@@ -26,8 +26,6 @@ public class AudioManager : MonoBehaviour
     public const float DEFAULT_SFX_VOLUME = 0.5f;
     public const float DEFAULT_UI_VOLUME = 0.5f;
 
-    public event Action MusicFinished;
-
     void Awake()
     {
         if (Instance != null && Instance != this)

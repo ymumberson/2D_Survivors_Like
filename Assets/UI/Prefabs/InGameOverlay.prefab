@@ -68,7 +68,7 @@ MonoBehaviour:
   m_text: 00:00
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 666a648ec70db7d4fa5fb7d29787e709, type: 2}
-  m_sharedMaterial: {fileID: -2703742662994441514, guid: 666a648ec70db7d4fa5fb7d29787e709, type: 2}
+  m_sharedMaterial: {fileID: 1543029179137345636, guid: 666a648ec70db7d4fa5fb7d29787e709, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -273,7 +273,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5218643634884163412, guid: a80257f82decf0e4c967bc893f097141, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 74.54
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5218643634884163412, guid: a80257f82decf0e4c967bc893f097141, type: 3}
       propertyPath: m_LocalPosition.x
@@ -430,7 +430,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5218643634884163412, guid: a80257f82decf0e4c967bc893f097141, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 74.54
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5218643634884163412, guid: a80257f82decf0e4c967bc893f097141, type: 3}
       propertyPath: m_LocalPosition.x

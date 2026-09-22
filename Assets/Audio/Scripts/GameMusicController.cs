@@ -46,7 +46,7 @@ public class GameMusicController : MonoBehaviour
         songDuration = song.Clip.length;
         timer = 0;
 
-        SongChanged.Invoke(song);
+        SongChanged?.Invoke(song);
     }
 }
 
@@ -61,7 +61,9 @@ public class GameMusicControllerEditor : Editor
 
         GameMusicController controller = (GameMusicController)target;
 
-        GUILayout.Label($"Current: {controller.CurrentSong.Title}");
+        Music currentSong = controller.CurrentSong;
+        string title = currentSong != null ? currentSong.Title : "No current song";
+        GUILayout.Label($"Current: {title}");
 
         if (GUILayout.Button("Next"))
         {
