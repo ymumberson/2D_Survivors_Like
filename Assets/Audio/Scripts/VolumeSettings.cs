@@ -8,12 +8,6 @@ public class VolumeSettings : MonoBehaviour
     [SerializeField] private Slider sfxVolumeSlider;
     [SerializeField] private Slider uiVolumeSlider;
 
-    private const string MASTER_VOLUME_PLAYER_PREF = "MasterVolume";
-    private const string MUSIC_VOLUME_PLAYER_PREF = "MusicVolume";
-    private const string SFX_VOLUME_PLAYER_PREF = "SFXVolume";
-    private const string UI_VOLUME_PLAYER_PREF = "UIVolume";
-    private const float DEFAULT_VOLUME = 1f;
-
     private float _masterVolume = 1f;
     private float _musicVolume = 1f;
     private float _sfxVolume = 1f;
@@ -21,15 +15,15 @@ public class VolumeSettings : MonoBehaviour
 
     void Awake()
     {
-        _masterVolume = InitialiseSlider(MASTER_VOLUME_PLAYER_PREF, masterVolumeSlider);
-        _musicVolume = InitialiseSlider(MUSIC_VOLUME_PLAYER_PREF, musicVolumeSlider);
-        _sfxVolume = InitialiseSlider(SFX_VOLUME_PLAYER_PREF, sfxVolumeSlider);
-        _uiVolume = InitialiseSlider(UI_VOLUME_PLAYER_PREF, uiVolumeSlider);
+        _masterVolume = InitialiseSlider(AudioManager.MASTER_VOLUME_PLAYER_PREF, masterVolumeSlider, AudioManager.DEFAULT_MASTER_VOLUME);
+        _musicVolume = InitialiseSlider(AudioManager.MUSIC_VOLUME_PLAYER_PREF, musicVolumeSlider, AudioManager.DEFAULT_MUSIC_VOLUME);
+        _sfxVolume = InitialiseSlider(AudioManager.SFX_VOLUME_PLAYER_PREF, sfxVolumeSlider, AudioManager.DEFAULT_SFX_VOLUME);
+        _uiVolume = InitialiseSlider(AudioManager.UI_VOLUME_PLAYER_PREF, uiVolumeSlider, AudioManager.DEFAULT_UI_VOLUME);
     }
 
-    private float InitialiseSlider(string playerPrefsKey, Slider volumeSlider)
+    private float InitialiseSlider(string playerPrefsKey, Slider volumeSlider, float defaultVolume)
     {
-        float loadedValue = PlayerPrefs.GetFloat(playerPrefsKey, DEFAULT_VOLUME);
+        float loadedValue = PlayerPrefs.GetFloat(playerPrefsKey, defaultVolume);
         volumeSlider.SetValueWithoutNotify(loadedValue);
         return loadedValue;
     }
@@ -38,7 +32,7 @@ public class VolumeSettings : MonoBehaviour
     {
         value = Mathf.Clamp01(value);
         _masterVolume = value;
-        PlayerPrefs.SetFloat(MASTER_VOLUME_PLAYER_PREF, value);
+        PlayerPrefs.SetFloat(AudioManager.MASTER_VOLUME_PLAYER_PREF, value);
 
         if (!AudioManager.Instance)
         {
@@ -53,7 +47,7 @@ public class VolumeSettings : MonoBehaviour
     {
         value = Mathf.Clamp01(value);
         _masterVolume = value;
-        PlayerPrefs.SetFloat(MUSIC_VOLUME_PLAYER_PREF, value);
+        PlayerPrefs.SetFloat(AudioManager.MUSIC_VOLUME_PLAYER_PREF, value);
 
         if (!AudioManager.Instance)
         {
@@ -68,7 +62,7 @@ public class VolumeSettings : MonoBehaviour
     {
         value = Mathf.Clamp01(value);
         _sfxVolume = value;
-        PlayerPrefs.SetFloat(SFX_VOLUME_PLAYER_PREF, value);
+        PlayerPrefs.SetFloat(AudioManager.SFX_VOLUME_PLAYER_PREF, value);
 
         if (!AudioManager.Instance)
         {
@@ -83,7 +77,7 @@ public class VolumeSettings : MonoBehaviour
     {
         value = Mathf.Clamp01(value);
         _uiVolume = value;
-        PlayerPrefs.SetFloat(UI_VOLUME_PLAYER_PREF, value);
+        PlayerPrefs.SetFloat(AudioManager.UI_VOLUME_PLAYER_PREF, value);
 
         if (!AudioManager.Instance)
         {

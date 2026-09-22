@@ -15,12 +15,15 @@ public class AudioManager : MonoBehaviour
     private const string MASTER_VOLUME_KEY = "MasterVolume";
     private const string MUSIC_VOLUME_KEY = "MusicVolume";
     private const string SFX_VOLUME_KEY = "SFXVolume";
-    private const string UI_VOLUME_KEY = "UIVolume";
-    private const string MASTER_VOLUME_PLAYER_PREF = "MasterVolume";
-    private const string MUSIC_VOLUME_PLAYER_PREF = "MusicVolume";
-    private const string SFX_VOLUME_PLAYER_PREF = "SFXVolume";
-    private const string UI_VOLUME_PLAYER_PREF = "UIVolume";
-    private const float DEFAULT_VOLUME = 1f;
+    public const string UI_VOLUME_KEY = "UIVolume";
+    public const string MASTER_VOLUME_PLAYER_PREF = "MasterVolume";
+    public const string MUSIC_VOLUME_PLAYER_PREF = "MusicVolume";
+    public const string SFX_VOLUME_PLAYER_PREF = "SFXVolume";
+    public const string UI_VOLUME_PLAYER_PREF = "UIVolume";
+    public const float DEFAULT_MASTER_VOLUME = 0.5f;
+    public const float DEFAULT_MUSIC_VOLUME = 0.5f;
+    public const float DEFAULT_SFX_VOLUME = 0.5f;
+    public const float DEFAULT_UI_VOLUME = 0.5f;
 
     void Awake()
     {
@@ -41,10 +44,10 @@ public class AudioManager : MonoBehaviour
 
     private void InitialiseFromPlayerPrefs()
     {
-        SetMasterVolume(PlayerPrefs.GetFloat(MASTER_VOLUME_PLAYER_PREF, DEFAULT_VOLUME));
-        SetMusicVolume(PlayerPrefs.GetFloat(MUSIC_VOLUME_PLAYER_PREF, DEFAULT_VOLUME));
-        SetSFXVolume(PlayerPrefs.GetFloat(SFX_VOLUME_PLAYER_PREF, DEFAULT_VOLUME));
-        SetUIVolume(PlayerPrefs.GetFloat(UI_VOLUME_PLAYER_PREF, DEFAULT_VOLUME));
+        SetMasterVolume(PlayerPrefs.GetFloat(MASTER_VOLUME_PLAYER_PREF, DEFAULT_MASTER_VOLUME));
+        SetMusicVolume(PlayerPrefs.GetFloat(MUSIC_VOLUME_PLAYER_PREF, DEFAULT_MUSIC_VOLUME));
+        SetSFXVolume(PlayerPrefs.GetFloat(SFX_VOLUME_PLAYER_PREF, DEFAULT_SFX_VOLUME));
+        SetUIVolume(PlayerPrefs.GetFloat(UI_VOLUME_PLAYER_PREF, DEFAULT_UI_VOLUME));
 
     }
 
